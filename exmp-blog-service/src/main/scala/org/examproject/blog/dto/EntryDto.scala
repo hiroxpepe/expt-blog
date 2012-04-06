@@ -60,4 +60,7 @@ trait EntryDto {
     @BeanProperty
     var created: Date = _
     
+    @BeanProperty
+    var code: String = _
+    
 }

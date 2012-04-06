@@ -382,31 +382,45 @@ class EntryController {
     ) = {
         LOG.debug("called");
         
-        val username = new Cookie("__exmp_blog_username", entryForm.getUsername())
+        val username = new Cookie(
+            "__exmp_blog_username", entryForm.getUsername()
+        )
         username.setMaxAge(maxAge)
         response.addCookie(username)
         
-        val password = new Cookie("__exmp_blog_password", entryForm.getPassword())
+        val password = new Cookie(
+            "__exmp_blog_password", entryForm.getPassword()
+        )
         password.setMaxAge(maxAge)
         response.addCookie(password)
         
-        val blog = new Cookie("__exmp_blog_blog", entryForm.getBlog())
+        val blog = new Cookie(
+            "__exmp_blog_blog", entryForm.getBlog()
+        )
         blog.setMaxAge(maxAge)
         response.addCookie(blog)
         
-        val url = new Cookie("__exmp_blog_url", entryForm.getUrl())
+        val url = new Cookie(
+            "__exmp_blog_url", entryForm.getUrl()
+        )
         url.setMaxAge(maxAge)
         response.addCookie(url)
         
-        val scheme = new Cookie("__exmp_blog_scheme", entryForm.getScheme())
+        val scheme = new Cookie(
+            "__exmp_blog_scheme", entryForm.getScheme()
+        )
         scheme.setMaxAge(maxAge)
         response.addCookie(scheme)
         
-        val feedurl = new Cookie("__exmp_blog_feedurl", entryForm.getFeedUrl())
+        val feedurl = new Cookie(
+            "__exmp_blog_feedurl", entryForm.getFeedUrl()
+        )
         feedurl.setMaxAge(maxAge)
         response.addCookie(feedurl)
         
-        val author = new Cookie("__exmp_blog_author", entryForm.getAuthor())
+        val author = new Cookie(
+            "__exmp_blog_author", entryForm.getAuthor()
+        )
         author.setMaxAge(maxAge)
         response.addCookie(author)
     }

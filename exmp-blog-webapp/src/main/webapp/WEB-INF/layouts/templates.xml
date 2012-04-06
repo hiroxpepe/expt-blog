@@ -21,14 +21,19 @@
     <!-- replace the region of the contents for the request URL.                       -->
     <!-- ============================================================================= -->
 
-    <!-- contents of the "content" you access http://[your domain]/index.html -->
+    <!-- contents of the content, the controller of Spring MVC call "index" -->
     <definition name="index" extends="main-template">
         <put-attribute name="content" value="/WEB-INF/views/index.jsp" />
     </definition>
 
-    <!-- contents of the "content" you access http://[your domain]/entry/form.html -->
+    <!-- contents of the content, the controller of Spring MVC call "entry/form" -->
     <definition name="entry/form" extends="main-template">
         <put-attribute name="content" value="/WEB-INF/views/entry/form.jsp" />
+    </definition>
+    
+    <!-- contents of the content, the controller of Spring MVC call "entry/permalink" -->
+    <definition name="entry/permalink" extends="main-template">
+        <put-attribute name="content" value="/WEB-INF/views/entry/permalink.jsp" />
     </definition>
 
 </tiles-definitions>

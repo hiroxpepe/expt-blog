@@ -45,6 +45,10 @@ class Entry extends Serializable {
     @BeanProperty
     var id: Long = _
     
+    @Column(name="code")
+    @BeanProperty
+    var code: String = _
+    
     @Column(name="created")
     @Temporal(javax.persistence.TemporalType.DATE)
     @BeanProperty

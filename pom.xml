@@ -20,6 +20,7 @@
       <module>exmp-blog-service</module>
       <module>exmp-blog-service-impl</module>
       <module>exmp-blog-data-jpa</module>
+      <module>exmp-blog-util</module>
     </modules>
     
     <build>
