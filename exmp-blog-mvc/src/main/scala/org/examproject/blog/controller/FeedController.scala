@@ -18,6 +18,7 @@ import java.util.ArrayList
 import java.util.Date
 import java.util.List
 import javax.inject.Inject
+import javax.servlet.ServletContext 
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -47,6 +48,9 @@ class FeedController {
     
     @Inject
     private val context: ApplicationContext = null
+    
+    @Inject
+    private val servletContext: ServletContext = null
 
     @Inject
     private val feedService: FeedService = null
@@ -148,7 +152,7 @@ class FeedController {
             
             // this is a still mock..
             feedMode.setUrl(
-                "http://localhost/" + entryDto.getTitle() + ".html"
+                servletContext.getRealPath("/") + "/" + entryDto.getCode + ".html"
             )
             
             // add the object to the object list.

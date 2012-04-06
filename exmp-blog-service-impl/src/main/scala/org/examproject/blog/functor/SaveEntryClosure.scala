@@ -26,6 +26,7 @@ import org.springframework.context.ApplicationContext
 import org.examproject.blog.dto.EntryDto
 import org.examproject.blog.entity.Entry
 import org.examproject.blog.repository.EntryRepository
+import org.examproject.blog.util.EntryUtils
 
 /**
  * @author hiroxpepe
@@ -62,9 +63,10 @@ class SaveEntryClosure extends Closure {
     private def save(entryDto: EntryDto) = {
         LOG.debug("called save.")
 
-        // if dto is new one, create a new date.
+        // if dto is new one, create a new date and code.
         if (entryDto.getCreated() == null) {
             entryDto.setCreated(new Date())
+            entryDto.setCode(EntryUtils.createCode())
             LOG.debug("set entryDto new Date.")
         }
         

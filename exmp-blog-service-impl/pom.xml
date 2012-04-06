@@ -31,6 +31,13 @@
             <version>${exmp.version}</version>
         </dependency>
         
+        <!-- exmp-blog-util -->
+        <dependency>
+            <groupId>org.examproject</groupId>
+            <artifactId>exmp-blog-util</artifactId>
+            <version>${exmp.version}</version>
+        </dependency>
+        
         <!-- exmp-blog-data-jpa -->
         <dependency>
             <groupId>org.examproject</groupId>

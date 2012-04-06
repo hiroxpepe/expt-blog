@@ -24,7 +24,7 @@ public class EntryUtils {
     
     private static Random random = new Random();
     
-    public String createCode() {
+    public static String createCode() {
         int intCode = random.nextInt(999999999);
         String strCode = String.valueOf(intCode);
         String code = StringUtils.leftPad(strCode, 9, "0");
