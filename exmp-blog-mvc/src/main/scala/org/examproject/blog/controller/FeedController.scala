@@ -18,7 +18,8 @@ import java.util.ArrayList
 import java.util.Date
 import java.util.List
 import javax.inject.Inject
-import javax.servlet.ServletContext 
+import javax.servlet.ServletContext
+import javax.servlet.http.HttpServletRequest
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -51,6 +52,9 @@ class FeedController {
     
     @Inject
     private val servletContext: ServletContext = null
+    
+    @Inject
+    private val request: HttpServletRequest = null
 
     @Inject
     private val feedService: FeedService = null
@@ -131,33 +135,37 @@ class FeedController {
         // get the dto-object list from service-object.
         val entryDtoList: List[EntryDto] = feedService.findAllEntry()
         
+        // get the server URL of the request.
+        var fullUrl: StringBuffer = request.getRequestURL()
+        var serverUrlArray = fullUrl.toString().split("/entry")
+    
         // process the entry object of all of the list.
         for (entryDto: EntryDto <- entryDtoList) {
             
             // create a object to build to the feed.
-            val feedMode: FeedModel = context.getBean(
+            val feedModel: FeedModel = context.getBean(
                 classOf[FeedModel]
             )
             
             // set the value to the object.
-            feedMode.setTitle(
+            feedModel.setTitle(
                 entryDto.getTitle()
             )
-            feedMode.setSummary(
+            feedModel.setSummary(
                 entryDto.getContent()
             )
-            feedMode.setCreatedDate(
+            feedModel.setCreatedDate(
                 entryDto.getCreated()
             )
             
             // this is a still mock..
-            feedMode.setUrl(
-                servletContext.getRealPath("/") + "/" + entryDto.getCode + ".html"
+            feedModel.setUrl(
+               serverUrlArray(0) + "/" + entryDto.getCode + ".html"
             )
             
             // add the object to the object list.
             feedModelList.add(
-                feedMode
+                feedModel
             )
         }
         
