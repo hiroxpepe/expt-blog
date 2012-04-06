@@ -25,4 +25,7 @@ import org.examproject.blog.entity.Entry
  * @author hiroxpepe
  */
 trait EntryRepository extends JpaRepository[Entry, Long] {
+  
+    def findByCode(code: String): List[Entry]
+
 }
