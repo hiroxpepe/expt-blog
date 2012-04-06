@@ -71,7 +71,7 @@ class EntryController {
      * expected HTTP request is '/entry/form.html'
      */
     @RequestMapping(
-        value=Array("/entry/form"),
+        value=Array("/entry/form.html"),
         method=Array(RequestMethod.GET)
     )
     def doForm(
@@ -119,7 +119,7 @@ class EntryController {
      * expected Ajax HTTP request is '/entry/post.html'
      */
     @RequestMapping(
-        value=Array("/entry/post"),
+        value=Array("/entry/post.html"),
         method=Array(RequestMethod.POST),
         headers=Array("Accept=application/json")
     )
@@ -175,7 +175,7 @@ class EntryController {
      * expected Ajax HTTP request is '/entry/list.html'
      */
     @RequestMapping(
-        value=Array("/entry/list"),
+        value=Array("/entry/list.html"),
         method=Array(RequestMethod.POST),
         headers=Array("Accept=application/json")
     )
@@ -217,7 +217,7 @@ class EntryController {
      * expected Ajax HTTP request is '/entry/setting.html'
      */
     @RequestMapping(
-        value=Array("/entry/setting"),
+        value=Array("/entry/setting.html"),
         method=Array(RequestMethod.POST),
         headers=Array("Accept=application/json")
     )
@@ -317,11 +317,11 @@ class EntryController {
         LOG.debug("called");
         
         // get the dto-object list from service-object.
-        val rentryList: List[EntryDto] = entryService.findAllEntry(
+        val entryList: List[EntryDto] = entryService.findAllEntry(
             entryForm.getFeedUrl()
         )
         
-        return rentryList
+        return entryList
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -339,7 +339,7 @@ class EntryController {
         val dstEntryList: List[Entry] = new ArrayList[Entry]()
         
         // process the entry object of all of the list.
-        for (rentryDto: EntryDto <- srcEntryList) {
+        for (entryDto: EntryDto <- srcEntryList) {
             
             // create a object to send to the html page.
             val entry: Entry = context.getBean(
@@ -348,10 +348,10 @@ class EntryController {
             
             // set the value to the object.
             entry.setTitle(
-                rentryDto.getTitle()
+                entryDto.getTitle()
             )
             entry.setContent(
-                rentryDto.getContent()
+                entryDto.getContent()
             )
             
             // add the object to the object list.

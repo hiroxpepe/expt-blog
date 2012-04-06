@@ -16,6 +16,10 @@
         <constructor-arg name="saveEntryClosure" ref="saveEntryClosure" />
         <constructor-arg name="deleteEntryClosure" ref="deleteEntryClosure" />
     </bean>
+    
+    <bean id="feedService" class="org.examproject.blog.service.SimpleFeedService">
+        <constructor-arg name="allEntryFactory" ref="allEntryFactory" />
+    </bean>
 
     <!-- //////////////////////////////////////////////////////////////////////////// -->
     <!-- functor object -->
@@ -54,6 +58,14 @@
  
     <bean id="ajaxResponse"
         class="org.examproject.blog.response.AjaxResponse"
+        scope="prototype">
+    </bean>
+    
+    <!-- //////////////////////////////////////////////////////////////////////////// -->
+    <!-- model object -->
+    
+    <bean id="feedModel"
+        class="org.examproject.blog.model.FeedModel"
         scope="prototype">
     </bean>
  

@@ -203,6 +203,7 @@ div.sidebar-content {
         padding-bottom: 2pt;
         padding-left: 2pt;
         display: block;
+        text-align: center;
         text-decoration: none;
         color: white;
         background: lightslategray;
@@ -215,6 +216,13 @@ div.sidebar-content {
             border: 1px solid #d2b48c;
             border-radius: 3px;
         }
+        div.sidebar-content a.feed {
+            color: white;
+            background: sandybrown;
+            border: 1px solid #d2b48c;
+            border-radius: 3px;
+        }
+        
     div.sidebar-content p {
         margin-top: 0.25em;
         background-color: transparent;

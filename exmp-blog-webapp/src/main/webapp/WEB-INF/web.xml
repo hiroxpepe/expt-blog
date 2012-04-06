@@ -31,6 +31,8 @@
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>*.html</url-pattern>
+        <url-pattern>*.rss</url-pattern>
+        <url-pattern>*.atom</url-pattern>
     </servlet-mapping>
     
     <!-- UTF-8 Encoding -->
