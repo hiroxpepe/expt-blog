@@ -27,6 +27,8 @@ trait EntryService {
     def deleteEntry(entryDto: EntryDto)
 
     def getEntryById(id: Long): EntryDto
+    
+    def getEntryByCode(code: String): EntryDto
 
     def saveEntry(entryDto: EntryDto)
 

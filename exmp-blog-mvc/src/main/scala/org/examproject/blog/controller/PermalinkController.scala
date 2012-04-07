@@ -89,10 +89,26 @@ class PermalinkController {
         LOG.debug("day: " + day)
         LOG.debug("code: " + code)
         
-        // set the form-object to the model.
-//        model.addAttribute(
-//            null
-//        )
+        // get the dto-object from service-object.
+        val entryDto: EntryDto = entryService.getEntryByCode(
+            code
+        )
+    
+        // create a form-object.
+        val entryForm: EntryForm = context.getBean(
+            classOf[EntryForm]
+        )
+    
+        // map the dto-object to the form-object.
+        mapper.map(
+            entryDto,
+            entryForm
+        )
+     
+        // set the form-object to the model. 
+        model.addAttribute(
+            entryForm
+        )
         
         return "entry/permalink";
     }

@@ -12,6 +12,7 @@
     
     <bean id="entryService" class="org.examproject.blog.service.SimpleEntryService">
         <constructor-arg name="idToEntryTransformer" ref="idToEntryTransformer" />
+        <constructor-arg name="codeToEntryTransformer" ref="codeToEntryTransformer" />
         <constructor-arg name="allEntryFactory" ref="allEntryFactory" />
         <constructor-arg name="saveEntryClosure" ref="saveEntryClosure" />
         <constructor-arg name="deleteEntryClosure" ref="deleteEntryClosure" />
@@ -38,6 +39,10 @@
         
     <bean id="idToEntryTransformer"
         class="org.examproject.blog.functor.IdToEntryTransformer">
+    </bean>
+    
+    <bean id="codeToEntryTransformer"
+        class="org.examproject.blog.functor.CodeToEntryTransformer">
     </bean>
  
     <!-- //////////////////////////////////////////////////////////////////////////// -->

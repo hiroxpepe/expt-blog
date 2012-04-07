@@ -15,6 +15,7 @@
 package org.examproject.blog.functor
 
 import java.lang.Long
+import java.util.List
 import javax.inject.Inject
 
 import org.apache.commons.collections.Transformer
@@ -30,10 +31,10 @@ import org.examproject.blog.repository.EntryRepository
 /**
  * @author hiroxpepe
  */
-class IdToEntryTransformer extends Transformer {
+class CodeToEntryTransformer extends Transformer {
 
     private val LOG: Logger = LoggerFactory.getLogger(
-        classOf[IdToEntryTransformer]
+        classOf[CodeToEntryTransformer]
     )
 
     @Inject
@@ -60,23 +61,28 @@ class IdToEntryTransformer extends Transformer {
 
     private def getEntryDto(o: Object): EntryDto = {
         
-        // if 'id' is offered, find the entity from repository, and mapping to dto.
+        // if 'code' is offered, find the entity from repository, and mapping to dto.
         if (o != null) {
             // get the entity from repository.
-            val id: Long = Long.valueOf(o.toString())
-            val entry: Entry = repository.findOne(id).asInstanceOf[Entry]
+            val code: String = o.toString()
+            val entryList: List[Entry] = repository.findByCode(code)
+            if (entryList.size == 0) {
+                return null
+            }
+            
+            // TODO: if the code is not unique
+            val entry: Entry = entryList.get(0)
             
             // object mapping by dozer.
             val dto: EntryDto = context.getBean(classOf[EntryDto])
             mapper.map(entry, dto)
-              
+            
             // return a mapped dto.
             return dto
             
-        // if the new request, a null 'id' will be provided.
         } else {
-            // return a new dto.
-            return context.getBean(classOf[EntryDto])
+            // return null..
+            return null
         }
     }
     

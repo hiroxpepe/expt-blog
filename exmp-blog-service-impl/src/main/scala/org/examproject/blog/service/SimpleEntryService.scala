@@ -31,6 +31,7 @@ import scala.collection.JavaConversions._
  */
 class SimpleEntryService(
     val idToEntryTransformer: Transformer,
+    val codeToEntryTransformer: Transformer,
     val allEntryFactory: Factory,
     val saveEntryClosure: Closure,
     val deleteEntryClosure: Closure
@@ -41,6 +42,11 @@ class SimpleEntryService(
     @Override
     def getEntryById(id: Long): EntryDto = {
         return idToEntryTransformer.transform(id).asInstanceOf[EntryDto]
+    }
+    
+    @Override
+    def getEntryByCode(code: String): EntryDto = {
+        return codeToEntryTransformer.transform(code).asInstanceOf[EntryDto]
     }
 
     @Override
