@@ -76,21 +76,21 @@ class FeedController {
         LOG.info("called")
         
         // create the model-view object of spring mvc.
-        val mav: ModelAndView = new ModelAndView()
+        val mv: ModelAndView = new ModelAndView()
         
         // set the view name for render.
-        mav.setViewName(
+        mv.setViewName(
             "rssFeedView"
         )
         
         // set the model-object to render.
-        mav.addObject(
+        mv.addObject(
             "feedModel",
             // get the feed-model object list.
             getFeedModelList()
         )
 
-        return mav
+        return mv
     }
     
     ///////////////////////////////////////////////////////////////////////////
@@ -107,21 +107,21 @@ class FeedController {
         LOG.info("called")
         
         // create the model-view object of spring mvc.
-        val mav: ModelAndView = new ModelAndView()
+        val mv: ModelAndView = new ModelAndView()
         
         // set the view name for render.
-        mav.setViewName(
+        mv.setViewName(
             "atomFeedView"
         )
         
         // set the model-object to render.
-        mav.addObject(
+        mv.addObject(
             "feedModel",
             // get the feed-model object list.
             getFeedModelList()
         )
 
-        return mav
+        return mv
     }
     
     ///////////////////////////////////////////////////////////////////////////
