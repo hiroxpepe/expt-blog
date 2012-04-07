@@ -50,7 +50,7 @@ class Entry extends Serializable {
     var code: String = _
     
     @Column(name="created")
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     @BeanProperty
     var created: Date = _
     

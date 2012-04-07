@@ -158,9 +158,9 @@ class FeedController {
                 entryDto.getCreated()
             )
             
-            // this is a still mock..
+            // create the permalink url.
             feedModel.setUrl(
-               serverUrlArray(0) + "/" + entryDto.getCode + ".html"
+               serverUrlArray(0) + "/entry/" + entryDto.getCode + ".html"
             )
             
             // add the object to the object list.

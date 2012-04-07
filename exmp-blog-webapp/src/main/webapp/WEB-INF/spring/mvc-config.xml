@@ -55,19 +55,5 @@
     <!-- i18n configure import -->
     
     <import resource="locale-config.xml" />
-    
-    <!--//////////////////////////////////////////////////////////////////////////////-->
-    <!-- feed configure -->
-    
-    <!-- map returned view name "feedView" to bean id "feedView" -->
-    <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
-
-    <bean id="rssFeedView"
-        class="org.examproject.blog.view.SimpleRssFeedView">
-    </bean>
-    
-    <bean id="atomFeedView"
-        class="org.examproject.blog.view.SimpleAtomFeedView">
-    </bean>
 
 </beans>

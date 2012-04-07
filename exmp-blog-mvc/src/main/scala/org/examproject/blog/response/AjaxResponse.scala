@@ -16,6 +16,8 @@ package org.examproject.blog.response
 
 import java.util.List
 
+import org.examproject.blog.model.EntryModel
+
 import reflect.BeanProperty
 
 /**
@@ -24,7 +26,7 @@ import reflect.BeanProperty
 class AjaxResponse(
     
     @BeanProperty
-    var entryList: List[Entry] = null,
+    var entryModelList: List[EntryModel] = null,
     
     @BeanProperty
     var isError: Boolean = false

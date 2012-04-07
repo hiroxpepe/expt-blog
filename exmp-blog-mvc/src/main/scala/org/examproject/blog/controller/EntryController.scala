@@ -35,9 +35,9 @@ import org.springframework.web.bind.annotation.ResponseBody
 
 import org.examproject.blog.dto.EntryDto
 import org.examproject.blog.form.EntryForm
+import org.examproject.blog.model.EntryModel
 import org.examproject.blog.service.EntryService
 import org.examproject.blog.response.AjaxResponse
-import org.examproject.blog.response.Entry
 
 import scala.collection.JavaConversions._
 
@@ -144,7 +144,7 @@ class EntryController {
         )
             
         // get the mapped dto-object using the form-object data.
-        val entryDto: EntryDto = getMappedEntry(
+        val entryDto: EntryDto = getMappedEntryDto(
             entryForm
         )
             
@@ -154,7 +154,7 @@ class EntryController {
         )
             
         // get the list of dto-object from the service-object.
-        val entryDtoList: List[EntryDto] = getEntryList(
+        val entryDtoList: List[EntryDto] = getEntryDtoList(
             entryForm
         )
             
@@ -196,7 +196,7 @@ class EntryController {
         )
             
         // get the mapped dto-object using the form-object data.
-        val entryDtoList: List[EntryDto] = getEntryList(
+        val entryDtoList: List[EntryDto] = getEntryDtoList(
             entryForm
         )
             
@@ -269,9 +269,9 @@ class EntryController {
     
     ///////////////////////////////////////////////////////////////////////////
     /**
-     * map the dto-object using the form object-data.
+     * get the dto-object of the entry using the form-object.
      */
-    private def getMappedEntry(
+    private def getMappedEntryDto(
         entryForm: EntryForm
     )
     : EntryDto = {
@@ -308,9 +308,9 @@ class EntryController {
 
     ///////////////////////////////////////////////////////////////////////////
     /**
-     * get the list of entry from the service-object.
+     * get the list of dto-obgect from the service-object.
      */
-    private def getEntryList(
+    private def getEntryDtoList(
         entryForm: EntryForm
     )
     : List[EntryDto] = {
@@ -336,33 +336,33 @@ class EntryController {
         
         // create a list of entry object, 
         // in order to send to the html page.
-        val dstEntryList: List[Entry] = new ArrayList[Entry]()
+        val dstEntryModelList: List[EntryModel] = new ArrayList[EntryModel]()
         
         // process the entry object of all of the list.
         for (entryDto: EntryDto <- srcEntryList) {
             
             // create a object to send to the html page.
-            val entry: Entry = context.getBean(
-                classOf[Entry]
+            val entryModel: EntryModel = context.getBean(
+                classOf[EntryModel]
             )
             
             // set the value to the object.
-            entry.setTitle(
+            entryModel.setTitle(
                 entryDto.getTitle()
             )
-            entry.setContent(
+            entryModel.setContent(
                 entryDto.getContent()
             )
             
             // add the object to the object list.
-            dstEntryList.add(
-                entry
+            dstEntryModelList.add(
+                entryModel
             )
         }
         
         // set the object list to response-object.
-        response.setEntryList(
-            dstEntryList
+        response.setEntryModelList(
+            dstEntryModelList
         )
         
         // set the error status.

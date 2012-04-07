@@ -12,21 +12,38 @@
  * limitations under the License.
  */
 
-package org.examproject.blog.response
+package org.examproject.blog.model
+
+import java.util.Date
 
 import reflect.BeanProperty
 
 /**
  * @author hiroxpepe
  */
-class Entry(
+class EntryModel {
     
     @BeanProperty
-    var title: String  = "",
+    var title: String  = _
     
     @BeanProperty
-    var content: String  = ""
+    var content: String  = _
     
-) {
-    def this() = this("", "")
+    @BeanProperty
+    var username: String = _
+    
+    @BeanProperty
+    var author: String = _
+    
+    @BeanProperty
+    var category: String = _
+    
+    @BeanProperty 
+    var tags: String = _
+    
+    @BeanProperty
+    var created: Date = _
+    
+    @BeanProperty
+    var code: String = _
 }

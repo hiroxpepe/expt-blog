@@ -14,11 +14,7 @@
 
 package org.examproject.blog.controller
 
-import java.util.ArrayList
-import java.util.List
 import javax.inject.Inject
-import javax.servlet.http.Cookie
-import javax.servlet.http.HttpServletResponse
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -26,19 +22,13 @@ import org.dozer.Mapper
 import org.springframework.context.ApplicationContext
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
-import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
-import org.springframework.web.bind.annotation.CookieValue
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.ResponseBody
 
 import org.examproject.blog.dto.EntryDto
-import org.examproject.blog.form.EntryForm
+import org.examproject.blog.model.EntryModel
 import org.examproject.blog.service.EntryService
-import org.examproject.blog.response.AjaxResponse
-import org.examproject.blog.response.Entry
 
 import scala.collection.JavaConversions._
 
@@ -69,48 +59,57 @@ class PermalinkController {
     ///////////////////////////////////////////////////////////////////////////
     /**
      * permalink request.
-     * expected HTTP request is 'http://localhost:8080/entry/2012/04/06/nnnnnnnnn.html'
+     * expected HTTP request is 'http://localhost:8080/entry/nnnnnnnnn.html'
      */
     @RequestMapping(
-        value=Array("/entry/{year}/{month}/{day}/{code}.html"),
+        value=Array("/entry/{code}.html"),
         method=Array(RequestMethod.GET)
     )
     def doGet(
-        @PathVariable year: String,
-        @PathVariable month: String,
-        @PathVariable day: String,
         @PathVariable code: String,
         model: Model
     ): String = {
         LOG.info("called")
-        
-        LOG.debug("year: " + year)
-        LOG.debug("month: " + month)
-        LOG.debug("day: " + day)
         LOG.debug("code: " + code)
+     
+        // set the model-object to the model. 
+        model.addAttribute(
+            getEntryModel(code)
+        )
         
-        // get the dto-object from service-object.
+        return "entry/permalink";
+    }
+    
+    ///////////////////////////////////////////////////////////////////////////
+    // private methods
+    
+    ///////////////////////////////////////////////////////////////////////////
+    /**
+     * get the model-object from service-object.
+     */
+    private def getEntryModel(
+        code: String
+    )
+    : EntryModel = {
+        LOG.debug("called");
+        
+        // get a dto-object from service-object.
         val entryDto: EntryDto = entryService.getEntryByCode(
             code
         )
     
-        // create a form-object.
-        val entryForm: EntryForm = context.getBean(
-            classOf[EntryForm]
+        // create a model-object.
+        val entryModel: EntryModel = context.getBean(
+            classOf[EntryModel]
         )
     
-        // map the dto-object to the form-object.
+        // map the dto-object to the model-object.
         mapper.map(
             entryDto,
-            entryForm
-        )
-     
-        // set the form-object to the model. 
-        model.addAttribute(
-            entryForm
+            entryModel
         )
         
-        return "entry/permalink";
+        return entryModel
     }
     
 }
