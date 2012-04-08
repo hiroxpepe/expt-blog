@@ -30,6 +30,7 @@ import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.CookieValue
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.ResponseBody
@@ -205,6 +206,37 @@ class EntryController {
     
     ///////////////////////////////////////////////////////////////////////////
     /**
+     * delete the entry.
+     * expected Ajax HTTP request is '/entry/delete.html'
+     */
+    @RequestMapping(
+        value=Array("/entry/delete.html"),
+        method=Array(RequestMethod.POST),
+        headers=Array("Accept=application/json")
+    )
+    @ResponseBody
+    def doDelete(
+        @RequestParam(value="code", defaultValue="")
+        code: String,
+        model: Model
+    )
+    : AjaxResponse = {
+        LOG.info("called")
+        LOG.debug("code: " + code)
+        
+        // create a response-object.
+        val response: AjaxResponse = context.getBean(
+            classOf[AjaxResponse]
+        )
+        
+        // TODO:
+        // do something.. 
+        
+        return response
+    }
+    
+    ///////////////////////////////////////////////////////////////////////////
+    /**
      * store the configuration data to the cookie.
      * expected Ajax HTTP request is '/entry/setting.html'
      */
@@ -243,7 +275,6 @@ class EntryController {
     )
     : AjaxResponse = {
         LOG.info("called")
-        
         LOG.error(e.getMessage())
         
         // create a response-object.
@@ -348,6 +379,9 @@ class EntryController {
             )
             entryModel.setContent(
                 entryDto.getContent()
+            )
+            entryModel.setCode(
+                entryDto.getCode()
             )
             
             // create the permalink url.

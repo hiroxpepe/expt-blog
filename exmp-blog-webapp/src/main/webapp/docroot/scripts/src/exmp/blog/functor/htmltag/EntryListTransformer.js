@@ -26,23 +26,44 @@ exmp.blog.functor.htmltag.EntryListTransformer = {
     // public methods
     
     transform: function(obj) {
+        console.log("exmp.blog.functor.htmltag.EntryListTransformer#transform");
+                
+        // dynamically generate an html table.
         var table = "<table class='entry-list-table'>";
         for (var i = 0; i < obj.entryModelList.length; i++) {
             
+            // get the value
             var title = $.erasureHTML(
                 obj.entryModelList[i].title
             );
-            
             var content = $.erasureHTML(
                 obj.entryModelList[i].content
-            );
-                
+            );  
+            var code = obj.entryModelList[i].code;  
             var permalinkUrl = obj.entryModelList[i].permalinkUrl;
             
+            // create an html tag and set the entry code.
             table +=
                 "<tr>" +
+                    "<td class='entry-icon-td'>" + 
+                        "<div class='entry-icon'></div>" +
+                    "</td>" +
                     "<td class='entry-list-td' >" +
                         "<a href='" + permalinkUrl + "'>" + title + "</a>" + " " + content +
+                    "</td>" +
+                    "<td class='entry-action-td'>" +
+                        "<table>" + 
+                            "<tr>" +
+                                "<td>" + 
+                                    "<div id='entry-edit-" + code + "'" + " class='entry-action'>e</div>" + 
+                                 "</td>" +
+                            "</tr>" +
+                            "<tr>" + 
+                                "<td>" + 
+                                    "<div id='entry-delete-" + code + "'" + " class='entry-action'>d</div>" + 
+                                 "</td>" +
+                            "</tr>" +
+                        "</table>" +
                     "</td>" +
                 "</tr>";
         }

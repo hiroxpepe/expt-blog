@@ -362,10 +362,45 @@ div.entry-list-content {
     }
     table.entry-list-table {
     } 
-        table.entry-list-table td.entry-list-td {
-            font-size: 80%;
+        table.entry-list-table tr {
             border-bottom: 1px solid wheat;
         }
+            table.entry-list-table td.entry-icon-td {
+                padding-top: 0.5em;
+                padding-bottom: 0.5em;              
+                vertical-align: top;
+                border-bottom: 1px solid wheat;
+            }
+                table.entry-list-table td.entry-icon-td div.entry-icon {
+                    width: 45px;
+                    height: 45px;
+                    border: 1px solid wheat;
+                    border-radius: 3px;
+                    cursor: pointer;
+                }
+            table.entry-list-table td.entry-list-td {
+                padding-top: 0.5em;
+                padding-bottom: 0.5em;  
+                padding-left: 0.5em;
+                padding-right: 0.5em;
+                vertical-align: top;
+                font-size: 80%;
+                border-bottom: 1px solid wheat;
+            }
+            table.entry-list-table td.entry-action-td {
+                padding-top: 0.5em;
+                padding-bottom: 0.5em;      
+                vertical-align: top;
+                border-bottom: 1px solid wheat;
+            }
+                table.entry-list-table td.entry-action-td div.entry-action {
+                    width: 1.2em;
+                    height: 1.2em;
+                    text-align: center;
+                    border: 1px solid wheat;
+                    border-radius: 2px;
+                    cursor: pointer;
+                }
         table.entry-list-table a {
             text-decoration: none;
             color: black;

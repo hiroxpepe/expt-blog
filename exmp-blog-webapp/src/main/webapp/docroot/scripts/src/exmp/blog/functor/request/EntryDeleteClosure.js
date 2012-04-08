@@ -15,37 +15,39 @@
 ///////////////////////////////////////////////////////////////////////////////
 /**
  * a functor class of the application.
- * send HTTP request for get the entry list.
+ * send HTTP request for the entry delete.
  * 
  * @author hiroxpepe
  */
-exmp.blog.functor.request.EntryListClosure = {
+exmp.blog.functor.request.EntryDeleteClosure = {
     
     ///////////////////////////////////////////////////////////////////////////
     // public methods
     
     execute: function(obj) {
+        console.log("exmp.blog.functor.request.EntryDeleteClosure#execute");
         
-        var listWaitingClosure = exmp.blog.functor.dhtml.ListWaitingClosure;
+        var waitingMessageClosure = exmp.blog.functor.dhtml.WaitingMessageClosure;
+        
+        var successMessageClosure = exmp.blog.functor.dhtml.SuccessMessageClosure;
         
         var errorMessageClosure = exmp.blog.functor.dhtml.ErrorMessageClosure;
         
         var entryListUpdateClosure = exmp.blog.functor.dhtml.EntryListUpdateClosure;
         
-        var eventBuildClosure = exmp.blog.functor.event.EventBuildClosure;
-        
         // show the waiting message.
-        listWaitingClosure.execute(
-            null
-        );
-            
+        waitingMessageClosure.execute({
+            message: "please wait..."
+        });
+        
         // create an ajax object.
         new $.ajax({
-            url: "list.html",
+            url: "delete.html",
             type: "POST",
-            data: obj,
+            data: {
+                code: obj.code
+            },
             dataType: "json",
-            contentType: "application/json;charset=UTF-8",
             
             // callback function of the success.
             success: function(data, dataType) {
@@ -56,7 +58,6 @@ exmp.blog.functor.request.EntryListClosure = {
                     errorMessageClosure.execute({
                         message: "application error occurred.."
                     });
-                    $("#entry-list-block").html("");
                     return;
                 }
                 
@@ -64,12 +65,18 @@ exmp.blog.functor.request.EntryListClosure = {
                 entryListUpdateClosure.execute(
                     data
                 );
+                    
+                // DDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+                // TODO:
+                // event build!
                 
-                // build the event of the entry list.
-                eventBuildClosure.execute(
-                    data
-                );
-            
+                $("#entry_title").val("");
+                $("#entry_content").val("");
+                
+                // show the success message.
+                successMessageClosure.execute({
+                    message: "complete."
+                });
             },
             
             // callback function of the error.
@@ -79,7 +86,6 @@ exmp.blog.functor.request.EntryListClosure = {
                 errorMessageClosure.execute({
                     message: "httprequest error occurred.."
                 });
-                $("#entry-list-block").html("");
             }
         });
     }

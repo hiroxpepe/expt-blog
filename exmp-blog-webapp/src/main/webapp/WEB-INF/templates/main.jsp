@@ -9,8 +9,8 @@
         <meta http-equiv="Content-Language" content="en">
         <link rel="shortcut icon" href="<c:url value="/docroot/images/icon.ico"/>" />
         <link rel="stylesheet" type="text/css" href="<c:url value="/docroot/styles/exmp-blog.css"/>" />
-        <script language="javascript" type="text/javascript" src="<c:url value="/docroot/scripts/jquery.js"/>"></script>
-        <script language="javascript" type="text/javascript" src="<c:url value="/docroot/scripts/jquery-ui.custom.min.js"/>"></script>
+        <script language="javascript" type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script language="javascript" type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
         <script language="javascript" type="text/javascript" src="<c:url value="/docroot/scripts/jquery.json.js"/>"></script>
         <script language="javascript" type="text/javascript" src="<c:url value="/docroot/scripts/jquery.escapeHTML.js"/>"></script>
         <script language="javascript" type="text/javascript" src="<c:url value="/docroot/scripts/exmp-blog.min.js"/>"></script>
