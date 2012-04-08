@@ -41,46 +41,6 @@
                 </tr>
                 <tr>
                     <td class="label-td">
-                        <label for="entry_blog">
-                            <fmt:message key="entry.form.blog" />
-                        </label>
-                    </td>
-                    <td class="input-td">
-                        <form:input id="entry_blog" path="blog" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="label-td">
-                        <label for="entry_url">
-                            <fmt:message key="entry.form.url" />
-                        </label>
-                    </td>
-                    <td class="input-td">
-                        <form:input id="entry_url" path="url" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="label-td">
-                        <label for="entry_scheme">
-                            <fmt:message key="entry.form.scheme" />
-                        </label>
-                    </td>
-                    <td class="input-td">
-                        <form:input id="entry_scheme" path="scheme" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="label-td">
-                        <label for="entry_feed_url">
-                            <fmt:message key="entry.form.feed.url" />
-                        </label>
-                    </td>
-                    <td class="input-td">
-                        <form:input id="entry_feed_url" path="feedUrl" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="label-td">
                         <label for="entry_author">
                             <fmt:message key="entry.form.author" />
                         </label>

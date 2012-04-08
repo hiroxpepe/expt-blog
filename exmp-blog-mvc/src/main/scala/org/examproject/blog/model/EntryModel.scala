@@ -14,7 +14,9 @@
 
 package org.examproject.blog.model
 
+import java.util.ArrayList
 import java.util.Date
+import java.util.List
 
 import reflect.BeanProperty
 
@@ -46,4 +48,5 @@ class EntryModel {
     
     @BeanProperty
     var code: String = _
+    
 }

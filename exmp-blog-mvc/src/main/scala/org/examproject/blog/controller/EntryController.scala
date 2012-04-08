@@ -79,14 +79,6 @@ class EntryController {
         username: String,
         @CookieValue(value="__exmp_blog_password", defaultValue="")
         password: String,
-        @CookieValue(value="__exmp_blog_blog", defaultValue="")
-        blog: String,
-        @CookieValue(value="__exmp_blog_url", defaultValue="")
-        url: String,
-        @CookieValue(value="__exmp_blog_scheme", defaultValue="")
-        scheme: String,
-        @CookieValue(value="__exmp_blog_feedurl", defaultValue="")
-        feedUrl: String,
         @CookieValue(value="__exmp_blog_author", defaultValue="")
         author: String,
         model: Model
@@ -101,10 +93,6 @@ class EntryController {
         // set the cookie value to the form-object.
         entryForm.setUsername(username)
         entryForm.setPassword(password)
-        entryForm.setBlog(blog)
-        entryForm.setUrl(url)
-        entryForm.setScheme(scheme)
-        entryForm.setFeedUrl(feedUrl)
         entryForm.setAuthor(author)
         
         // set the form-object to the model. 
@@ -318,7 +306,7 @@ class EntryController {
         
         // get the dto-object list from service-object.
         val entryList: List[EntryDto] = entryService.findAllEntry(
-            entryForm.getFeedUrl()
+            ""
         )
         
         return entryList
@@ -329,17 +317,17 @@ class EntryController {
      * add to the response-object.
      */
     private def addToResponse(
-        srcEntryList: List[EntryDto],
+        entryDtoList: List[EntryDto],
         response: AjaxResponse
     ) = {
         LOG.debug("called");
         
         // create a list of entry object, 
         // in order to send to the html page.
-        val dstEntryModelList: List[EntryModel] = new ArrayList[EntryModel]()
-        
+        val entryModelList: List[EntryModel] = new ArrayList[EntryModel]()
+                
         // process the entry object of all of the list.
-        for (entryDto: EntryDto <- srcEntryList) {
+        entryDtoList.foreach((entryDto: EntryDto) => {
             
             // create a object to send to the html page.
             val entryModel: EntryModel = context.getBean(
@@ -355,14 +343,14 @@ class EntryController {
             )
             
             // add the object to the object list.
-            dstEntryModelList.add(
+            entryModelList.add(
                 entryModel
             )
-        }
+        })
         
         // set the object list to response-object.
         response.setEntryModelList(
-            dstEntryModelList
+            entryModelList
         )
         
         // set the error status.
@@ -393,30 +381,6 @@ class EntryController {
         )
         password.setMaxAge(maxAge)
         response.addCookie(password)
-        
-        val blog = new Cookie(
-            "__exmp_blog_blog", entryForm.getBlog()
-        )
-        blog.setMaxAge(maxAge)
-        response.addCookie(blog)
-        
-        val url = new Cookie(
-            "__exmp_blog_url", entryForm.getUrl()
-        )
-        url.setMaxAge(maxAge)
-        response.addCookie(url)
-        
-        val scheme = new Cookie(
-            "__exmp_blog_scheme", entryForm.getScheme()
-        )
-        scheme.setMaxAge(maxAge)
-        response.addCookie(scheme)
-        
-        val feedurl = new Cookie(
-            "__exmp_blog_feedurl", entryForm.getFeedUrl()
-        )
-        feedurl.setMaxAge(maxAge)
-        response.addCookie(feedurl)
         
         val author = new Cookie(
             "__exmp_blog_author", entryForm.getAuthor()

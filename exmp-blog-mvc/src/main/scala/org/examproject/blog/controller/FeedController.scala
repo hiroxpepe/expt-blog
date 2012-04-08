@@ -15,10 +15,8 @@
 package org.examproject.blog.controller
 
 import java.util.ArrayList
-import java.util.Date
 import java.util.List
 import javax.inject.Inject
-import javax.servlet.ServletContext
 import javax.servlet.http.HttpServletRequest
 
 import org.slf4j.Logger
@@ -49,9 +47,6 @@ class FeedController {
     
     @Inject
     private val context: ApplicationContext = null
-    
-    @Inject
-    private val servletContext: ServletContext = null
     
     @Inject
     private val request: HttpServletRequest = null
@@ -90,6 +85,7 @@ class FeedController {
             getFeedModelList()
         )
 
+        // call the "rssFeedView" view.
         return mv
     }
     
@@ -121,6 +117,7 @@ class FeedController {
             getFeedModelList()
         )
 
+        // call the "atomFeedView" view.
         return mv
     }
     
@@ -137,7 +134,7 @@ class FeedController {
         
         // get the server URL of the request.
         var fullUrl: StringBuffer = request.getRequestURL()
-        var serverUrlArray = fullUrl.toString().split("/entry")
+        var serverUrl = fullUrl.toString().split("/entry")(0)
     
         // process the entry object of all of the list.
         for (entryDto: EntryDto <- entryDtoList) {
@@ -160,7 +157,7 @@ class FeedController {
             
             // create the permalink url.
             feedModel.setUrl(
-               serverUrlArray(0) + "/entry/" + entryDto.getCode + ".html"
+               serverUrl + "/entry/" + entryDto.getCode + ".html"
             )
             
             // add the object to the object list.

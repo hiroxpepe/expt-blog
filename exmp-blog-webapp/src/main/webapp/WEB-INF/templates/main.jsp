@@ -6,6 +6,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="Content-Language" content="en">
         <link rel="shortcut icon" href="<c:url value="/docroot/images/icon.ico"/>" />
         <link rel="stylesheet" type="text/css" href="<c:url value="/docroot/styles/exmp-blog.css"/>" />
         <script language="javascript" type="text/javascript" src="<c:url value="/docroot/scripts/jquery.js"/>"></script>

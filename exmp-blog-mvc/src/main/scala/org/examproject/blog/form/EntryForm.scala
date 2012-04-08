@@ -14,6 +14,8 @@
 
 package org.examproject.blog.form
 
+import java.lang.Long
+
 import org.springframework.context.annotation.Scope
 import org.springframework.stereotype.Component
 
@@ -24,44 +26,30 @@ import reflect.BeanProperty
  */
 @Component
 @Scope(value="prototype")
-class EntryForm(
+class EntryForm {
     
     @BeanProperty
-    var id: Int = 0,
+    var id: Long = _
     
     @BeanProperty
-    var username: String = "",
+    var username: String = _
     
     @BeanProperty
-    var password: String = "",
+    var password: String = _
     
     @BeanProperty
-    var blog: String = "",
+    var author: String = _
     
     @BeanProperty
-    var url: String = "",
+    var title: String = _
     
     @BeanProperty
-    var scheme: String = "",
+    var content: String = _
     
     @BeanProperty
-    var feedUrl: String = "",
+    var category: String = _
     
     @BeanProperty
-    var author: String = "",
+    var tags: String = _
     
-    @BeanProperty
-    var title: String = "",
-    
-    @BeanProperty
-    var content: String = "",
-    
-    @BeanProperty
-    var category: String = "",
-    
-    @BeanProperty
-    var tags: String = ""
-    
-) {
-    def this() = this(0, "", "", "", "", "", "", "", "", "", "", "")
 }

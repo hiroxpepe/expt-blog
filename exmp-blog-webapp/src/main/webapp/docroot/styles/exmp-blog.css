@@ -410,6 +410,48 @@ div.tab-content {
     }
     
 /* ****************************************************************************
+ * define the appearance of the permalink entry content.
+ */
+div.permalink-content {
+    margin: 1em 2em 1em 2em;    
+    border-top: 1px solid silver;
+    border-bottom: 1px solid silver;
+}
+    div.permalink-entry-title {
+        margin-bottom: 0.5em;
+        font-weight: bold;
+        font-size: 110%;
+        color: dimgray;
+    }
+    div.permalink-entry-content {
+        margin-bottom: 0.5em;
+        font-size: 85%;
+        color: black;
+    }
+        div.permalink-entry-content p {
+            margin-bottom: 0.5em;
+        }
+    div.permalink-entry-detail {
+        padding: 0.5em 0 0.25em 0;
+        font-size: 70%;
+        color: lightslategray;
+        border-top: 1px solid silver;
+    }
+        span.permalink-entry-author {
+        }
+        span.permalink-entry-category {
+        }
+        span.permalink-entry-date {
+        }
+    div.permalink-entry-tags {
+        padding: 0.25em 0 0.25em 0;
+        font-size: 70%;
+        color: lightslategray;
+    }
+        span.permalink-entry-tag {
+        }
+    
+/* ****************************************************************************
  * define the appearance of the message block.
  */
 #message-block {
