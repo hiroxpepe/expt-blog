@@ -6,7 +6,7 @@
     <groupId>org.examproject</groupId>
     <artifactId>exmp-blog-service</artifactId>
     <packaging>jar</packaging>
-    <version>0.2.0-SNAPSHOT</version>
+    <version>0.3.0-SNAPSHOT</version>
     <name>exmp-blog-service</name>
 
     <properties>
