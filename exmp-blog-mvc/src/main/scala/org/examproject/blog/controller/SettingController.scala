@@ -14,8 +14,8 @@
 
 package org.examproject.blog.controller
 
-import java.util.ArrayList
-import java.util.List
+//import java.util.ArrayList
+//import java.util.List
 import javax.inject.Inject
 import javax.servlet.http.Cookie
 import javax.servlet.http.HttpServletRequest
@@ -26,18 +26,18 @@ import org.slf4j.LoggerFactory
 import org.dozer.Mapper
 import org.springframework.context.ApplicationContext
 import org.springframework.stereotype.Controller
-import org.springframework.ui.Model
+//import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
-import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.CookieValue
+//import org.springframework.web.bind.annotation.RequestParam
+//import org.springframework.web.bind.annotation.CookieValue
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.ResponseBody
 
 import org.examproject.blog.dto.EntryDto
 import org.examproject.blog.form.EntryForm
-import org.examproject.blog.model.EntryModel
+//import org.examproject.blog.model.EntryModel
 import org.examproject.blog.service.EntryService
 import org.examproject.blog.response.AjaxResponse
 

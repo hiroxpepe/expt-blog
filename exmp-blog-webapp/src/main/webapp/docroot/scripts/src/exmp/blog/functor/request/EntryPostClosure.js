@@ -34,6 +34,8 @@ exmp.blog.functor.request.EntryPostClosure = {
         
         var entryListUpdateClosure = exmp.blog.functor.dhtml.EntryListUpdateClosure;
         
+        var eventBuildClosure = exmp.blog.functor.event.EventBuildClosure;
+        
         // show the waiting message.
         waitingMessageClosure.execute({
             message: "please wait..."
@@ -61,6 +63,11 @@ exmp.blog.functor.request.EntryPostClosure = {
                 
                 // update the HTML table of the entry list.
                 entryListUpdateClosure.execute(
+                    data
+                );
+                    
+                // build the event of the entry list.
+                eventBuildClosure.execute(
                     data
                 );
                 
