@@ -49,4 +49,7 @@ class EntryModel {
     @BeanProperty
     var code: String = _
     
+    @BeanProperty
+    var permalinkUrl: String = _
+    
 }

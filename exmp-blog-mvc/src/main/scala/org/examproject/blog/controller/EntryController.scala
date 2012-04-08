@@ -18,6 +18,7 @@ import java.util.ArrayList
 import java.util.List
 import javax.inject.Inject
 import javax.servlet.http.Cookie
+import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
 import org.slf4j.Logger
@@ -56,6 +57,9 @@ class EntryController {
     @Inject
     private val context: ApplicationContext = null
 
+    @Inject
+    private val request: HttpServletRequest = null
+    
     @Inject
     private val mapper: Mapper = null
 
@@ -322,6 +326,10 @@ class EntryController {
     ) = {
         LOG.debug("called");
         
+        // get the server URL of the request.
+        var fullUrl: StringBuffer = request.getRequestURL()
+        var serverUrl = fullUrl.toString().split("/entry")(0)
+        
         // create a list of entry object, 
         // in order to send to the html page.
         val entryModelList: List[EntryModel] = new ArrayList[EntryModel]()
@@ -342,6 +350,11 @@ class EntryController {
                 entryDto.getContent()
             )
             
+            // create the permalink url.
+            entryModel.setPermalinkUrl(
+                serverUrl + "/entry/" + entryDto.getCode + ".html"
+            )
+
             // add the object to the object list.
             entryModelList.add(
                 entryModel

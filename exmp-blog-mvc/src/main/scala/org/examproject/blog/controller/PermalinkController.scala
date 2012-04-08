@@ -46,7 +46,7 @@ class PermalinkController {
     
     @Inject
     private val context: ApplicationContext = null
-
+    
     @Inject
     private val mapper: Mapper = null
 
@@ -92,7 +92,7 @@ class PermalinkController {
     )
     : EntryModel = {
         LOG.debug("called");
-        
+                
         // get a dto-object from service-object.
         val entryDto: EntryDto = entryService.getEntryByCode(
             code
@@ -108,7 +108,7 @@ class PermalinkController {
             entryDto,
             entryModel
         )
-        
+                
         return entryModel
     }
     
