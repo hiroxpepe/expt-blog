@@ -50,7 +50,7 @@ class SimpleEntryService(
     }
 
     @Override
-    def findAllEntry(feedUrl: String): List[EntryDto] = {
+    def findAllEntry(): List[EntryDto] = {
         return allEntryFactory.create().asInstanceOf[List[EntryDto]]
     }
 

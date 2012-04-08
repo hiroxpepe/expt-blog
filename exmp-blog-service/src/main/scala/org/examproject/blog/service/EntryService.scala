@@ -32,6 +32,6 @@ trait EntryService {
 
     def saveEntry(entryDto: EntryDto)
 
-    def findAllEntry(feedUrl: String): List[EntryDto]
+    def findAllEntry(): List[EntryDto]
 
 }

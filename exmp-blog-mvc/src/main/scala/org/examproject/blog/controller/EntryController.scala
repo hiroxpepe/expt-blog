@@ -147,9 +147,7 @@ class EntryController {
         )
             
         // get the list of dto-object from the service-object.
-        val entryDtoList: List[EntryDto] = getEntryDtoList(
-            entryForm
-        )
+        val entryDtoList: List[EntryDto] = getEntryDtoList()
             
         // add to the response-object.
         addToResponse(
@@ -189,9 +187,7 @@ class EntryController {
         )
             
         // get the mapped dto-object using the form-object data.
-        val entryDtoList: List[EntryDto] = getEntryDtoList(
-            entryForm
-        )
+        val entryDtoList: List[EntryDto] = getEntryDtoList()
             
         // add to the response-object.
         addToResponse(
@@ -229,41 +225,25 @@ class EntryController {
             classOf[AjaxResponse]
         )
         
-        // TODO:
-        // do something.. 
+        // delete the entry.
+        entryService.deleteEntry(
+            entryService.getEntryByCode(
+                code
+            )
+        )
+        
+        // get the list of dto-object from the service-object.
+        val entryDtoList: List[EntryDto] = getEntryDtoList()
+            
+        // add to the response-object.
+        addToResponse(
+            entryDtoList,
+            response
+        )
         
         return response
     }
-    
-    ///////////////////////////////////////////////////////////////////////////
-    /**
-     * store the configuration data to the cookie.
-     * expected Ajax HTTP request is '/entry/setting.html'
-     */
-    @RequestMapping(
-        value=Array("/entry/setting.html"),
-        method=Array(RequestMethod.POST),
-        headers=Array("Accept=application/json")
-    )
-    def doSetting(
-        @RequestBody
-        entryForm: EntryForm ,
-        response: HttpServletResponse 
-    )
-    : String = {
-        LOG.info("called")
-
-        // store the setting param to the cookie.
-        storeToCookie(
-            entryForm,
-            response,
-            604800
-        )
-
-        // redirect the request to the 'entry/form' page.
-        return "redirect:/entry/form.html"
-    }
-    
+        
     ///////////////////////////////////////////////////////////////////////////
     /**
      * if an error is occured, this method will be called.
@@ -333,16 +313,12 @@ class EntryController {
     /**
      * get the list of dto-obgect from the service-object.
      */
-    private def getEntryDtoList(
-        entryForm: EntryForm
-    )
+    private def getEntryDtoList()
     : List[EntryDto] = {
         LOG.debug("called");
         
         // get the dto-object list from service-object.
-        val entryList: List[EntryDto] = entryService.findAllEntry(
-            ""
-        )
+        val entryList: List[EntryDto] = entryService.findAllEntry()
         
         return entryList
     }
@@ -405,35 +381,5 @@ class EntryController {
             false
         )
     }
-    
-    ///////////////////////////////////////////////////////////////////////////
-    /**
-     * store the configuration data to the cookie.
-     */
-    private def storeToCookie(
-        entryForm: EntryForm,
-        response: HttpServletResponse,
-        maxAge: Int 
-    ) = {
-        LOG.debug("called");
-        
-        val username = new Cookie(
-            "__exmp_blog_username", entryForm.getUsername()
-        )
-        username.setMaxAge(maxAge)
-        response.addCookie(username)
-        
-        val password = new Cookie(
-            "__exmp_blog_password", entryForm.getPassword()
-        )
-        password.setMaxAge(maxAge)
-        response.addCookie(password)
-        
-        val author = new Cookie(
-            "__exmp_blog_author", entryForm.getAuthor()
-        )
-        author.setMaxAge(maxAge)
-        response.addCookie(author)
-    }
-    
+     
 }
