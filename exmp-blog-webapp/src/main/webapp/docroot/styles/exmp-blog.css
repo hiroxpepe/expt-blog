@@ -87,7 +87,6 @@ div.header {
  */
 div.menu {
     width: 100%;
-    text-align: left;
     text-decoration: none;
     color: white;
     background: dimgray;
@@ -164,6 +163,7 @@ div.header-content {
 div.menu-content {
 }
     div.menu-bar {
+        height: 1.55em;
     }
         div.menu-bar a {
             margin-right: 0.25em;
@@ -186,6 +186,15 @@ div.menu-content {
             background: gray;
             border-radius: 2px;
         }
+            div.menu-bar-left {
+                float: left;
+            }
+            div.menu-bar-right {
+                float: right;
+            }
+                div.menu-bar-right img {
+                    padding-top: 0.15em;
+                }
 
 /* ****************************************************************************
  * define the appearance of the sidebar content.
