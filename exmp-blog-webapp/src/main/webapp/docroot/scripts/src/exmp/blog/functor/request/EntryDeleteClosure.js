@@ -73,9 +73,6 @@ exmp.blog.functor.request.EntryDeleteClosure = {
                     data
                 );
                 
-                $("#entry_title").val("");
-                $("#entry_content").val("");
-                
                 // show the success message.
                 successMessageClosure.execute({
                     message: "complete."

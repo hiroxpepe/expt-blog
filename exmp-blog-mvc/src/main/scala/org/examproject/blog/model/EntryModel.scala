@@ -26,6 +26,9 @@ import reflect.BeanProperty
 class EntryModel {
     
     @BeanProperty
+    var id: Long = _
+    
+    @BeanProperty
     var title: String  = _
     
     @BeanProperty

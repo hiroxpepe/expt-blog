@@ -71,8 +71,13 @@ exmp.blog.functor.request.EntryPostClosure = {
                     data
                 );
                 
-                $("#entry_title").val("");
-                $("#entry_content").val("");
+                // clear the input.
+                $("#id").val("");
+                $("#code").val("");
+                $("#entry-title").val("");
+                $("#entry-content").val("");
+                $("#entry-category").val(0);
+                $("#entry-tags").val("");
                 
                 // show the success message.
                 successMessageClosure.execute({

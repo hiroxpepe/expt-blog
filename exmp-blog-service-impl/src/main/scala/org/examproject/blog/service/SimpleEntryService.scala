@@ -40,27 +40,27 @@ class SimpleEntryService(
     // there is nothing of a logic here, it's just an adapter class..
     
     @Override
-    def getEntryById(id: Long): EntryDto = {
+    override def getEntryById(id: Long): EntryDto = {
         return idToEntryTransformer.transform(id).asInstanceOf[EntryDto]
     }
     
     @Override
-    def getEntryByCode(code: String): EntryDto = {
+    override def getEntryByCode(code: String): EntryDto = {
         return codeToEntryTransformer.transform(code).asInstanceOf[EntryDto]
     }
 
     @Override
-    def findAllEntry(): List[EntryDto] = {
+    override def findAllEntry(): List[EntryDto] = {
         return allEntryFactory.create().asInstanceOf[List[EntryDto]]
     }
 
     @Override
-    def saveEntry(entryDto: EntryDto) {
+    override def saveEntry(entryDto: EntryDto) {
         saveEntryClosure.execute(entryDto)
     }
 
     @Override
-    def deleteEntry(entryDto: EntryDto) {
+    override def deleteEntry(entryDto: EntryDto) {
         deleteEntryClosure.execute(entryDto)
     }
 

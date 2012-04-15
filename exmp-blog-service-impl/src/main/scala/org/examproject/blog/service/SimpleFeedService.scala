@@ -34,7 +34,7 @@ class SimpleFeedService(
     // there is nothing of a logic here, it's just an adapter class..
     
     @Override
-    def findAllEntry(): List[EntryDto] = {
+    override def findAllEntry(): List[EntryDto] = {
         return allEntryFactory.create().asInstanceOf[List[EntryDto]]
     }
 }

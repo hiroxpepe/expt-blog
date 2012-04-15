@@ -17,7 +17,7 @@
             </td>
             <td class="input-td" colspan=3>
                 <form:input 
-                    id="entry_title"
+                    id="entry-title"
                     path="title"
                 />
             </td>
@@ -30,7 +30,7 @@
             </td>
             <td class="input-td" colspan=3>
                 <form:textarea 
-                    id="entry_content"
+                    id="entry-content"
                     path="content"
                 />
             </td>
@@ -43,7 +43,7 @@
             </td>
             <td class="input-td">
                 <form:select 
-                    id="entry_category"
+                    id="entry-category"
                     path="category"
                     items="${categoryList}"
                 />
@@ -55,7 +55,7 @@
             </td>
             <td class="input-td">
                 <form:input 
-                    id="entry_tags"
+                    id="entry-tags"
                     path="tags"
                 />
             </td>

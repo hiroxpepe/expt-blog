@@ -24,14 +24,14 @@ import org.examproject.blog.dto.EntryDto
  */
 trait EntryService {
 
-    def deleteEntry(entryDto: EntryDto)
+    def deleteEntry(entryDto: EntryDto) {}
 
-    def getEntryById(id: Long): EntryDto
+    def getEntryById(id: Long): EntryDto {}
     
-    def getEntryByCode(code: String): EntryDto
+    def getEntryByCode(code: String): EntryDto {}
 
-    def saveEntry(entryDto: EntryDto)
+    def saveEntry(entryDto: EntryDto) {}
 
-    def findAllEntry(): List[EntryDto]
+    def findAllEntry(): List[EntryDto] {}
 
 }

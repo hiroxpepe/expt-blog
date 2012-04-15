@@ -12,6 +12,7 @@
     <%-- all of the data will request using Ajax. --%>
     <form:form id="entry-form" commandName="entryForm">
         <form:hidden path="id" />
+        <form:hidden path="code" />
         
         <%-- insert the entry content template. --%>
         <tiles:insertTemplate 

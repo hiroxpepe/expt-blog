@@ -24,6 +24,6 @@ import org.examproject.blog.dto.EntryDto
  */
 trait FeedService {
 
-    def findAllEntry(): List[EntryDto]
+    def findAllEntry(): List[EntryDto] {}
 
 }

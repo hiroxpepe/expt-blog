@@ -138,12 +138,12 @@ class EntryController {
         val entryDto: EntryDto = getMappedEntryDto(
             entryForm
         )
-            
+        
         // post the entry dto-object using the service-object.
         postEntry(
             entryDto
         )
-            
+        
         // get the list of dto-object from the service-object.
         val entryDtoList: List[EntryDto] = getEntryDtoList()
             
@@ -157,7 +157,7 @@ class EntryController {
         // this will be converted into json.
         return response
     }
-
+    
     ///////////////////////////////////////////////////////////////////////////
     /**
      * get the entry list.
@@ -347,15 +347,10 @@ class EntryController {
                 classOf[EntryModel]
             )
             
-            // set the value to the object.
-            entryModel.setTitle(
-                entryDto.getTitle()
-            )
-            entryModel.setContent(
-                entryDto.getContent()
-            )
-            entryModel.setCode(
-                entryDto.getCode()
+            // map the value to the object.
+            mapper.map(
+                entryDto,
+                entryModel
             )
             
             // create the permalink url.

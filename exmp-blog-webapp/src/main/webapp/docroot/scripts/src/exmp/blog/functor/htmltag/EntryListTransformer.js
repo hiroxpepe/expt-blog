@@ -33,13 +33,20 @@ exmp.blog.functor.htmltag.EntryListTransformer = {
         for (var i = 0; i < obj.entryModelList.length; i++) {
             
             // get the value
+            var id = obj.entryModelList[i].id;  
+            var code = obj.entryModelList[i].code;  
             var title = $.erasureHTML(
                 obj.entryModelList[i].title
             );
             var content = $.erasureHTML(
                 obj.entryModelList[i].content
-            );  
-            var code = obj.entryModelList[i].code;  
+            );
+            var category = $.erasureHTML(
+                obj.entryModelList[i].category
+            );
+            var tags = $.erasureHTML(
+                obj.entryModelList[i].tags
+            );
             var permalinkUrl = obj.entryModelList[i].permalinkUrl;
             
             // create an html tag and set the entry code.
@@ -49,7 +56,13 @@ exmp.blog.functor.htmltag.EntryListTransformer = {
                         "<div class='entry-icon'></div>" +
                     "</td>" +
                     "<td class='entry-list-td' >" +
-                        "<a href='" + permalinkUrl + "'>" + title + "</a>" + " " + content +
+                        "<a href='" + permalinkUrl + "'>" + 
+                            "<span id='entry-title-" + code + "'>" + title + "</span>" + 
+                        "</a>" + " " +
+                        "<span id='entry-content-" + code + "'>" + content + "</span>" +
+                        "<input id='entry-id-" + code + "' type='hidden' value='" + id + "' />" +
+                        "<input id='entry-category-" + code + "' type='hidden' value='" + category + "' />" +
+                        "<input id='entry-tags-" + code + "' type='hidden' value='" + tags + "' />" +
                     "</td>" +
                     "<td class='entry-action-td'>" +
                         "<table>" + 

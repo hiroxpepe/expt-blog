@@ -52,4 +52,7 @@ class EntryForm {
     @BeanProperty
     var tags: String = _
     
+    @BeanProperty
+    var code: String = _
+    
 }

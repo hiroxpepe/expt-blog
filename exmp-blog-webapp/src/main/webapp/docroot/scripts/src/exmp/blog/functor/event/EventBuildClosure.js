@@ -26,10 +26,17 @@ exmp.blog.functor.event.EventBuildClosure = {
     
     execute: function(obj) {
         
+        var editEventClosure = exmp.blog.functor.event.EditEventClosure;
+        
         var deleteEventClosure = exmp.blog.functor.event.DeleteEventClosure;
         
         for (var i = 0; i < obj.entryModelList.length; i++) {
             var code = obj.entryModelList[i].code;
+            
+            // set the event handler for edit.
+            editEventClosure.execute({
+                code: code
+            });
             
             // set the event handler for delete.
             deleteEventClosure.execute({

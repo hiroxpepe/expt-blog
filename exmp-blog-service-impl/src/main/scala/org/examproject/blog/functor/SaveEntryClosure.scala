@@ -65,9 +65,9 @@ class SaveEntryClosure extends Closure {
 
         // if dto is new one, create a new date and code.
         if (entryDto.getCreated() == null) {
+            LOG.debug("create the new entry.")
             entryDto.setCreated(new Date())
             entryDto.setCode(EntryUtils.createCode())
-            LOG.debug("set entryDto new Date.")
         }
         
         // object mapping by dozer.
@@ -84,7 +84,7 @@ class SaveEntryClosure extends Closure {
             }
         }
         
-        // if dto is new one, set the entity's ID.
+        // if dto is new one, set the entity's id.
         if (entryDto.getId() == null) {
             entryDto.setId(entry.getId())
         }

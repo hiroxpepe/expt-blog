@@ -133,12 +133,12 @@ exmp.blog.core.Controller = window; {
      * TODO: a HTTP request of Ajax for get the data.. ? 
      */
     exmp.blog.core.Controller._initializeCategorySelect = function() {
-        $("#entry_category").append($('<option value="General">General</option>'));
-        $("#entry_category").append($('<option value="Technology">Technology</option>'));
-        $("#entry_category").append($('<option value="Language">Language</option>'));
-        $("#entry_category").append($('<option value="Music">Music</option>'));
-        $("#entry_category").append($('<option value="Status">Status</option>'));
-        $("#entry_category").val("General");
+        $("#entry-category").append($('<option value="General">General</option>'));
+        $("#entry-category").append($('<option value="Technology">Technology</option>'));
+        $("#entry-category").append($('<option value="Language">Language</option>'));
+        $("#entry-category").append($('<option value="Music">Music</option>'));
+        $("#entry-category").append($('<option value="Status">Status</option>'));
+        $("#entry-category").val("General");
     }
     
     /**
