@@ -1,4 +1,4 @@
-# examproject (c) by examproject
+# exmpblog (c) by examproject
 
 ***
 ### What's this?
