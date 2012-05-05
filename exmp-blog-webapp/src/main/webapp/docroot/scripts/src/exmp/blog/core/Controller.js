@@ -117,9 +117,15 @@ exmp.blog.core.Controller = window; {
      */
     exmp.blog.core.Controller._initializeEntryListDiv = function() {
         
+        var profileUpdateClosure = exmp.blog.functor.dhtml.ProfileUpdateClosure;
         var entryListClosure = exmp.blog.functor.request.EntryListClosure;
         var entryFactory = exmp.blog.functor.value.EntryFactory;
         var pageUrl = location.href;
+        
+        profileUpdateClosure.execute({
+            username: $("#entry_username").val(),
+            email: $("#entry_email").val()
+        });
         
         if (!(pageUrl.indexOf("entry/form.html") == -1)) {
             entryListClosure.execute(

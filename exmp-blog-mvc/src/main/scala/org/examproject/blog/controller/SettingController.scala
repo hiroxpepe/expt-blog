@@ -147,6 +147,12 @@ class SettingController {
         )
         author.setMaxAge(maxAge)
         response.addCookie(author)
+        
+        val email = new Cookie(
+            "__exmp_blog_email", entryForm.getEmail()
+        )
+        email.setMaxAge(maxAge)
+        response.addCookie(email)
     }
     
 }

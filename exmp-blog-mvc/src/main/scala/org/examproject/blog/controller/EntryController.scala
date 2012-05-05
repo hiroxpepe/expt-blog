@@ -84,6 +84,8 @@ class EntryController {
         password: String,
         @CookieValue(value="__exmp_blog_author", defaultValue="")
         author: String,
+        @CookieValue(value="__exmp_blog_email", defaultValue="")
+        email: String,
         model: Model
     ) = {
         LOG.info("called")
@@ -97,6 +99,7 @@ class EntryController {
         entryForm.setUsername(username)
         entryForm.setPassword(password)
         entryForm.setAuthor(author)
+        entryForm.setEmail(email)
         
         // set the form-object to the model. 
         model.addAttribute(

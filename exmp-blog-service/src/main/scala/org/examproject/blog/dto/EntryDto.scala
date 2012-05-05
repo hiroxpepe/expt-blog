@@ -44,7 +44,7 @@ trait EntryDto {
     
     @BeanProperty
     var author: String = _
-    
+        
     @BeanProperty
     var title: String = _
     

@@ -10,14 +10,10 @@
         </div>
         <div class="menu-bar-right">
             <span>
-                <a class="feed" href="<c:url value="/entry/feed.rss" />" target="_blank">
-                    <img src="<c:url value="/docroot/images/rss.png"/>" title="RSS" alt="RSS">
-                </a>
+                <a class="feed" href="<c:url value="/entry/feed.rss" />" target="_blank">RSS</a>
             </span>
             <span>
-                <a class="feed" href="<c:url value="/entry/feed.atom" />" target="_blank">
-                    <img src="<c:url value="/docroot/images/atom.png"/>" title="Atom" alt="Atom">
-                </a>
+                <a class="feed" href="<c:url value="/entry/feed.atom" />" target="_blank">Atom</a>
             </span>
         </div>
     </div>

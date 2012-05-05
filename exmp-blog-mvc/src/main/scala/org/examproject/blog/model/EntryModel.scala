@@ -41,6 +41,9 @@ class EntryModel {
     var author: String = _
     
     @BeanProperty
+    var email: String = _
+    
+    @BeanProperty
     var category: String = _
     
     @BeanProperty 

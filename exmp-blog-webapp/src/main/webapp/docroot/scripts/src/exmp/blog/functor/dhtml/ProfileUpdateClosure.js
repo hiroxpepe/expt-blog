@@ -15,33 +15,34 @@
 ///////////////////////////////////////////////////////////////////////////////
 /**
  * a functor class of the application.
- * display a message to div when an ajax http request command waiting.
+ * update the html of the profile.
  * 
  * @author hiroxpepe
  */
-exmp.blog.functor.dhtml.WaitingMessageClosure = {
+exmp.blog.functor.dhtml.ProfileUpdateClosure  = {
     
     ///////////////////////////////////////////////////////////////////////////
     // public methods
     
     execute: function(obj) {
-        
-        // update the html element and the css style.
-        $("#message-block")
-            .addClass(
-                "show"
-            )
-            .css({
-                margin: "1em 0.25em 1em 0.25em",
-                padding: "0.25em",
-                color: "silver",
-                backgroundColor: "lavender",
-                border: "1px solid silver"
-            })
-            .html(
-                '<p><img src="../docroot/images/loading.gif" ' +
-                    'width="31" height="31" /></p>' + 
-                "<p>" + obj.message + "</p>"
-            );
+        var username = obj.username;
+        var email = obj.email;
+        var hash = 0;
+        if (email) {
+            hash = MD5_hexhash(email);
+        }
+        $("#user-profile").html(               
+            "<table>" +
+                "<tr>" +
+                    "<td>" +
+                        "<img src='http://2.gravatar.com/avatar/" +
+                            hash + "' width='48' height='48' border='0'>" +
+                    "</td>" +
+                    "<td>" +
+                        "<div class='profileName'><b>" + username + "</b></div>" +
+                    "</td>" +
+                "</tr>" +
+            "</table>"
+        );
     }
 }

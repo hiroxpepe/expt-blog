@@ -41,6 +41,9 @@ class EntryForm {
     var author: String = _
     
     @BeanProperty
+    var email: String = _
+    
+    @BeanProperty
     var title: String = _
     
     @BeanProperty
