@@ -70,9 +70,18 @@ class AllEntryFactory extends Factory {
         val list: List[Entry] = repository.findAll()
         for (entry: Entry <- list) {
             
-            // object mapping by dozer.
-            val dto: EntryDto = context.getBean(classOf[EntryDto])
-            mapper.map(entry, dto)
+            // map the object.
+            val dto: EntryDto = context.getBean(classOf[EntryDto])            
+            dto.setId(entry.getId)
+            dto.setUsername(entry.getUser.getUsername())
+            dto.setPassword(entry.getUser.getPassword())
+            dto.setAuthor(entry.getAuthor())
+            dto.setTitle(entry.getTitle())
+            dto.setContent(entry.getContent())
+            dto.setCategory("xxx")
+            dto.setTags("xxx")
+            dto.setCreated(entry.getCreated())
+            dto.setCode(entry.getCode())
             
             // add to dto list.
             dtoList.add(dto)

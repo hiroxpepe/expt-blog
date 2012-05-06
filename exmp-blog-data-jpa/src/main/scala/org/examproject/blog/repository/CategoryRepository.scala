@@ -19,16 +19,10 @@ import java.util.List
 
 import org.springframework.data.jpa.repository.JpaRepository
 
-import org.examproject.blog.entity.Entry
-import org.examproject.blog.entity.User
+import org.examproject.blog.entity.Category
 
 /**
  * @author hiroxpepe
  */
-trait EntryRepository extends JpaRepository[Entry, Long] {
-  
-    def findByCode(code: String): List[Entry]
-    
-    def findByUser(user: User): List[Entry]
-
+trait CategoryRepository extends JpaRepository[Category, Long] {
 }

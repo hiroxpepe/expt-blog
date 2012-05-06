@@ -7,7 +7,12 @@
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <non-jta-data-source/>
         <mapping-file>META-INF/orm.xml</mapping-file>
+        <class>org.examproject.blog.entity.Category</class>
         <class>org.examproject.blog.entity.Entry</class>
+        <class>org.examproject.blog.entity.Subject</class>
+        <class>org.examproject.blog.entity.Tag</class>
+        <class>org.examproject.blog.entity.TagItem</class>
+        <class>org.examproject.blog.entity.User</class>
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
             <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>

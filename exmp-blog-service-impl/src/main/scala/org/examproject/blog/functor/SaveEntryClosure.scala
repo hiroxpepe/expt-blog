@@ -24,8 +24,12 @@ import org.slf4j.LoggerFactory
 import org.springframework.context.ApplicationContext
 
 import org.examproject.blog.dto.EntryDto
+import org.examproject.blog.entity.Subject
 import org.examproject.blog.entity.Entry
+import org.examproject.blog.entity.User
 import org.examproject.blog.repository.EntryRepository
+import org.examproject.blog.repository.SubjectRepository
+import org.examproject.blog.repository.UserRepository
 import org.examproject.blog.util.EntryUtils
 
 /**
@@ -44,7 +48,13 @@ class SaveEntryClosure extends Closure {
     private val mapper: Mapper = null
     
     @Inject
-    private val repository: EntryRepository = null
+    private val entryRepository: EntryRepository = null
+    
+    @Inject
+    private val subjectRepository: SubjectRepository = null
+    
+    @Inject
+    private val userRepository: UserRepository = null
     
     @Override
     def execute(o: Object ) = {
@@ -70,13 +80,34 @@ class SaveEntryClosure extends Closure {
             entryDto.setCode(EntryUtils.createCode())
         }
         
-        // object mapping by dozer.
+        // map the object.
+        var subject: Subject = context.getBean(classOf[Subject])
+        subject.setCreated(new Date())
+        subject.setAuthor(entryDto.getAuthor())
+        subject.setText("hoge" + subject.getCreated.toString())
+        subject = subjectRepository.save(subject)
+        
+        var user: User = userRepository.findByUsername(entryDto.getUsername())
+        if (user == null) {
+            user = context.getBean(classOf[User])
+            user.setUsername(entryDto.getUsername())
+            user.setPassword(entryDto.getPassword())
+            user = userRepository.save(user)
+        }
+        
         val entry: Entry = context.getBean(classOf[Entry])
-        mapper.map(entryDto, entry)
+        entry.setId(entryDto.getId)
+        entry.setAuthor(entryDto.getAuthor())
+        entry.setTitle(entryDto.getTitle())
+        entry.setContent(entryDto.getContent())
+        entry.setCreated(entryDto.getCreated())
+        entry.setCode(entryDto.getCode())
+        entry.setUser(user)
+        entry.setSubject(subject)
 
         // push the entity to repository.
         try {
-            repository.save(entry)
+            entryRepository.save(entry)
             LOG.debug("save a entry.")
         } catch {
             case e: Exception => {

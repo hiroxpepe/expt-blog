@@ -19,16 +19,13 @@ import java.util.List
 
 import org.springframework.data.jpa.repository.JpaRepository
 
-import org.examproject.blog.entity.Entry
 import org.examproject.blog.entity.User
 
 /**
  * @author hiroxpepe
  */
-trait EntryRepository extends JpaRepository[Entry, Long] {
-  
-    def findByCode(code: String): List[Entry]
+trait UserRepository extends JpaRepository[User, Long] {
     
-    def findByUser(user: User): List[Entry]
-
+    def findByUsername(username: String): User
+    
 }

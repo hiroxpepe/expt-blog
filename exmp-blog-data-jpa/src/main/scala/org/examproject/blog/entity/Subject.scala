@@ -19,23 +19,18 @@ import java.io.Serializable
 import java.util.Date
 import java.util.HashSet
 import java.util.Set
-import javax.persistence.CascadeType
 import javax.persistence.Column
 import javax.persistence.Entity
-import javax.persistence.FetchType
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
-import javax.persistence.ManyToOne
 import javax.persistence.OneToMany
-import javax.persistence.PrimaryKeyJoinColumn
 import javax.persistence.Table
 import javax.persistence.Temporal
 import javax.persistence.TemporalType
 
 import org.springframework.stereotype.Component
 
-import scala.collection.JavaConversions._
 import scala.SerialVersionUID
 import scala.reflect.BeanProperty
 
@@ -43,20 +38,16 @@ import scala.reflect.BeanProperty
  * @author hiroxpepe
  */
 @Entity
-@Table(name="entries")
+@Table(name="subjects")
 @Component
 @SerialVersionUID(-8712872385957386182L)
-class Entry extends Serializable {
+class Subject extends Serializable {
   
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(unique=true)
     @BeanProperty
     var id: Long = _
-    
-    @Column(name="code", unique=true)
-    @BeanProperty
-    var code: String = _
     
     @Column(name="created")
     @Temporal(TemporalType.TIMESTAMP)
@@ -72,24 +63,16 @@ class Entry extends Serializable {
     @BeanProperty
     var author: String = _
     
-    @Column(name="title")
+    @Column(name="text", unique=true)
     @BeanProperty
-    var title: String = _
+    var text: String = _
     
-    @Column(name="content", length=2048)
+    @OneToMany(mappedBy="subject")
     @BeanProperty
-    var content: String = _
-    
-    @OneToMany(mappedBy="entry")
+    var entrySet: Set[Entry] = new HashSet[Entry]()
+ 
+    @OneToMany(mappedBy="subject")
     @BeanProperty
-    var tagItemSet: Set[TagItem] = new HashSet[TagItem]()
-    
-    @ManyToOne
-    @BeanProperty
-    var user: User = _
-    
-    @ManyToOne
-    @BeanProperty
-    var subject: Subject = _
+    var categorySet: Set[Category] = new HashSet[Category]()
     
 }
