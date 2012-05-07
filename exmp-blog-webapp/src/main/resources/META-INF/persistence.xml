@@ -9,6 +9,7 @@
         <mapping-file>META-INF/orm.xml</mapping-file>
         <class>org.examproject.blog.entity.Category</class>
         <class>org.examproject.blog.entity.Entry</class>
+        <class>org.examproject.blog.entity.Paragraph</class>
         <class>org.examproject.blog.entity.Subject</class>
         <class>org.examproject.blog.entity.Tag</class>
         <class>org.examproject.blog.entity.TagItem</class>

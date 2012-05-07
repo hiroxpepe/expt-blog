@@ -43,20 +43,16 @@ import scala.reflect.BeanProperty
  * @author hiroxpepe
  */
 @Entity
-@Table(name="entries")
+@Table(name="paragraphs")
 @Component
 @SerialVersionUID(-8712872385957386182L)
-class Entry extends Serializable {
+class Paragraph extends Serializable {
   
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(unique=true)
     @BeanProperty
     var id: Long = _
-    
-    @Column(name="code", unique=true)
-    @BeanProperty
-    var code: String = _
     
     @Column(name="created")
     @Temporal(TemporalType.TIMESTAMP)
@@ -68,32 +64,16 @@ class Entry extends Serializable {
     @BeanProperty
     var updated: Date = _
     
-    @Column(name="author")
+    @Column(name="content", length=2048)
     @BeanProperty
-    var author: String = _
+    var content: String = _
     
-//    @Column(name="title")
-//    @BeanProperty
-//    var title: String = _
-//    
-//    @Column(name="content", length=2048)
-//    @BeanProperty
-//    var content: String = _
-    
-    @OneToMany(mappedBy="entry")
+    @Column(name="kind", length=16)
     @BeanProperty
-    var paragraphSet: Set[Paragraph] = new HashSet[Paragraph]()
-    
-    @OneToMany(mappedBy="entry")
-    @BeanProperty
-    var tagItemSet: Set[TagItem] = new HashSet[TagItem]()
+    var kind: String = _
     
     @ManyToOne
     @BeanProperty
-    var user: User = _
-    
-    @ManyToOne
-    @BeanProperty
-    var subject: Subject = _
+    var entry: Entry = _
     
 }

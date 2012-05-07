@@ -16,6 +16,7 @@ package org.examproject.blog.functor
 
 import java.util.ArrayList
 import java.util.List
+import java.util.Set
 import javax.inject.Inject
 
 import org.apache.commons.collections.Factory
@@ -26,7 +27,9 @@ import org.springframework.context.ApplicationContext
 
 import org.examproject.blog.dto.EntryDto
 import org.examproject.blog.entity.Entry
+import org.examproject.blog.entity.Paragraph
 import org.examproject.blog.repository.EntryRepository
+import org.examproject.blog.repository.ParagraphRepository
 
 import scala.collection.JavaConversions._
 
