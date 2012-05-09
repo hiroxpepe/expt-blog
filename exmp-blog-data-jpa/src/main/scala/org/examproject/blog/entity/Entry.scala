@@ -19,7 +19,6 @@ import java.io.Serializable
 import java.util.Date
 import java.util.HashSet
 import java.util.Set
-import javax.persistence.CascadeType
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.FetchType
@@ -28,11 +27,11 @@ import javax.persistence.GenerationType
 import javax.persistence.Id
 import javax.persistence.ManyToOne
 import javax.persistence.OneToMany
-import javax.persistence.PrimaryKeyJoinColumn
 import javax.persistence.Table
 import javax.persistence.Temporal
 import javax.persistence.TemporalType
 
+import org.springframework.context.annotation.Scope
 import org.springframework.stereotype.Component
 
 import scala.collection.JavaConversions._
@@ -45,6 +44,7 @@ import scala.reflect.BeanProperty
 @Entity
 @Table(name="entries")
 @Component
+@Scope(value="prototype")
 @SerialVersionUID(-8712872385957386182L)
 class Entry extends Serializable {
   
@@ -72,19 +72,11 @@ class Entry extends Serializable {
     @BeanProperty
     var author: String = _
     
-//    @Column(name="title")
-//    @BeanProperty
-//    var title: String = _
-//    
-//    @Column(name="content", length=2048)
-//    @BeanProperty
-//    var content: String = _
-    
-    @OneToMany(mappedBy="entry")
+    @OneToMany(mappedBy="entry", fetch=FetchType.EAGER)
     @BeanProperty
     var paragraphSet: Set[Paragraph] = new HashSet[Paragraph]()
     
-    @OneToMany(mappedBy="entry")
+    @OneToMany(mappedBy="entry", fetch=FetchType.EAGER)
     @BeanProperty
     var tagItemSet: Set[TagItem] = new HashSet[TagItem]()
     

@@ -21,6 +21,7 @@ import java.util.HashSet
 import java.util.Set
 import javax.persistence.Column
 import javax.persistence.Entity
+import javax.persistence.FetchType
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
@@ -29,6 +30,7 @@ import javax.persistence.Table
 import javax.persistence.Temporal
 import javax.persistence.TemporalType
 
+import org.springframework.context.annotation.Scope
 import org.springframework.stereotype.Component
 
 import scala.SerialVersionUID
@@ -40,6 +42,7 @@ import scala.reflect.BeanProperty
 @Entity
 @Table(name="subjects")
 @Component
+@Scope(value="prototype")
 @SerialVersionUID(-8712872385957386182L)
 class Subject extends Serializable {
   
@@ -67,11 +70,11 @@ class Subject extends Serializable {
     @BeanProperty
     var text: String = _
     
-    @OneToMany(mappedBy="subject")
+    @OneToMany(mappedBy="subject", fetch=FetchType.EAGER)
     @BeanProperty
     var entrySet: Set[Entry] = new HashSet[Entry]()
  
-    @OneToMany(mappedBy="subject")
+    @OneToMany(mappedBy="subject", fetch=FetchType.EAGER)
     @BeanProperty
     var categorySet: Set[Category] = new HashSet[Category]()
     

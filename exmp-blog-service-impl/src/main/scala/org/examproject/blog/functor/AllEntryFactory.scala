@@ -29,7 +29,6 @@ import org.examproject.blog.dto.EntryDto
 import org.examproject.blog.entity.Entry
 import org.examproject.blog.entity.Paragraph
 import org.examproject.blog.repository.EntryRepository
-import org.examproject.blog.repository.ParagraphRepository
 
 import scala.collection.JavaConversions._
 
@@ -73,14 +72,24 @@ class AllEntryFactory extends Factory {
         val list: List[Entry] = repository.findAll()
         for (entry: Entry <- list) {
             
+            var title = ""
+            var content = ""
+            val paragraphSet: Set[Paragraph] =  entry.getParagraphSet()
+            for (paragraph: Paragraph <- paragraphSet) {
+                if (paragraph.getKind.equals("title")) {
+                    title = paragraph.getContent()
+                }
+                content += paragraph.getContent()
+            }
+            
             // map the object.
             val dto: EntryDto = context.getBean(classOf[EntryDto])            
             dto.setId(entry.getId)
             dto.setUsername(entry.getUser.getUsername())
             dto.setPassword(entry.getUser.getPassword())
             dto.setAuthor(entry.getAuthor())
-            dto.setTitle(entry.getTitle())
-            dto.setContent(entry.getContent())
+            dto.setTitle(title)
+            dto.setContent(content)
             dto.setCategory("xxx")
             dto.setTags("xxx")
             dto.setCreated(entry.getCreated())

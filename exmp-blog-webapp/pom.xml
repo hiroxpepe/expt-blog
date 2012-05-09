@@ -188,7 +188,6 @@
                             <nosuffix>true</nosuffix>
                             <aggregations>
                                 <aggregation>
-                                    <insertNewLine>true</insertNewLine>
                                     <output>src/main/webapp/docroot/scripts/exmp-blog.min.js</output>
                                     <includes>
                                         <include>src/exmp/__*.js</include>

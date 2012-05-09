@@ -16,7 +16,6 @@ package org.examproject.blog.entity
 
 import java.lang.Long
 import java.io.Serializable
-import java.util.Date
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
@@ -24,8 +23,8 @@ import javax.persistence.GenerationType
 import javax.persistence.Id
 import javax.persistence.ManyToOne
 import javax.persistence.Table
-import javax.persistence.Temporal
 
+import org.springframework.context.annotation.Scope
 import org.springframework.stereotype.Component
 
 import scala.SerialVersionUID
@@ -37,6 +36,7 @@ import scala.reflect.BeanProperty
 @Entity
 @Table(name="categories")
 @Component
+@Scope(value="prototype")
 @SerialVersionUID(-8712872385957386182L)
 class Category extends Serializable {
   

@@ -17,9 +17,6 @@ package org.examproject.blog.entity
 import java.lang.Long
 import java.io.Serializable
 import java.util.Date
-import java.util.HashSet
-import java.util.Set
-import javax.persistence.CascadeType
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.FetchType
@@ -28,11 +25,11 @@ import javax.persistence.GenerationType
 import javax.persistence.Id
 import javax.persistence.ManyToOne
 import javax.persistence.OneToMany
-import javax.persistence.PrimaryKeyJoinColumn
 import javax.persistence.Table
 import javax.persistence.Temporal
 import javax.persistence.TemporalType
 
+import org.springframework.context.annotation.Scope
 import org.springframework.stereotype.Component
 
 import scala.collection.JavaConversions._
@@ -45,6 +42,7 @@ import scala.reflect.BeanProperty
 @Entity
 @Table(name="paragraphs")
 @Component
+@Scope(value="prototype")
 @SerialVersionUID(-8712872385957386182L)
 class Paragraph extends Serializable {
   

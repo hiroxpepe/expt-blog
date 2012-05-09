@@ -15,6 +15,8 @@
 package org.examproject.blog.functor
 
 import java.util.Date
+import java.util.Set
+import java.util.HashSet
 import javax.inject.Inject
 
 import org.apache.commons.collections.Closure
@@ -24,10 +26,12 @@ import org.slf4j.LoggerFactory
 import org.springframework.context.ApplicationContext
 
 import org.examproject.blog.dto.EntryDto
-import org.examproject.blog.entity.Subject
 import org.examproject.blog.entity.Entry
+import org.examproject.blog.entity.Paragraph
+import org.examproject.blog.entity.Subject
 import org.examproject.blog.entity.User
 import org.examproject.blog.repository.EntryRepository
+import org.examproject.blog.repository.ParagraphRepository
 import org.examproject.blog.repository.SubjectRepository
 import org.examproject.blog.repository.UserRepository
 import org.examproject.blog.util.EntryUtils
@@ -51,6 +55,9 @@ class SaveEntryClosure extends Closure {
     private val entryRepository: EntryRepository = null
     
     @Inject
+    private val paragraphRepository: ParagraphRepository = null
+    
+    @Inject
     private val subjectRepository: SubjectRepository = null
     
     @Inject
@@ -72,52 +79,75 @@ class SaveEntryClosure extends Closure {
     
     private def save(entryDto: EntryDto) = {
         LOG.debug("called save.")
-
-        // if dto is new one, create a new date and code.
-        if (entryDto.getCreated() == null) {
-            LOG.debug("create the new entry.")
-            entryDto.setCreated(new Date())
-            entryDto.setCode(EntryUtils.createCode())
-        }
-        
-        // map the object.
-        var subject: Subject = context.getBean(classOf[Subject])
-        subject.setCreated(new Date())
-        subject.setAuthor(entryDto.getAuthor())
-        subject.setText("hoge" + subject.getCreated.toString())
-        subject = subjectRepository.save(subject)
-        
-        var user: User = userRepository.findByUsername(entryDto.getUsername())
-        if (user == null) {
-            user = context.getBean(classOf[User])
-            user.setUsername(entryDto.getUsername())
-            user.setPassword(entryDto.getPassword())
-            user = userRepository.save(user)
-        }
-        
-        val entry: Entry = context.getBean(classOf[Entry])
-        entry.setId(entryDto.getId)
-        entry.setAuthor(entryDto.getAuthor())
-        entry.setTitle(entryDto.getTitle())
-        entry.setContent(entryDto.getContent())
-        entry.setCreated(entryDto.getCreated())
-        entry.setCode(entryDto.getCode())
-        entry.setUser(user)
-        entry.setSubject(subject)
-
-        // push the entity to repository.
         try {
+            // if dto is new one, create a new date and code.
+            if (entryDto.getCreated() == null) {
+                LOG.debug("create the new entry.")
+                entryDto.setCreated(new Date())
+                entryDto.setCode(EntryUtils.createCode())
+            }
+
+            // map the object.
+            val subject: Subject = context.getBean(classOf[Subject])
+            subject.setCreated(new Date())
+            subject.setUpdated(new Date())
+            subject.setAuthor(entryDto.getAuthor())
+            subject.setText("hoge" + subject.getCreated.toString())
+            subjectRepository.save(subject)
+
+            var user: User = userRepository.findByUsername(entryDto.getUsername())
+            if (user == null) {
+                user = context.getBean(classOf[User])
+                user.setUsername(entryDto.getUsername())
+                user.setPassword(entryDto.getPassword())
+                user = userRepository.save(user)
+            }
+
+            val entry: Entry = context.getBean(classOf[Entry])
+            
+            val titleParagraph: Paragraph = context.getBean(classOf[Paragraph])
+            titleParagraph.setContent(entryDto.getTitle())
+            titleParagraph.setKind("title")
+            titleParagraph.setCreated(new Date())
+            titleParagraph.setUpdated(new Date())
+            titleParagraph.setEntry(entry)
+
+            val contentParagraph: Paragraph = context.getBean(classOf[Paragraph])
+            contentParagraph.setContent(entryDto.getContent())
+            contentParagraph.setKind("content")
+            contentParagraph.setCreated(new Date())
+            contentParagraph.setUpdated(new Date())
+            contentParagraph.setEntry(entry)
+
+            val paragraphSet: Set[Paragraph] = new HashSet[Paragraph]
+            paragraphSet.add(titleParagraph)
+            paragraphSet.add(contentParagraph)
+
+            entry.setId(entryDto.getId)
+            entry.setAuthor(entryDto.getAuthor())
+            entry.setParagraphSet(paragraphSet)
+            entry.setCreated(entryDto.getCreated())
+            entry.setUpdated(entryDto.getCreated())
+            entry.setCode(entryDto.getCode())
+            entry.setUser(user)
+            entry.setSubject(subject)
+
+            // push the entity to repository.
             entryRepository.save(entry)
+            paragraphRepository.save(titleParagraph)
+            paragraphRepository.save(contentParagraph)
+            
             LOG.debug("save a entry.")
+            
+            // if dto is new one, set the entity's id.
+            if (entryDto.getId() == null) {
+                entryDto.setId(entry.getId())
+            }
+            
         } catch {
             case e: Exception => {
                 throw new RuntimeException("failed save a entry.", e)
             }
-        }
-        
-        // if dto is new one, set the entity's id.
-        if (entryDto.getId() == null) {
-            entryDto.setId(entry.getId())
         }
     }
 
