@@ -49,12 +49,12 @@ class Tag extends Serializable {
     @BeanProperty
     var id: Long = _
     
+    @Column(name="text", unique=true, length=16)
+    @BeanProperty
+    var text: String = _
+    
     @OneToMany(mappedBy="tag", fetch=FetchType.EAGER)
     @BeanProperty
     var tagItemSet: Set[TagItem] = new HashSet[TagItem]()
-    
-    @Column(name="text", unique=true)
-    @BeanProperty
-    var text: String = _
     
 }

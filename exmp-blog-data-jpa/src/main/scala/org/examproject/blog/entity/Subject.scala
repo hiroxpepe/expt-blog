@@ -62,11 +62,11 @@ class Subject extends Serializable {
     @BeanProperty
     var updated: Date = _
     
-    @Column(name="author")
+    @Column(name="author", length=16)
     @BeanProperty
     var author: String = _
     
-    @Column(name="text", unique=true)
+    @Column(name="text", unique=true, length=48)
     @BeanProperty
     var text: String = _
     
@@ -76,6 +76,10 @@ class Subject extends Serializable {
  
     @OneToMany(mappedBy="subject", fetch=FetchType.EAGER)
     @BeanProperty
-    var categorySet: Set[Category] = new HashSet[Category]()
+    var categoryItemSet: Set[CategoryItem] = new HashSet[CategoryItem]()
+    
+    @OneToMany(mappedBy="subject", fetch=FetchType.EAGER)
+    @BeanProperty
+    var clusterSet: Set[Cluster] = new HashSet[Cluster]()
     
 }

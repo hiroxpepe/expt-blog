@@ -14,15 +14,21 @@
 
 package org.examproject.blog.functor
 
+import java.util.Set
 import javax.inject.Inject
 
 import org.apache.commons.collections.Closure
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import org.springframework.transaction.annotation.Transactional
 
 import org.examproject.blog.dto.EntryDto
 import org.examproject.blog.entity.Entry
+import org.examproject.blog.entity.Paragraph
 import org.examproject.blog.repository.EntryRepository
+import org.examproject.blog.repository.ParagraphRepository
+
+import scala.collection.JavaConversions._
 
 /**
  * @author hiroxpepe
@@ -35,6 +41,12 @@ class DeleteEntryClosure extends Closure {
     
     @Inject
     private val repository: EntryRepository = null
+    
+    @Inject
+    private val paragraphRepository: ParagraphRepository = null
+    
+    ///////////////////////////////////////////////////////////////////////////
+    // public methods
     
     @Override
     def execute(o: Object) {
@@ -50,11 +62,29 @@ class DeleteEntryClosure extends Closure {
         }
     }
     
-    private def delete(entryDto: EntryDto) {
+    ///////////////////////////////////////////////////////////////////////////
+    // private methods
+    
+    @Transactional
+    private def delete(
+        entryDto: EntryDto
+    ) {
         try {
             // to search the repository for delete.
             val entry: Entry = repository.findOne(entryDto.getId()).asInstanceOf[Entry]
+            
+            // delete the entry's paragraphs.
+            val paragraphSet: Set[Paragraph] =  entry.getParagraphSet()
+            for (paragraph: Paragraph <- paragraphSet) {
+                paragraphRepository.delete(paragraph.getId())
+            }
+            
+            // TODO: delete the tagItems!
+            
+            // delete the entry.
             repository.delete(entry.getId())
+            
+            // TODO: delete paragraphs!
         } catch {
             case e: Exception => {
                 throw new RuntimeException("delete failed. ", e)

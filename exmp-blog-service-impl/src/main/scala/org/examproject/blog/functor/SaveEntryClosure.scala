@@ -24,6 +24,7 @@ import org.dozer.Mapper
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.context.ApplicationContext
+import org.springframework.transaction.annotation.Transactional
 
 import org.examproject.blog.dto.EntryDto
 import org.examproject.blog.entity.Entry
@@ -63,6 +64,9 @@ class SaveEntryClosure extends Closure {
     @Inject
     private val userRepository: UserRepository = null
     
+    ///////////////////////////////////////////////////////////////////////////
+    // public methods
+    
     @Override
     def execute(o: Object ) = {
         LOG.debug("called.")
@@ -77,7 +81,13 @@ class SaveEntryClosure extends Closure {
         }
     }
     
-    private def save(entryDto: EntryDto) = {
+    ///////////////////////////////////////////////////////////////////////////
+    // private methods
+    
+    @Transactional
+    private def save(
+        entryDto: EntryDto
+    ) = {
         LOG.debug("called save.")
         try {
             // if dto is new one, create a new date and code.

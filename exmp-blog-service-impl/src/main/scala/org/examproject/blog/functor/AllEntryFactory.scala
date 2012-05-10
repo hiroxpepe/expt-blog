@@ -24,6 +24,7 @@ import org.dozer.Mapper
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.context.ApplicationContext
+import org.springframework.transaction.annotation.Transactional
 
 import org.examproject.blog.dto.EntryDto
 import org.examproject.blog.entity.Entry
@@ -50,6 +51,9 @@ class AllEntryFactory extends Factory {
     @Inject
     private val repository: EntryRepository = null
 
+    ///////////////////////////////////////////////////////////////////////////
+    // public methods
+    
     @Override
     def create(): Object = {
         LOG.debug("called.")
@@ -63,7 +67,12 @@ class AllEntryFactory extends Factory {
         }
     }
 
-    private def searchAllEntry(): List[EntryDto] = {
+    ///////////////////////////////////////////////////////////////////////////
+    // private methods
+    
+    @Transactional
+    private def searchAllEntry()
+    : List[EntryDto] = {
         
         // create the new dto list.
         val dtoList: List[EntryDto] = new ArrayList[EntryDto]()

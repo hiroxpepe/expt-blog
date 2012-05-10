@@ -16,20 +16,19 @@ package org.examproject.blog.entity
 
 import java.lang.Long
 import java.io.Serializable
-import java.util.HashSet
-import java.util.Set
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.FetchType
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
-import javax.persistence.OneToMany
+import javax.persistence.ManyToOne
 import javax.persistence.Table
 
 import org.springframework.context.annotation.Scope
 import org.springframework.stereotype.Component
 
+import scala.collection.JavaConversions._
 import scala.SerialVersionUID
 import scala.reflect.BeanProperty
 
@@ -37,11 +36,11 @@ import scala.reflect.BeanProperty
  * @author hiroxpepe
  */
 @Entity
-@Table(name="users")
+@Table(name="groups")
 @Component
 @Scope(value="prototype")
 @SerialVersionUID(-8712872385957386182L)
-class User extends Serializable {
+class Group extends Serializable {
   
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -49,28 +48,12 @@ class User extends Serializable {
     @BeanProperty
     var id: Long = _
     
-    @Column(name="username", unique=true, length=16)
+    @Column(name="name", length=24)
     @BeanProperty
-    var username: String = _
+    var name: String = _
     
-    @Column(name="password", length=16)
+    @ManyToOne
     @BeanProperty
-    var password: String = _
-    
-    @Column(name="enable")
-    @BeanProperty
-    var enable: Boolean = true
-    
-    @OneToMany(mappedBy="user", fetch=FetchType.EAGER)
-    @BeanProperty
-    var entrySet: Set[Entry] = new HashSet[Entry]()
-    
-    @OneToMany(mappedBy="user", fetch=FetchType.EAGER)
-    @BeanProperty
-    var groupSet: Set[Group] = new HashSet[Group]()
-    
-    @OneToMany(mappedBy="user", fetch=FetchType.EAGER)
-    @BeanProperty
-    var interestSet: Set[Interest] = new HashSet[Interest]()
+    var user: User = _
     
 }

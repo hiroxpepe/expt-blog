@@ -34,7 +34,7 @@ import scala.reflect.BeanProperty
  * @author hiroxpepe
  */
 @Entity
-@Table(name="tagItems")
+@Table(name="tag_items")
 @Component
 @Scope(value="prototype")
 @SerialVersionUID(-8712872385957386182L)

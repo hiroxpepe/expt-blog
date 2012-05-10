@@ -16,12 +16,15 @@ package org.examproject.blog.entity
 
 import java.lang.Long
 import java.io.Serializable
+import java.util.HashSet
+import java.util.Set
 import javax.persistence.Column
 import javax.persistence.Entity
+import javax.persistence.FetchType
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
-import javax.persistence.ManyToOne
+import javax.persistence.OneToMany
 import javax.persistence.Table
 
 import org.springframework.context.annotation.Scope
@@ -46,12 +49,12 @@ class Category extends Serializable {
     @BeanProperty
     var id: Long = _
         
-    @Column(name="text", unique=true)
+    @Column(name="text", unique=true, length=24)
     @BeanProperty
     var text: String = _
     
-    @ManyToOne
+    @OneToMany(mappedBy="category", fetch=FetchType.EAGER)
     @BeanProperty
-    var subject: Subject = _
+    var categoryItemSet: Set[CategoryItem] = new HashSet[CategoryItem]()
     
 }

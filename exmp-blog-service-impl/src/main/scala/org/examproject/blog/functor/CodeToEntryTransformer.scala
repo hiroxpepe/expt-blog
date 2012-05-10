@@ -23,6 +23,7 @@ import org.dozer.Mapper
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.context.ApplicationContext
+import org.springframework.transaction.annotation.Transactional
 
 import org.examproject.blog.dto.EntryDto
 import org.examproject.blog.entity.Entry
@@ -46,6 +47,9 @@ class CodeToEntryTransformer extends Transformer {
     @Inject
     private val repository: EntryRepository = null
 
+    ///////////////////////////////////////////////////////////////////////////
+    // public methods
+    
     @Override
     def transform(o: Object ): Object = {
         LOG.debug("called.")
@@ -59,7 +63,14 @@ class CodeToEntryTransformer extends Transformer {
         }
     }
 
-    private def getEntryDto(o: Object): EntryDto = {
+    ///////////////////////////////////////////////////////////////////////////
+    // private methods
+    
+    @Transactional
+    private def getEntryDto(
+        o: Object
+    )
+    : EntryDto = {
         
         // if 'code' is offered, find the entity from repository, and mapping to dto.
         if (o != null) {

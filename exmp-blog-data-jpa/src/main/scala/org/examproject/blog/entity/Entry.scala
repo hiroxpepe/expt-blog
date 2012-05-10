@@ -54,7 +54,7 @@ class Entry extends Serializable {
     @BeanProperty
     var id: Long = _
     
-    @Column(name="code", unique=true)
+    @Column(name="code", unique=true, length=9)
     @BeanProperty
     var code: String = _
     
@@ -68,7 +68,7 @@ class Entry extends Serializable {
     @BeanProperty
     var updated: Date = _
     
-    @Column(name="author")
+    @Column(name="author", length=16)
     @BeanProperty
     var author: String = _
     
