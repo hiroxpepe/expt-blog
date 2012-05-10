@@ -164,6 +164,7 @@ div.header-content {
             border-radius: 4px;
         }
     span.header-title {
+        cursor: pointer;
         font-size: xx-large;
         font-weight: bold;
     }
@@ -339,7 +340,6 @@ div.entry-content {
     }
     h4.entry-content-title {
         margin-bottom: 0.5em;
-        cursor: pointer;
         background: white;
     }
     table.entry-table {
@@ -359,6 +359,32 @@ div.entry-content {
         background: white;
     }
 
+/* ****************************************************************************
+ * define the appearance of the subject content.
+ */
+div.subject-content {
+    padding: 1em;
+}
+    div.subject-content input {
+        border: 1px solid gainsboro;
+        border-radius: 3px;
+    }
+    table.subject-table {
+        width: 100%;
+    }
+        table.subject-table td.label-td {
+            width: 10%;
+            padding: 0 0.5em 0 0;
+            text-align: right;
+        }
+        table.subject-table td.input-td {
+            width: 90%;
+        }
+    div.subject-command-block {
+        padding: 0.5em 0 0.5em 0;
+        text-align: right;
+    }
+    
 /* ****************************************************************************
  * define the appearance of the setting content.
  */

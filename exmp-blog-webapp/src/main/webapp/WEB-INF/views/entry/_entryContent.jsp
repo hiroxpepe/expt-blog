@@ -37,18 +37,6 @@
         </tr>   
         <tr>
             <td class="label-td">
-                <label for="entry_category">
-                    <fmt:message key="entry.form.category" />
-                </label>
-            </td>
-            <td class="input-td">
-                <form:select 
-                    id="entry-category"
-                    path="category"
-                    items="${categoryList}"
-                />
-            </td>
-            <td class="label-td">
                 <label for="entry_tags">
                     <fmt:message key="entry.form.tags" />
                 </label>

@@ -82,9 +82,9 @@ exmp.blog.core.Controller = window; {
     
     /**
      * an event handler that called when
-     * the div of entry tirle is clicked.
+     * the div of title is clicked.
      */
-    exmp.blog.core.Controller._entryContentTitleDivOnClick = function() {
+    exmp.blog.core.Controller._headerTitleDivOnClick = function() {
         $("div.container")
             .toggleClass(
                 "wide", 300
@@ -176,8 +176,8 @@ exmp.blog.core.Controller = window; {
             controller._messageDivOnClick();
         });
         
-        $("h4.entry-content-title").click(function() {
-            controller._entryContentTitleDivOnClick();
+        $("span.header-title").click(function() {
+            controller._headerTitleDivOnClick();
         });
     }
 }

@@ -58,4 +58,7 @@ class EntryForm {
     @BeanProperty
     var code: String = _
     
+    @BeanProperty
+    var subject: String = _
+    
 }

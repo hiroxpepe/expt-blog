@@ -6,7 +6,8 @@
     
     <ul>
         <li><a href="#tab1"><fmt:message key="label.list" /></a></li>
-        <li><a href="#tab2"><fmt:message key="label.setting" /></a></li>
+        <li><a href="#tab2"><fmt:message key="label.subject" /></a></li>
+        <li><a href="#tab3"><fmt:message key="label.setting" /></a></li>
     </ul>
     
     <div id="tab1" class="tab">
@@ -17,6 +18,44 @@
     </div>
     
     <div id="tab2" class="tab">
+        <div class="subject-content">
+            <table class="subject-table">
+                <tr>
+                    <td class="label-td">
+                        <label for="entry_subject">
+                            <fmt:message key="entry.form.subject" />
+                        </label>
+                    </td>
+                    <td class="input-td">
+                        <form:input id="entry-subject" path="subject" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label-td">
+                        <label for="entry_category">
+                            <fmt:message key="entry.form.category" />
+                        </label>
+                    </td>
+                    <td class="input-td">
+                        <form:select 
+                            id="entry-category"
+                            path="category"
+                            items="${categoryList}"
+                        />
+                    </td>
+                </tr>
+            </table>
+            <div class="subject-command-block">
+                <input id="subject-button"
+                       class="command-button"
+                       type="button" 
+                       value="<fmt:message key="button.subject" />"
+                 />
+            </div>
+        </div>
+    </div>
+    
+    <div id="tab3" class="tab">
         <div class="setting-content">
             <table class="setting-table">
                 <tr>

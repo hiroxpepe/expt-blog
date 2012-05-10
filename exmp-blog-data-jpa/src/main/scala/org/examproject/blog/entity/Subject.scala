@@ -45,7 +45,7 @@ import scala.reflect.BeanProperty
 @Scope(value="prototype")
 @SerialVersionUID(-8712872385957386182L)
 class Subject extends Serializable {
-  
+    
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(unique=true)
@@ -73,7 +73,7 @@ class Subject extends Serializable {
     @OneToMany(mappedBy="subject", fetch=FetchType.EAGER)
     @BeanProperty
     var entrySet: Set[Entry] = new HashSet[Entry]()
- 
+    
     @OneToMany(mappedBy="subject", fetch=FetchType.EAGER)
     @BeanProperty
     var categoryItemSet: Set[CategoryItem] = new HashSet[CategoryItem]()

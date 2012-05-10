@@ -29,10 +29,10 @@ class EntryModel {
     var id: Long = _
     
     @BeanProperty
-    var title: String  = _
+    var title: String = _
     
     @BeanProperty
-    var content: String  = _
+    var content: String = _
     
     @BeanProperty
     var username: String = _
@@ -54,6 +54,9 @@ class EntryModel {
     
     @BeanProperty
     var code: String = _
+    
+    @BeanProperty
+    var subject: String = _
     
     @BeanProperty
     var permalinkUrl: String = _

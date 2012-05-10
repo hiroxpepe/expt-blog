@@ -88,7 +88,9 @@ class AllEntryFactory extends Factory {
                 if (paragraph.getKind.equals("title")) {
                     title = paragraph.getContent()
                 }
-                content += paragraph.getContent()
+                else if (paragraph.getKind.equals("content")) {
+                    content += paragraph.getContent()
+                }
             }
             
             // map the object.

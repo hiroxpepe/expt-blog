@@ -22,17 +22,17 @@ import reflect.BeanProperty
  * @author hiroxpepe
  */
 class FeedModel {
-
+    
     @BeanProperty
     var title: String =_
-
+    
     @BeanProperty
     var url: String =_
-
+    
     @BeanProperty
     var summary: String =_
-
+    
     @BeanProperty
     var createdDate: Date =_
-
+    
 }
