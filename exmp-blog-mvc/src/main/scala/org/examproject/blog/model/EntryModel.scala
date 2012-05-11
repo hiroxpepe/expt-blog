@@ -43,21 +43,21 @@ class EntryModel {
     @BeanProperty
     var email: String = _
     
-    @BeanProperty
-    var category: String = _
-    
     @BeanProperty 
     var tags: String = _
     
     @BeanProperty
-    var created: Date = _
+    var category: String = _
+    
+    @BeanProperty
+    var subject: String = _
     
     @BeanProperty
     var code: String = _
     
     @BeanProperty
-    var subject: String = _
-    
+    var created: Date = _
+
     @BeanProperty
     var permalinkUrl: String = _
     

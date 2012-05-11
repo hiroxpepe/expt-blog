@@ -37,7 +37,7 @@ import org.examproject.blog.dto.EntryDto
 import org.examproject.blog.form.EntryForm
 import org.examproject.blog.model.EntryModel
 import org.examproject.blog.service.EntryService
-import org.examproject.blog.response.AjaxResponse
+import org.examproject.blog.response.EntryResponse
 
 import scala.collection.JavaConversions._
 
@@ -123,7 +123,7 @@ class EntryController {
         entryForm: EntryForm,
         model: Model
     )
-    : AjaxResponse = {
+    : EntryResponse = {
         LOG.info("called")
         
         // the response-object will be returned to the html page.
@@ -133,8 +133,8 @@ class EntryController {
         }
         
         // create a response-object.
-        val response: AjaxResponse = context.getBean(
-            classOf[AjaxResponse]
+        val response: EntryResponse = context.getBean(
+            classOf[EntryResponse]
         )
             
         // get the mapped dto-object using the form-object data.
@@ -177,14 +177,14 @@ class EntryController {
         entryForm: EntryForm,
         model: Model
     )
-    : AjaxResponse = {
+    : EntryResponse = {
         LOG.info("called")
         
         // the response-object will be returned to the html page.
         
         // create a response-object.
-        val response: AjaxResponse = context.getBean(
-            classOf[AjaxResponse]
+        val response: EntryResponse = context.getBean(
+            classOf[EntryResponse]
         )
             
         // get the mapped dto-object using the form-object data.
@@ -217,13 +217,13 @@ class EntryController {
         code: String,
         model: Model
     )
-    : AjaxResponse = {
+    : EntryResponse = {
         LOG.info("called")
         LOG.debug("code: " + code)
         
         // create a response-object.
-        val response: AjaxResponse = context.getBean(
-            classOf[AjaxResponse]
+        val response: EntryResponse = context.getBean(
+            classOf[EntryResponse]
         )
         
         // delete the entry.
@@ -254,13 +254,13 @@ class EntryController {
     def handleException(
         e: Exception
     )
-    : AjaxResponse = {
+    : EntryResponse = {
         LOG.info("called")
         LOG.error(e.getMessage())
         
         // create a response-object.
-        val response: AjaxResponse = context.getBean(
-            classOf[AjaxResponse]
+        val response: EntryResponse = context.getBean(
+            classOf[EntryResponse]
         )
         
         // notify the occurrence of errors to the html page.
@@ -330,7 +330,7 @@ class EntryController {
      */
     private def addToResponse(
         entryDtoList: List[EntryDto],
-        response: AjaxResponse
+        response: EntryResponse
     ) = {
         LOG.debug("called");
         

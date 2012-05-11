@@ -54,6 +54,9 @@ trait EntryDto {
     @BeanProperty
     var category: String = _
     
+    @BeanProperty
+    var subject: String = _
+    
     @BeanProperty 
     var tags: String = _
     

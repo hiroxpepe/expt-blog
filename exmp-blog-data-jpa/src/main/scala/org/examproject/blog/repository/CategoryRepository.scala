@@ -25,4 +25,7 @@ import org.examproject.blog.entity.Category
  * @author hiroxpepe
  */
 trait CategoryRepository extends JpaRepository[Category, Long] {
+    
+    def findByText(text: String): Category   
+    
 }

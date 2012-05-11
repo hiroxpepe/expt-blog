@@ -101,6 +101,7 @@ class CodeToEntryTransformer extends Transformer {
         }
     }
     
+    // TODO: refactor to functor!
     private def mapEntry(
         entry: Entry,
         dto: EntryDto
@@ -112,7 +113,9 @@ class CodeToEntryTransformer extends Transformer {
             if (paragraph.getKind.equals("title")) {
                 title = paragraph.getContent()
             }
-            content += paragraph.getContent()
+            else if (paragraph.getKind.equals("content")) {
+                content += paragraph.getContent()
+            }
         }
         
         // map the object.       

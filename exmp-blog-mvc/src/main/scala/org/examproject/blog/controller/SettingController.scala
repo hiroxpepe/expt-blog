@@ -33,7 +33,7 @@ import org.springframework.web.bind.annotation.ResponseBody
 import org.examproject.blog.dto.EntryDto
 import org.examproject.blog.form.EntryForm
 import org.examproject.blog.service.EntryService
-import org.examproject.blog.response.AjaxResponse
+import org.examproject.blog.response.EntryResponse
 
 import scala.collection.JavaConversions._
 
@@ -102,13 +102,13 @@ class SettingController {
     def handleException(
         e: Exception
     )
-    : AjaxResponse = {
+    : EntryResponse = {
         LOG.info("called")
         LOG.error(e.getMessage())
         
         // create a response-object.
-        val response: AjaxResponse = context.getBean(
-            classOf[AjaxResponse]
+        val response: EntryResponse = context.getBean(
+            classOf[EntryResponse]
         )
         
         // notify the occurrence of errors to the html page.

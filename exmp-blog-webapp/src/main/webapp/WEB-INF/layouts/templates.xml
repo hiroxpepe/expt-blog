@@ -28,12 +28,12 @@
 
     <!-- contents of the content, the controller of Spring MVC call "entry/form" -->
     <definition name="entry/form" extends="main-template">
-        <put-attribute name="content" value="/WEB-INF/views/entry/form.jsp" />
+        <put-attribute name="content" value="/WEB-INF/views/content/form.jsp" />
     </definition>
     
     <!-- contents of the content, the controller of Spring MVC call "entry/permalink" -->
     <definition name="entry/permalink" extends="main-template">
-        <put-attribute name="content" value="/WEB-INF/views/entry/permalink.jsp" />
+        <put-attribute name="content" value="/WEB-INF/views/content/permalink.jsp" />
     </definition>
 
 </tiles-definitions>

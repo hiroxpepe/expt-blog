@@ -25,4 +25,7 @@ import org.examproject.blog.entity.Tag
  * @author hiroxpepe
  */
 trait TagRepository extends JpaRepository[Tag, Long] {
+    
+    def findByText(text: String): Tag
+    
 }

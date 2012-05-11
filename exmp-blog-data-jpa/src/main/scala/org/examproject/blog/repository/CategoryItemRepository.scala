@@ -19,10 +19,17 @@ import java.util.List
 
 import org.springframework.data.jpa.repository.JpaRepository
 
+import org.examproject.blog.entity.Category
 import org.examproject.blog.entity.CategoryItem
+import org.examproject.blog.entity.Subject
 
 /**
  * @author hiroxpepe
  */
 trait CategoryItemRepository extends JpaRepository[CategoryItem, Long] {
+    
+    def findByCategory(category: Category): List[CategoryItem]
+    
+    def findBySubject(subject: Subject): List[CategoryItem]
+    
 }

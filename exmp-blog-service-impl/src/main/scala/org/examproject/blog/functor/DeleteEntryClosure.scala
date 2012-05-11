@@ -25,8 +25,10 @@ import org.springframework.transaction.annotation.Transactional
 import org.examproject.blog.dto.EntryDto
 import org.examproject.blog.entity.Entry
 import org.examproject.blog.entity.Paragraph
+import org.examproject.blog.entity.TagItem
 import org.examproject.blog.repository.EntryRepository
 import org.examproject.blog.repository.ParagraphRepository
+import org.examproject.blog.repository.TagItemRepository
 
 import scala.collection.JavaConversions._
 
@@ -44,6 +46,9 @@ class DeleteEntryClosure extends Closure {
     
     @Inject
     private val paragraphRepository: ParagraphRepository = null
+    
+    @Inject
+    private val tagItemRepository: TagItemRepository = null
     
     ///////////////////////////////////////////////////////////////////////////
     // public methods
@@ -74,17 +79,20 @@ class DeleteEntryClosure extends Closure {
             val entry: Entry = repository.findOne(entryDto.getId()).asInstanceOf[Entry]
             
             // delete the entry's paragraphs.
-            val paragraphSet: Set[Paragraph] =  entry.getParagraphSet()
+            val paragraphSet: Set[Paragraph] = entry.getParagraphSet()
             for (paragraph: Paragraph <- paragraphSet) {
                 paragraphRepository.delete(paragraph.getId())
             }
             
-            // TODO: delete the tagItems!
+            // delete the entry's tagitems.
+            val tagItemSet: Set[TagItem] = entry.getTagItemSet()
+            for (tagItem: TagItem <- tagItemSet) {
+                tagItemRepository.delete(tagItem.getId())
+            }
             
             // delete the entry.
             repository.delete(entry.getId())
             
-            // TODO: delete paragraphs!
         } catch {
             case e: Exception => {
                 throw new RuntimeException("delete failed. ", e)

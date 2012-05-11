@@ -15,6 +15,7 @@
 package org.examproject.blog.form
 
 import java.lang.Long
+import java.util.Date
 
 import org.springframework.context.annotation.Scope
 import org.springframework.stereotype.Component
@@ -50,15 +51,18 @@ class EntryForm {
     var content: String = _
     
     @BeanProperty
+    var tags: String = _
+    
+    @BeanProperty
     var category: String = _
     
     @BeanProperty
-    var tags: String = _
+    var subject: String = _
     
     @BeanProperty
     var code: String = _
     
     @BeanProperty
-    var subject: String = _
+    var created: Date = _
     
 }

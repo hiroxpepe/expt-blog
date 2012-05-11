@@ -19,10 +19,14 @@ import java.util.List
 
 import org.springframework.data.jpa.repository.JpaRepository
 
+import org.examproject.blog.entity.Entry
 import org.examproject.blog.entity.TagItem
 
 /**
  * @author hiroxpepe
  */
 trait TagItemRepository extends JpaRepository[TagItem, Long] {
+    
+    def findByEntry(entry: Entry): List[TagItem]
+    
 }

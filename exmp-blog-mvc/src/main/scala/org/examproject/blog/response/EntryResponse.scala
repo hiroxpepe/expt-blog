@@ -23,7 +23,7 @@ import reflect.BeanProperty
 /**
  * @author hiroxpepe
  */
-class AjaxResponse(
+class EntryResponse(
     
     @BeanProperty
     var entryModelList: List[EntryModel] = null,

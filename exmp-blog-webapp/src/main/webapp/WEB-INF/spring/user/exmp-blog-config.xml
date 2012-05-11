@@ -56,8 +56,8 @@
     <!-- //////////////////////////////////////////////////////////////////////////// -->
     <!-- response object -->
  
-    <bean id="ajaxResponse"
-        class="org.examproject.blog.response.AjaxResponse"
+    <bean id="entryResponse"
+        class="org.examproject.blog.response.EntryResponse"
         scope="prototype">
     </bean>
     

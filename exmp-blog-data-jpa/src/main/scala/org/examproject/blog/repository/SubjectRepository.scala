@@ -25,4 +25,7 @@ import org.examproject.blog.entity.Subject
  * @author hiroxpepe
  */
 trait SubjectRepository extends JpaRepository[Subject, Long] {
+    
+    def findByText(text: String): Subject
+    
 }

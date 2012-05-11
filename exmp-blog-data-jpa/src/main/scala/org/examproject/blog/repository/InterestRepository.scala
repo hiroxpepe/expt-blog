@@ -20,9 +20,13 @@ import java.util.List
 import org.springframework.data.jpa.repository.JpaRepository
 
 import org.examproject.blog.entity.Interest
+import org.examproject.blog.entity.User
 
 /**
  * @author hiroxpepe
  */
 trait InterestRepository extends JpaRepository[Interest, Long] {
+    
+    def findByUserAndName(user: User, name: String): Interest
+    
 }
