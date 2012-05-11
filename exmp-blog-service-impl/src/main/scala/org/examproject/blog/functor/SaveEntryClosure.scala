@@ -157,6 +157,7 @@ class SaveEntryClosure extends Closure {
         } catch {
             case e: Exception => {
                 // TODO: LOG ERROR
+                LOG.error(e.toString())
                 throw new RuntimeException("failed save a entry.", e)
             }
         }
@@ -165,16 +166,27 @@ class SaveEntryClosure extends Closure {
     private def saveEntity(
         entry: Entry
     ) {
-        entryRepository.save(entry)
-        
-        val paragraphSet: Set[Paragraph] = entry.getParagraphSet()
-        for (paragraph: Paragraph <- paragraphSet) {
-            paragraphRepository.save(paragraph)
+        if (entry.getId() == null) {
+            entryRepository.save(entry)
+            val paragraphSet: Set[Paragraph] = entry.getParagraphSet()
+            for (paragraph: Paragraph <- paragraphSet) {
+                paragraphRepository.save(paragraph)
+            }
+            val tagItemSet: Set[TagItem] = entry.getTagItemSet()
+            for (tagItem: TagItem <- tagItemSet) {
+                tagItemRepository.save(tagItem)
+            }
         }
-        
-        val tagItemSet: Set[TagItem] = entry.getTagItemSet()
-        for (tagItem: TagItem <- tagItemSet) {
-            tagItemRepository.save(tagItem)
+        else if (entry.getId() != null) {
+            val paragraphSet: Set[Paragraph] = entry.getParagraphSet()
+            for (paragraph: Paragraph <- paragraphSet) {
+                paragraphRepository.save(paragraph)
+            }
+            val tagItemSet: Set[TagItem] = entry.getTagItemSet()
+            for (tagItem: TagItem <- tagItemSet) {
+                tagItemRepository.save(tagItem)
+            }
+            entryRepository.save(entry)
         }
     }
     
@@ -196,13 +208,19 @@ class SaveEntryClosure extends Closure {
         entry: Entry
     )
     : Paragraph = {
-        val titleParagraph: Paragraph = context.getBean(classOf[Paragraph])
-        titleParagraph.setContent(entryDto.getTitle())
-        titleParagraph.setKind("title")
-        titleParagraph.setCreated(new Date())
-        titleParagraph.setUpdated(new Date())
-        titleParagraph.setEntry(entry)
-        return titleParagraph
+        if (entry.getId() == null) {
+            val newTitle: Paragraph = context.getBean(classOf[Paragraph])
+            newTitle.setContent(entryDto.getTitle())
+            newTitle.setKey("title")
+            newTitle.setCreated(new Date())
+            newTitle.setUpdated(new Date())
+            newTitle.setEntry(entry)
+            return newTitle
+        }
+        val title: Paragraph = paragraphRepository.findByEntryAndKey(entry, "title")
+        title.setContent(entryDto.getTitle())
+        title.setUpdated(new Date())
+        return title
     }
     
     private def getContent(
@@ -210,13 +228,19 @@ class SaveEntryClosure extends Closure {
         entry: Entry
     )
     : Paragraph = {
-        val contentParagraph: Paragraph = context.getBean(classOf[Paragraph])
-        contentParagraph.setContent(entryDto.getContent())
-        contentParagraph.setKind("content")
-        contentParagraph.setCreated(new Date())
-        contentParagraph.setUpdated(new Date())
-        contentParagraph.setEntry(entry)
-        return contentParagraph
+        if (entry.getId() == null) {
+            val newContent: Paragraph = context.getBean(classOf[Paragraph])
+            newContent.setContent(entryDto.getContent())
+            newContent.setKey("content")
+            newContent.setCreated(new Date())
+            newContent.setUpdated(new Date())
+            newContent.setEntry(entry)
+            return newContent
+        }
+        val content: Paragraph = paragraphRepository.findByEntryAndKey(entry, "content")
+        content.setContent(entryDto.getContent())
+        content.setUpdated(new Date())
+        return content
     }
     
     private def getEntry(

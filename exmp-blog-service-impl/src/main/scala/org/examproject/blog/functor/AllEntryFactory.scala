@@ -80,15 +80,14 @@ class AllEntryFactory extends Factory {
         // get the entities list from repository.
         val list: List[Entry] = repository.findAll()
         for (entry: Entry <- list) {
-            
             var title = ""
             var content = ""
             val paragraphSet: Set[Paragraph] =  entry.getParagraphSet()
             for (paragraph: Paragraph <- paragraphSet) {
-                if (paragraph.getKind.equals("title")) {
+                if (paragraph.getKey.equals("title")) {
                     title = paragraph.getContent()
                 }
-                else if (paragraph.getKind.equals("content")) {
+                else if (paragraph.getKey.equals("content")) {
                     content += paragraph.getContent()
                 }
             }

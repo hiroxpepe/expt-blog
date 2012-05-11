@@ -110,10 +110,10 @@ class CodeToEntryTransformer extends Transformer {
         var content = ""
         val paragraphSet: Set[Paragraph] =  entry.getParagraphSet()
         for (paragraph: Paragraph <- paragraphSet) {
-            if (paragraph.getKind.equals("title")) {
+            if (paragraph.getKey.equals("title")) {
                 title = paragraph.getContent()
             }
-            else if (paragraph.getKind.equals("content")) {
+            else if (paragraph.getKey.equals("content")) {
                 content += paragraph.getContent()
             }
         }

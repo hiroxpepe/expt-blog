@@ -19,10 +19,14 @@ import java.util.List
 
 import org.springframework.data.jpa.repository.JpaRepository
 
+import org.examproject.blog.entity.Entry
 import org.examproject.blog.entity.Paragraph
 
 /**
  * @author hiroxpepe
  */
 trait ParagraphRepository extends JpaRepository[Paragraph, Long] {
+    
+    def findByEntryAndKey(entry:Entry, key: String): Paragraph
+    
 }

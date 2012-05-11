@@ -66,9 +66,9 @@ class Paragraph extends Serializable {
     @BeanProperty
     var content: String = _
     
-    @Column(name="kind", length=16)
+    @Column(name="key", length=16)
     @BeanProperty
-    var kind: String = _
+    var key: String = _
     
     @ManyToOne
     @BeanProperty
