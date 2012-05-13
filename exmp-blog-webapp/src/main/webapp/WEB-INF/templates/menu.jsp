@@ -7,6 +7,9 @@
             <span>
                 <a href="<c:url value="/" />"><fmt:message key="index.title" /></a>
             </span>
+            <span>
+                <a href="<c:url value="/entry/form.html" />"><fmt:message key="button.entry" /></a>
+            </span>
         </div>
         <div class="menu-bar-right">
             <span>

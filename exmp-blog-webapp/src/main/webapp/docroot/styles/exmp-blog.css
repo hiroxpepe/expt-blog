@@ -213,7 +213,7 @@ div.menu-content {
                 div.menu-bar-right a.feed:hover {
                     text-decoration: none;
                     color: dimgray;
-                    background: bisque;
+                    background: ffd47f;
                     border-radius: 2px;
                 }
                 div.menu-bar-right img {
@@ -437,22 +437,24 @@ div.entry-list-content {
         }
             table.entry-list-table td.entry-icon-td {
                 padding-top: 0.5em;
-                padding-bottom: 0.5em;              
+                padding-bottom: 0.5em;
                 vertical-align: top;
                 border-bottom: 1px solid wheat;
             }
                 table.entry-list-table td.entry-icon-td div.entry-icon {
                     width: 45px;
                     height: 45px;
-                    border: 1px solid wheat;
-                    border-radius: 3px;
                     cursor: pointer;
                 }
+                    div.entry-icon img {
+                        border-radius: 4px;
+                    }
             table.entry-list-table td.entry-list-td {
                 padding-top: 0.5em;
                 padding-bottom: 0.5em;  
-                padding-left: 0.5em;
-                padding-right: 0.5em;
+                padding-left: 1.0em;
+                padding-right: 1.0em;
+                width: 100%;
                 vertical-align: top;
                 font-size: 80%;
                 border-bottom: 1px solid wheat;

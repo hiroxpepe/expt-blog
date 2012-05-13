@@ -7,7 +7,4 @@
     <tiles:insertTemplate 
         template="/WEB-INF/views/sidebar/_profile.jsp"
     />
-    <a href="<c:url value="/entry/form.html" />">
-        <fmt:message key="button.entry" />
-    </a>
 </div>

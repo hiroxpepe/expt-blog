@@ -51,12 +51,20 @@ exmp.blog.functor.htmltag.EntryListTransformer = {
                 obj.entryModelList[i].tags
             );
             var permalinkUrl = obj.entryModelList[i].permalinkUrl;
+            var username = obj.entryModelList[i].username;
+            var email = obj.entryModelList[i].email;
+            var hash = 0;
+            if (email) { hash = MD5_hexhash(email); }
             
             // create an html tag and set the entry code.
+            // TODO: another user's e and d..
             table +=
                 "<tr>" +
                     "<td class='entry-icon-td'>" + 
-                        "<div class='entry-icon'></div>" +
+                        "<div class='entry-icon'>" + 
+                            "<img src='http://2.gravatar.com/avatar/" +
+                                hash + "' width='48' height='48' border='0'>" +
+                        "</div>" +
                     "</td>" +
                     "<td class='entry-list-td' >" +
                         "<a href='" + permalinkUrl + "'>" + 

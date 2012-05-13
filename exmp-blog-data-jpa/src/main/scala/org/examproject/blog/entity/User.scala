@@ -57,6 +57,10 @@ class User extends Serializable {
     @BeanProperty
     var password: String = _
     
+    @Column(name="email", length=36)
+    @BeanProperty
+    var email: String = _
+    
     @Column(name="enable")
     @BeanProperty
     var enable: Boolean = true

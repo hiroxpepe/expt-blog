@@ -148,6 +148,7 @@ class EntryUtils {
             entryDto.setId(entry.getId)
             entryDto.setUsername(entry.getUser.getUsername())
             entryDto.setPassword(entry.getUser.getPassword())
+            entryDto.setEmail(entry.getUser.getEmail())
             entryDto.setAuthor(entry.getAuthor())
             entryDto.setTitle(paragraphUtils.getTitleString(entry))
             entryDto.setContent(paragraphUtils.getContentString(entry))

@@ -61,6 +61,7 @@ class UserUtils {
                 val newUser = context.getBean(classOf[User])
                 newUser.setUsername(entryDto.getUsername())
                 newUser.setPassword(entryDto.getPassword())
+                newUser.setEmail(entryDto.getEmail())
                 userRepository.save(newUser)
                 LOG.debug("create the new user.")
                 val group: Group = context.getBean(classOf[Group])

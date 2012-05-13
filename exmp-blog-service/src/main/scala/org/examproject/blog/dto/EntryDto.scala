@@ -28,19 +28,13 @@ trait EntryDto {
     var id: Long = _
     
     @BeanProperty
-    var url: String = _
-    
-    @BeanProperty
     var username: String = _
     
     @BeanProperty
     var password: String = _
     
     @BeanProperty
-    var blog: String = _
-    
-    @BeanProperty
-    var scheme: String = _
+    var email: String = _
     
     @BeanProperty
     var author: String = _

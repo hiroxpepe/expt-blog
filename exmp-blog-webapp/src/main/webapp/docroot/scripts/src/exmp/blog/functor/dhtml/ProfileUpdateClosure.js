@@ -28,12 +28,9 @@ exmp.blog.functor.dhtml.ProfileUpdateClosure  = {
         var username = obj.username;
         var email = obj.email;
         var hash = 0;
-        if (!username) {
-            username = "undefined";
-        }
-        if (email) {
-            hash = MD5_hexhash(email);
-        }
+        if (!username) { username = "undefined"; }
+        if (email) { hash = MD5_hexhash(email); }
+        
         $("#user-profile").html(               
             "<table>" +
                 "<tr>" +
