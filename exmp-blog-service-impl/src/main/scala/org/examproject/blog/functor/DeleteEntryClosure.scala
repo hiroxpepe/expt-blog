@@ -14,7 +14,6 @@
 
 package org.examproject.blog.functor
 
-import java.util.Set
 import javax.inject.Inject
 
 import org.apache.commons.collections.Closure
@@ -23,12 +22,7 @@ import org.slf4j.LoggerFactory
 import org.springframework.transaction.annotation.Transactional
 
 import org.examproject.blog.dto.EntryDto
-import org.examproject.blog.entity.Entry
-import org.examproject.blog.entity.Paragraph
-import org.examproject.blog.entity.TagItem
-import org.examproject.blog.repository.EntryRepository
-import org.examproject.blog.repository.ParagraphRepository
-import org.examproject.blog.repository.TagItemRepository
+import org.examproject.blog.util.EntryUtils
 
 import scala.collection.JavaConversions._
 
@@ -42,13 +36,7 @@ class DeleteEntryClosure extends Closure {
     )
     
     @Inject
-    private val repository: EntryRepository = null
-    
-    @Inject
-    private val paragraphRepository: ParagraphRepository = null
-    
-    @Inject
-    private val tagItemRepository: TagItemRepository = null
+    private val entryUtils: EntryUtils = null
     
     ///////////////////////////////////////////////////////////////////////////
     // public methods
@@ -74,24 +62,9 @@ class DeleteEntryClosure extends Closure {
     private def delete(
         entryDto: EntryDto
     ) {
-        try {
-            // to search the repository for delete.
-            val entry: Entry = repository.findOne(entryDto.getId()).asInstanceOf[Entry]
-            
-            // delete the entry's paragraphs.
-            val paragraphSet: Set[Paragraph] = entry.getParagraphSet()
-            for (paragraph: Paragraph <- paragraphSet) {
-                paragraphRepository.delete(paragraph.getId())
-            }
-            
-            // delete the entry's tagitems.
-            val tagItemSet: Set[TagItem] = entry.getTagItemSet()
-            for (tagItem: TagItem <- tagItemSet) {
-                tagItemRepository.delete(tagItem.getId())
-            }
-            
+        try {            
             // delete the entry.
-            repository.delete(entry.getId())
+            entryUtils.deleteEntry(entryDto)
             
         } catch {
             case e: Exception => {

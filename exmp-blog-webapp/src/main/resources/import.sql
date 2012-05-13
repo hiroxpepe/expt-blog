@@ -1,7 +1,7 @@
-insert into CATEGORIES (ID, TEXT) values (1, 'General')
-insert into CATEGORIES (ID, TEXT) values (2, 'Technology')
-insert into CATEGORIES (ID, TEXT) values (3, 'Language')
-insert into CATEGORIES (ID, TEXT) values (4, 'Music')
-insert into CATEGORIES (ID, TEXT) values (5, 'Status')
+insert into CATEGORIES (TEXT) values ('General')
+insert into CATEGORIES (TEXT) values ('Technology')
+insert into CATEGORIES (TEXT) values ('Language')
+insert into CATEGORIES (TEXT) values ('Music')
+insert into CATEGORIES (TEXT) values ('Status')
 
-insert into TAGS (ID, TEXT) values (1, 'default')
+insert into TAGS (TEXT) values ('default')

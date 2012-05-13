@@ -55,7 +55,13 @@ class EntryUtils {
     private val tagItemRepository: TagItemRepository = null
     
     @Inject
+    private val paragraphUtils: ParagraphUtils = null
+    
+    @Inject
     private val subjectUtils: SubjectUtils = null
+    
+    @Inject
+    private val tagUtils: TagUtils = null
     
     @Inject
     private val userUtils: UserUtils = null
@@ -63,6 +69,10 @@ class EntryUtils {
     ///////////////////////////////////////////////////////////////////////////
     // public methods
     
+    ///////////////////////////////////////////////////////////////////////////
+    /**
+     * get the entry dto.
+     */
     def getEntry(
         entryDto: EntryDto
     )
@@ -75,7 +85,9 @@ class EntryUtils {
                 LOG.debug("create entry.")
                 return entry
             } else {
-                val entry = entryRepository.findOne(entryDto.getId()).asInstanceOf[Entry]
+                val entry = entryRepository.findOne(
+                    entryDto.getId()
+                ).asInstanceOf[Entry]
                 LOG.debug("update entry.")
                 return entry
             }
@@ -86,65 +98,105 @@ class EntryUtils {
         }
     }
     
-    def saveEntity(
+    ///////////////////////////////////////////////////////////////////////////
+    /**
+     * get the entry entity.
+     */
+    def saveEntry(
         entry: Entry
     ) {
-        LOG.debug("called save.")
-        
-        if (entry.getId() == null) {
-            entryRepository.save(entry)
-            val paragraphSet: Set[Paragraph] = entry.getParagraphSet()
-            for (paragraph: Paragraph <- paragraphSet) {
-                paragraphRepository.save(paragraph)
+        try {
+            if (entry.getId() == null) {
+                entryRepository.save(entry)
+                val paragraphSet: Set[Paragraph] = entry.getParagraphSet()
+                for (paragraph: Paragraph <- paragraphSet) {
+                    paragraphRepository.save(paragraph)
+                }
+                val tagItemSet: Set[TagItem] = entry.getTagItemSet()
+                for (tagItem: TagItem <- tagItemSet) {
+                    tagItemRepository.save(tagItem)
+                }
             }
-            val tagItemSet: Set[TagItem] = entry.getTagItemSet()
-            for (tagItem: TagItem <- tagItemSet) {
-                tagItemRepository.save(tagItem)
+            else if (entry.getId() != null) {
+                val paragraphSet: Set[Paragraph] = entry.getParagraphSet()
+                for (paragraph: Paragraph <- paragraphSet) {
+                    paragraphRepository.save(paragraph)
+                }
+                val tagItemSet: Set[TagItem] = entry.getTagItemSet()
+                for (tagItem: TagItem <- tagItemSet) {
+                    tagItemRepository.save(tagItem)
+                }
+                entryRepository.save(entry)
             }
-        }
-        else if (entry.getId() != null) {
-            val paragraphSet: Set[Paragraph] = entry.getParagraphSet()
-            for (paragraph: Paragraph <- paragraphSet) {
-                paragraphRepository.save(paragraph)
+        } catch {
+            case e: Exception => {
+                throw new RuntimeException("an error occurred.", e)
             }
-            val tagItemSet: Set[TagItem] = entry.getTagItemSet()
-            for (tagItem: TagItem <- tagItemSet) {
-                tagItemRepository.save(tagItem)
-            }
-            entryRepository.save(entry)
         }
     }
     
+    ///////////////////////////////////////////////////////////////////////////
+    /**
+     * map the entry entity to the entry dto.
+     */
     def mapEntry(
         entry: Entry,
         dto: EntryDto
     )
     : EntryDto = {
-        var title = ""
-        var content = ""
-        val paragraphSet: Set[Paragraph] =  entry.getParagraphSet()
-        for (paragraph: Paragraph <- paragraphSet) {
-            if (paragraph.getKey.equals("title")) {
-                title = paragraph.getContent()
-            }
-            else if (paragraph.getKey.equals("content")) {
-                content += paragraph.getContent()
+        try {            
+            // map the entity to the dto.
+            dto.setId(entry.getId)
+            dto.setUsername(entry.getUser.getUsername())
+            dto.setPassword(entry.getUser.getPassword())
+            dto.setAuthor(entry.getAuthor())
+            dto.setTitle(paragraphUtils.getTitleString(entry))
+            dto.setContent(paragraphUtils.getContentString(entry))
+            dto.setCategory("xxx")
+            dto.setTags(tagUtils.getTagItemString(entry))
+            dto.setCreated(entry.getCreated())
+            dto.setCode(entry.getCode())
+
+            return dto
+        } catch {
+            case e: Exception => {
+                throw new RuntimeException("an error occurred.", e)
             }
         }
-        
-        // map the object.       
-        dto.setId(entry.getId)
-        dto.setUsername(entry.getUser.getUsername())
-        dto.setPassword(entry.getUser.getPassword())
-        dto.setAuthor(entry.getAuthor())
-        dto.setTitle(title)
-        dto.setContent(content)
-        dto.setCategory("xxx")
-        dto.setTags("xxx")
-        dto.setCreated(entry.getCreated())
-        dto.setCode(entry.getCode())
-        
-        return dto
+    }
+    
+    ///////////////////////////////////////////////////////////////////////////
+    /**
+     * delete the entry entity.
+     */
+    def deleteEntry(
+        entryDto: EntryDto
+    ) {
+        try {
+            // to search the repository for delete.
+            val entry: Entry = entryRepository.findOne(
+                entryDto.getId()
+            ).asInstanceOf[Entry]
+            
+            // delete the entry's paragraphs.
+            val paragraphSet: Set[Paragraph] = entry.getParagraphSet()
+            for (paragraph: Paragraph <- paragraphSet) {
+                paragraphRepository.delete(paragraph.getId())
+            }
+            
+            // delete the entry's tagitems.
+            val tagItemSet: Set[TagItem] = entry.getTagItemSet()
+            for (tagItem: TagItem <- tagItemSet) {
+                tagItemRepository.delete(tagItem.getId())
+            }
+            
+            // delete the entry.
+            entryRepository.delete(entry.getId())
+        } catch {
+            case e: Exception => {
+                throw new RuntimeException("an error occurred.", e)
+            }
+        }
     }
     
 }

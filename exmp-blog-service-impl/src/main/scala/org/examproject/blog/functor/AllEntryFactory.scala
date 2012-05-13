@@ -16,7 +16,7 @@ package org.examproject.blog.functor
 
 import java.util.ArrayList
 import java.util.List
-import java.util.Set
+//import java.util.Set
 import javax.inject.Inject
 
 import org.apache.commons.collections.Factory
@@ -27,8 +27,9 @@ import org.springframework.transaction.annotation.Transactional
 
 import org.examproject.blog.dto.EntryDto
 import org.examproject.blog.entity.Entry
-import org.examproject.blog.entity.Paragraph
 import org.examproject.blog.repository.EntryRepository
+import org.examproject.blog.util.ParagraphUtils
+import org.examproject.blog.util.TagUtils
 
 import scala.collection.JavaConversions._
 
@@ -46,6 +47,12 @@ class AllEntryFactory extends Factory {
     
     @Inject
     private val repository: EntryRepository = null
+    
+    @Inject
+    private val paragraphUtils: ParagraphUtils = null
+    
+    @Inject
+    private val tagUtils: TagUtils = null
 
     ///////////////////////////////////////////////////////////////////////////
     // public methods
@@ -76,28 +83,17 @@ class AllEntryFactory extends Factory {
         // get the entities list from repository.
         val list: List[Entry] = repository.findAll()
         for (entry: Entry <- list) {
-            var title = ""
-            var content = ""
-            val paragraphSet: Set[Paragraph] =  entry.getParagraphSet()
-            for (paragraph: Paragraph <- paragraphSet) {
-                if (paragraph.getKey.equals("title")) {
-                    title = paragraph.getContent()
-                }
-                else if (paragraph.getKey.equals("content")) {
-                    content += paragraph.getContent()
-                }
-            }
-            
+                        
             // map the object.
             val dto: EntryDto = context.getBean(classOf[EntryDto])            
             dto.setId(entry.getId)
             dto.setUsername(entry.getUser.getUsername())
             dto.setPassword(entry.getUser.getPassword())
             dto.setAuthor(entry.getAuthor())
-            dto.setTitle(title)
-            dto.setContent(content)
+            dto.setTitle(paragraphUtils.getTitleString(entry))
+            dto.setContent(paragraphUtils.getContentString(entry))
             dto.setCategory("xxx")
-            dto.setTags("xxx")
+            dto.setTags(tagUtils.getTagItemString(entry))
             dto.setCreated(entry.getCreated())
             dto.setCode(entry.getCode())
             

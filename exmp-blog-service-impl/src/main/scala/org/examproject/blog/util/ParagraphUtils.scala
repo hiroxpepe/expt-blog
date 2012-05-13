@@ -50,6 +50,10 @@ class ParagraphUtils {
     ///////////////////////////////////////////////////////////////////////////
     // public methods
     
+    ///////////////////////////////////////////////////////////////////////////
+    /**
+     * get the paragraph set.
+     */
     def getParagraphSet(
         entryDto: EntryDto,
         entry: Entry
@@ -69,6 +73,59 @@ class ParagraphUtils {
         }
     }
 
+    ///////////////////////////////////////////////////////////////////////////
+    /**
+     * get the title string.
+     */
+    def getTitleString(
+        entry: Entry
+    )
+    : String = {
+        try {
+            val paragraphSet: Set[Paragraph] =  entry.getParagraphSet()
+            for (paragraph: Paragraph <- paragraphSet) {
+                if (paragraph.getKey.equals("title")) {
+                    return paragraph.getContent()
+                }
+            }
+            return null
+        } catch {
+            case e: Exception => {
+                throw new RuntimeException("an error occurred.", e)
+            }
+        }
+    }
+    
+    ///////////////////////////////////////////////////////////////////////////
+    /**
+     * get the title string.
+     */
+    def getContentString(
+        entry: Entry
+    )
+    : String = {
+        try {
+            val paragraphSet: Set[Paragraph] =  entry.getParagraphSet()
+            for (paragraph: Paragraph <- paragraphSet) {
+                if (paragraph.getKey.equals("content")) {
+                    return paragraph.getContent()
+                }
+            }
+            return null
+        } catch {
+            case e: Exception => {
+                throw new RuntimeException("an error occurred.", e)
+            }
+        }
+    }
+    
+    ///////////////////////////////////////////////////////////////////////////
+    // private methods
+    
+    ///////////////////////////////////////////////////////////////////////////
+    /**
+     * get the title paragraph.
+     */
     private def getTitle(
         entryDto: EntryDto,
         entry: Entry
@@ -95,6 +152,10 @@ class ParagraphUtils {
         }
     }
     
+    ///////////////////////////////////////////////////////////////////////////
+    /**
+     * get the content paragraph.
+     */
     private def getContent(
         entryDto: EntryDto,
         entry: Entry
@@ -120,4 +181,5 @@ class ParagraphUtils {
             }
         }
     }
+    
 }

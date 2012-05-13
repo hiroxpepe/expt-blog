@@ -68,7 +68,10 @@ class InteresUtils {
     : Interest = {
         try {
             val user: User = userUtils.getUser(entryDto)
-            val interest: Interest = interestRepository.findByUserAndName(user, entryDto.getUsername())
+            val interest: Interest = interestRepository.findByUserAndName(
+                user,
+                entryDto.getUsername()
+            )
             if (interest == null) {
             val newInterest: Interest = context.getBean(classOf[Interest])
                 newInterest.setUser(user)
