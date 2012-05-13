@@ -76,6 +76,7 @@ exmp.blog.functor.request.EntryPostClosure = {
                 $("#code").val("");
                 $("#entry-title").val("");
                 $("#entry-content").val("");
+                $("#entry-subject").val("");
                 $("#entry-category").val(0);
                 $("#entry-tags").val("");
                 

@@ -151,6 +151,7 @@ class EntryUtils {
             entryDto.setAuthor(entry.getAuthor())
             entryDto.setTitle(paragraphUtils.getTitleString(entry))
             entryDto.setContent(paragraphUtils.getContentString(entry))
+            entryDto.setSubject(entry.getSubject().getText())
             entryDto.setCategory(subjectUtils.getCategoryString(entry))
             entryDto.setTags(tagUtils.getTagItemString(entry))
             entryDto.setCreated(entry.getCreated())
