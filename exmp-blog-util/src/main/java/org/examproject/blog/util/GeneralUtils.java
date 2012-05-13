@@ -20,7 +20,7 @@ import org.apache.commons.lang.StringUtils;
 /**
  * @author hiroxpepe
  */
-public class EntryUtils {
+public class GeneralUtils {
     
     private static Random random = new Random();
     

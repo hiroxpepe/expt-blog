@@ -22,7 +22,6 @@ import org.apache.commons.collections.Factory
 import org.apache.commons.collections.Transformer
 
 import org.examproject.blog.dto.EntryDto
-import org.examproject.blog.service.EntryService
 
 import scala.collection.JavaConversions._
 

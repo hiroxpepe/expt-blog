@@ -15,42 +15,23 @@
 package org.examproject.blog.functor
 
 import java.util.Date
-import java.util.List
-import java.util.Set
-import java.util.HashSet
 import javax.inject.Inject
 
 import org.apache.commons.collections.Closure
-import org.dozer.Mapper
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.context.ApplicationContext
 import org.springframework.transaction.annotation.Transactional
 
 import org.examproject.blog.dto.EntryDto
-import org.examproject.blog.entity.Category
-import org.examproject.blog.entity.CategoryItem
-import org.examproject.blog.entity.Cluster
 import org.examproject.blog.entity.Entry
-import org.examproject.blog.entity.Group
-import org.examproject.blog.entity.Interest
-import org.examproject.blog.entity.Paragraph
-import org.examproject.blog.entity.Subject
-import org.examproject.blog.entity.Tag
-import org.examproject.blog.entity.TagItem
-import org.examproject.blog.entity.User
-import org.examproject.blog.repository.CategoryRepository
-import org.examproject.blog.repository.CategoryItemRepository
-import org.examproject.blog.repository.ClusterRepository
-import org.examproject.blog.repository.EntryRepository
-import org.examproject.blog.repository.GroupRepository
-import org.examproject.blog.repository.InterestRepository
-import org.examproject.blog.repository.ParagraphRepository
-import org.examproject.blog.repository.SubjectRepository
-import org.examproject.blog.repository.TagRepository
-import org.examproject.blog.repository.TagItemRepository
-import org.examproject.blog.repository.UserRepository
 import org.examproject.blog.util.EntryUtils
+import org.examproject.blog.util.GeneralUtils
+import org.examproject.blog.util.CategoryUtils
+import org.examproject.blog.util.TagUtils
+import org.examproject.blog.util.ParagraphUtils
+import org.examproject.blog.util.SubjectUtils
+import org.examproject.blog.util.UserUtils
 
 import scala.collection.JavaConversions._
 
@@ -67,40 +48,22 @@ class SaveEntryClosure extends Closure {
     private val context: ApplicationContext = null
     
     @Inject
-    private val mapper: Mapper = null
+    private val entryUtils: EntryUtils = null
     
     @Inject
-    private val entryRepository: EntryRepository = null
+    private val categoryUtils: CategoryUtils = null
+   
+    @Inject
+    private val subjectUtils: SubjectUtils = null
     
     @Inject
-    private val categoryRepository: CategoryRepository = null
+    private val paragraphUtils: ParagraphUtils = null
     
     @Inject
-    private val categoryItemRepository: CategoryItemRepository = null
+    private val tagUtils: TagUtils = null
     
     @Inject
-    private val clusterItemRepository: ClusterRepository = null
-    
-    @Inject
-    private val groupRepository: GroupRepository = null
-    
-    @Inject
-    private val interestRepository: InterestRepository = null
-    
-    @Inject
-    private val paragraphRepository: ParagraphRepository = null
-    
-    @Inject
-    private val subjectRepository: SubjectRepository = null
-    
-    @Inject
-    private val tagRepository: TagRepository = null
-    
-    @Inject
-    private val tagItemRepository: TagItemRepository = null
-    
-    @Inject
-    private val userRepository: UserRepository = null
+    private val userUtils: UserUtils = null
     
     ///////////////////////////////////////////////////////////////////////////
     // public methods
@@ -132,20 +95,20 @@ class SaveEntryClosure extends Closure {
             if (entryDto.getCode.equals("")) {
                 LOG.debug("create the new entry.")
                 entryDto.setCreated(new Date())
-                entryDto.setCode(EntryUtils.createCode())
+                entryDto.setCode(GeneralUtils.createCode())
             }
-            
+                        
             // get the entry.
-            val entry: Entry = getEntry(entryDto)
+            val entry: Entry = entryUtils.getEntry(entryDto)
             entry.setAuthor(entryDto.getAuthor())
-            entry.setParagraphSet(getParagraphSet(entryDto, entry))
-            entry.setTagItemSet(getDefaultTagItemSet(entry))
+            entry.setParagraphSet(paragraphUtils.getParagraphSet(entryDto, entry))
+            entry.setTagItemSet(tagUtils.getDefaultTagItemSet(entry))     
             entry.setCreated(entryDto.getCreated())
             entry.setUpdated(entryDto.getCreated())
             entry.setCode(entryDto.getCode())
 
             // push the entity to repository.
-            saveEntity(entry)
+            entryUtils.saveEntity(entry)
             
             LOG.debug("save a entry.")
             
@@ -161,244 +124,6 @@ class SaveEntryClosure extends Closure {
                 throw new RuntimeException("failed save a entry.", e)
             }
         }
-    }
-    
-    private def saveEntity(
-        entry: Entry
-    ) {
-        if (entry.getId() == null) {
-            entryRepository.save(entry)
-            val paragraphSet: Set[Paragraph] = entry.getParagraphSet()
-            for (paragraph: Paragraph <- paragraphSet) {
-                paragraphRepository.save(paragraph)
-            }
-            val tagItemSet: Set[TagItem] = entry.getTagItemSet()
-            for (tagItem: TagItem <- tagItemSet) {
-                tagItemRepository.save(tagItem)
-            }
-        }
-        else if (entry.getId() != null) {
-            val paragraphSet: Set[Paragraph] = entry.getParagraphSet()
-            for (paragraph: Paragraph <- paragraphSet) {
-                paragraphRepository.save(paragraph)
-            }
-            val tagItemSet: Set[TagItem] = entry.getTagItemSet()
-            for (tagItem: TagItem <- tagItemSet) {
-                tagItemRepository.save(tagItem)
-            }
-            entryRepository.save(entry)
-        }
-    }
-    
-    private def getParagraphSet(
-        entryDto: EntryDto,
-        entry: Entry
-    )
-    : Set[Paragraph] = {
-        val titleParagraph: Paragraph = getTitle(entryDto, entry)
-        val contentParagraph: Paragraph = getContent(entryDto, entry)
-        val paragraphSet: Set[Paragraph] = new HashSet[Paragraph]
-        paragraphSet.add(titleParagraph)
-        paragraphSet.add(contentParagraph)
-        return paragraphSet
-    }
-
-    private def getTitle(
-        entryDto: EntryDto,
-        entry: Entry
-    )
-    : Paragraph = {
-        if (entry.getId() == null) {
-            val newTitle: Paragraph = context.getBean(classOf[Paragraph])
-            newTitle.setContent(entryDto.getTitle())
-            newTitle.setKey("title")
-            newTitle.setCreated(new Date())
-            newTitle.setUpdated(new Date())
-            newTitle.setEntry(entry)
-            return newTitle
-        }
-        val title: Paragraph = paragraphRepository.findByEntryAndKey(entry, "title")
-        title.setContent(entryDto.getTitle())
-        title.setUpdated(new Date())
-        return title
-    }
-    
-    private def getContent(
-        entryDto: EntryDto,
-        entry: Entry
-    )
-    : Paragraph = {
-        if (entry.getId() == null) {
-            val newContent: Paragraph = context.getBean(classOf[Paragraph])
-            newContent.setContent(entryDto.getContent())
-            newContent.setKey("content")
-            newContent.setCreated(new Date())
-            newContent.setUpdated(new Date())
-            newContent.setEntry(entry)
-            return newContent
-        }
-        val content: Paragraph = paragraphRepository.findByEntryAndKey(entry, "content")
-        content.setContent(entryDto.getContent())
-        content.setUpdated(new Date())
-        return content
-    }
-    
-    private def getEntry(
-        entryDto: EntryDto
-    )
-    : Entry = {
-        if (entryDto.getId() == null) {
-            val entry = context.getBean(classOf[Entry])
-            entry.setUser(getUser(entryDto))
-            //entry.setSubject(getSubject(entryDto))
-            entry.setSubject(getDefaultSubject(entryDto))
-            LOG.debug("create entry.")
-            return entry
-        } else {
-            val entry = entryRepository.findOne(entryDto.getId()).asInstanceOf[Entry]
-            LOG.debug("update entry.")
-            return entry
-        }
-    }
-    
-    ///////////////////////////////////////////////////////////////////////////
-    // user
-    
-    private def getUser(
-        entryDto: EntryDto
-    )
-    : User = {
-        val user: User = userRepository.findByUsername(entryDto.getUsername())
-        if (user == null) {
-            val newUser = context.getBean(classOf[User])
-            newUser.setUsername(entryDto.getUsername())
-            newUser.setPassword(entryDto.getPassword())
-            userRepository.save(newUser)
-            LOG.debug("create the new user.")
-            val group: Group = context.getBean(classOf[Group])
-            group.setUser(newUser)
-            group.setName("own")
-            groupRepository.save(group)
-            
-            //getDefaultInterestSet()
-            return newUser
-        }
-        return user
-    }
-    
-    ///////////////////////////////////////////////////////////////////////////
-    // subject
-    
-    private def getSubject(
-        entryDto: EntryDto
-    )
-    : Subject = {
-        return subjectRepository.findByText(entryDto.getSubject())
-    }
-    
-    private def getDefaultSubject(
-        entryDto: EntryDto
-    )
-    : Subject = {
-        val subject: Subject = subjectRepository.findByText(entryDto.getAuthor())
-        if (subject == null) {
-            val newSubject: Subject = context.getBean(classOf[Subject])
-            val categoryItemSet: Set[CategoryItem] = getDefaultCategoryItemSet(newSubject)
-            newSubject.setAuthor(entryDto.getAuthor())
-            newSubject.setCreated(new Date())
-            newSubject.setUpdated(new Date())
-            newSubject.setText(entryDto.getAuthor())
-            newSubject.setCategoryItemSet(categoryItemSet)
-            subjectRepository.save(newSubject)
-            for (categoryItem: CategoryItem <- categoryItemSet) {
-                categoryItemRepository.save(categoryItem)
-            }
-            return newSubject
-        }
-        return subject
-    }
-    
-    ///////////////////////////////////////////////////////////////////////////
-    // category
-    
-    private def getDefaultCategory()
-    : Category = {
-        return categoryRepository.findByText("General")
-    }
-    
-    private def getDefaultCategoryItemSet(
-        subject: Subject
-    )
-    : Set[CategoryItem] = {
-        val category: Category = getDefaultCategory()
-        val categoryItem: CategoryItem = context.getBean(classOf[CategoryItem])
-        categoryItem.setSubject(subject)
-        categoryItem.setCategory(category)
-        val categoryItemSet: Set[CategoryItem] = new HashSet[CategoryItem]
-        categoryItemSet.add(categoryItem)
-        return categoryItemSet
-    }
-    
-    ///////////////////////////////////////////////////////////////////////////
-    // interest
-    
-    private def getDefaultInterest(
-        entryDto: EntryDto
-    )
-    : Interest = {
-        val user: User = getUser(entryDto)
-        val interest: Interest = interestRepository.findByUserAndName(user, entryDto.getUsername())
-        if (interest == null) {
-           val newInterest: Interest = context.getBean(classOf[Interest])
-            newInterest.setUser(user)
-            newInterest.setName(entryDto.getUsername())
-            interestRepository.save(interest)
-            return newInterest
-        }
-        return interest
-    }
-    
-    private def getDefaultInterestSet(
-        entryDto: EntryDto
-    )
-    : Set[Interest] = {
-        val interest: Interest = getDefaultInterest(entryDto)
-        val interestSet: Set[Interest] = new HashSet[Interest]
-        interestSet.add(interest)
-        return interestSet
-    }
-    
-    ///////////////////////////////////////////////////////////////////////////
-    // tag
-    
-    private def getDefaultTag()
-    : Tag = {
-        return tagRepository.findByText("default")
-    }
-    
-    private def getDefaultTagItemSet(
-        entry: Entry
-    )
-    : Set[TagItem] = {
-        val tag: Tag = getDefaultTag()
-        val tagItem: TagItem = context.getBean(classOf[TagItem])
-        tagItem.setEntry(entry)
-        tagItem.setTag(tag)
-        val tagItemSet: Set[TagItem] = new HashSet[TagItem]
-        tagItemSet.add(tagItem)
-        return tagItemSet
-    }
-    
-    private def getTagItemSet(
-        entry: Entry
-    )
-    : Set[TagItem] = {
-        val tagItemList: List[TagItem] = tagItemRepository.findByEntry(entry)
-        val tagItemSet: Set[TagItem] = new HashSet[TagItem]()
-        for (tagItem: TagItem <- tagItemList) {
-            tagItemSet.add(tagItem)
-        }
-        return tagItemSet
     }
     
 }

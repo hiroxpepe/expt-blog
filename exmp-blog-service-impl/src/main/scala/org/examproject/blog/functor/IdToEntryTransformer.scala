@@ -15,11 +15,9 @@
 package org.examproject.blog.functor
 
 import java.lang.Long
-import java.util.Set
 import javax.inject.Inject
 
 import org.apache.commons.collections.Transformer
-import org.dozer.Mapper
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.context.ApplicationContext
@@ -27,8 +25,8 @@ import org.springframework.transaction.annotation.Transactional
 
 import org.examproject.blog.dto.EntryDto
 import org.examproject.blog.entity.Entry
-import org.examproject.blog.entity.Paragraph
 import org.examproject.blog.repository.EntryRepository
+import org.examproject.blog.util.EntryUtils
 
 import scala.collection.JavaConversions._
 
@@ -45,10 +43,10 @@ class IdToEntryTransformer extends Transformer {
     private val context: ApplicationContext = null
     
     @Inject
-    private val mapper: Mapper = null
+    private val repository: EntryRepository = null
     
     @Inject
-    private val repository: EntryRepository = null
+    private val entryUtils: EntryUtils = null
 
     ///////////////////////////////////////////////////////////////////////////
     // public methods
@@ -81,48 +79,15 @@ class IdToEntryTransformer extends Transformer {
             val id: Long = Long.valueOf(o.toString())
             val entry: Entry = repository.findOne(id).asInstanceOf[Entry]
             
-            // map entity to dto.
-            val dto: EntryDto = context.getBean(classOf[EntryDto])
-            mapEntry(entry, dto)
-              
             // return a mapped dto.
-            return dto
+            val dto: EntryDto = context.getBean(classOf[EntryDto])
+            return entryUtils.mapEntry(entry, dto)
             
         // if the new request, a null 'id' will be provided.
         } else {
             // return a new dto.
             return context.getBean(classOf[EntryDto])
         }
-    }
-    
-    // TODO: refactor to functor!
-    private def mapEntry(
-        entry: Entry,
-        dto: EntryDto
-    ) = {
-        var title = ""
-        var content = ""
-        val paragraphSet: Set[Paragraph] =  entry.getParagraphSet()
-        for (paragraph: Paragraph <- paragraphSet) {
-            if (paragraph.getKey.equals("title")) {
-                title = paragraph.getContent()
-            }
-            else if (paragraph.getKey.equals("content")) {
-                content += paragraph.getContent()
-            }
-        }
-        
-        // map the object.       
-        dto.setId(entry.getId)
-        dto.setUsername(entry.getUser.getUsername())
-        dto.setPassword(entry.getUser.getPassword())
-        dto.setAuthor(entry.getAuthor())
-        dto.setTitle(title)
-        dto.setContent(content)
-        dto.setCategory("xxx")
-        dto.setTags("xxx")
-        dto.setCreated(entry.getCreated())
-        dto.setCode(entry.getCode())
     }
     
 }

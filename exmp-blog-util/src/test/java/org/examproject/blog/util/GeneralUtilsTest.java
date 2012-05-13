@@ -7,15 +7,15 @@ import static org.junit.Assert.*;
 /**
  * @author hiroxpepe
  */
-public class EntryUtilsTest {
+public class GeneralUtilsTest {
     
-    public EntryUtilsTest() {
+    public GeneralUtilsTest() {
     }
-
+    
     @BeforeClass
     public static void setUpClass() throws Exception {
     }
-
+    
     @AfterClass
     public static void tearDownClass() throws Exception {
     }
@@ -27,11 +27,11 @@ public class EntryUtilsTest {
     @After
     public void tearDown() {
     }
-
+    
     @Test
     public void testCreateCode() {
         System.out.println("createCode");
-        EntryUtils instance = new EntryUtils();
+        GeneralUtils instance = new GeneralUtils();
         String expResult = "";
         String result = instance.createCode();
         //assertEquals(expResult, result);

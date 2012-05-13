@@ -20,7 +20,6 @@ import java.util.Set
 import javax.inject.Inject
 
 import org.apache.commons.collections.Factory
-import org.dozer.Mapper
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.context.ApplicationContext
@@ -44,9 +43,6 @@ class AllEntryFactory extends Factory {
 
     @Inject
     private val context: ApplicationContext = null
-    
-    @Inject
-    private val mapper: Mapper = null
     
     @Inject
     private val repository: EntryRepository = null

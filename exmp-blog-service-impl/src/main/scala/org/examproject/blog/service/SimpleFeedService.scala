@@ -20,7 +20,6 @@ import java.util.List
 import org.apache.commons.collections.Factory
 
 import org.examproject.blog.dto.EntryDto
-import org.examproject.blog.service.FeedService
 
 import scala.collection.JavaConversions._
 
