@@ -81,7 +81,6 @@ class EntryUtils {
             if (entryDto.getId() == null) {
                 val entry = context.getBean(classOf[Entry])
                 entry.setUser(userUtils.getUser(entryDto))
-                entry.setSubject(subjectUtils.getDefaultSubject(entryDto))
                 LOG.debug("create entry.")
                 return entry
             } else {
@@ -141,23 +140,49 @@ class EntryUtils {
      */
     def mapEntry(
         entry: Entry,
-        dto: EntryDto
+        entryDto: EntryDto
     )
     : EntryDto = {
         try {            
             // map the entity to the dto.
-            dto.setId(entry.getId)
-            dto.setUsername(entry.getUser.getUsername())
-            dto.setPassword(entry.getUser.getPassword())
-            dto.setAuthor(entry.getAuthor())
-            dto.setTitle(paragraphUtils.getTitleString(entry))
-            dto.setContent(paragraphUtils.getContentString(entry))
-            dto.setCategory("xxx")
-            dto.setTags(tagUtils.getTagItemString(entry))
-            dto.setCreated(entry.getCreated())
-            dto.setCode(entry.getCode())
+            entryDto.setId(entry.getId)
+            entryDto.setUsername(entry.getUser.getUsername())
+            entryDto.setPassword(entry.getUser.getPassword())
+            entryDto.setAuthor(entry.getAuthor())
+            entryDto.setTitle(paragraphUtils.getTitleString(entry))
+            entryDto.setContent(paragraphUtils.getContentString(entry))
+            entryDto.setCategory(subjectUtils.getCategoryString(entry))
+            entryDto.setTags(tagUtils.getTagItemString(entry))
+            entryDto.setCreated(entry.getCreated())
+            entryDto.setCode(entry.getCode())
 
-            return dto
+            return entryDto
+        } catch {
+            case e: Exception => {
+                throw new RuntimeException("an error occurred.", e)
+            }
+        }
+    }
+    
+    ///////////////////////////////////////////////////////////////////////////
+    /**
+     * map the entry dto to the entry entity.
+     */
+    def mapEntry(
+        entryDto: EntryDto,
+        entry: Entry
+    )
+    : Entry = {
+        try {            
+            // map the dto value to the entity.
+            entry.setAuthor(entryDto.getAuthor())
+            entry.setParagraphSet(paragraphUtils.getParagraphSet(entryDto, entry))   
+            entry.setTagItemSet(tagUtils.getTagItemSet(entryDto, entry))
+            entry.setCreated(entryDto.getCreated())
+            entry.setUpdated(entryDto.getCreated())
+            entry.setCode(entryDto.getCode())
+            entry.setSubject(subjectUtils.getSubject(entryDto))
+            return entry
         } catch {
             case e: Exception => {
                 throw new RuntimeException("an error occurred.", e)

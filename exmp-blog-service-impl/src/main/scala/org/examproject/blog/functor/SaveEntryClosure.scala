@@ -27,8 +27,6 @@ import org.examproject.blog.dto.EntryDto
 import org.examproject.blog.entity.Entry
 import org.examproject.blog.util.EntryUtils
 import org.examproject.blog.util.GeneralUtils
-import org.examproject.blog.util.ParagraphUtils
-import org.examproject.blog.util.TagUtils
 
 import scala.collection.JavaConversions._
 
@@ -46,13 +44,7 @@ class SaveEntryClosure extends Closure {
     
     @Inject
     private val entryUtils: EntryUtils = null
-    
-    @Inject
-    private val paragraphUtils: ParagraphUtils = null
-    
-    @Inject
-    private val tagUtils: TagUtils = null
-    
+     
     ///////////////////////////////////////////////////////////////////////////
     // public methods
     
@@ -88,17 +80,11 @@ class SaveEntryClosure extends Closure {
                         
             // get the entry.
             val entry: Entry = entryUtils.getEntry(entryDto)
-            
-            // map the dto value to the entity.
-            entry.setAuthor(entryDto.getAuthor())
-            entry.setParagraphSet(paragraphUtils.getParagraphSet(entryDto, entry))   
-            entry.setTagItemSet(tagUtils.getTagItemSet(entryDto, entry))
-            entry.setCreated(entryDto.getCreated())
-            entry.setUpdated(entryDto.getCreated())
-            entry.setCode(entryDto.getCode())
-
-            // push the entity to repository.
-            entryUtils.saveEntry(entry)
+                    
+            // map the dto value to the entity. and push the entity to repository.
+            entryUtils.saveEntry(
+                entryUtils.mapEntry(entryDto, entry)
+            )
             
             LOG.debug("save a entry.")
             

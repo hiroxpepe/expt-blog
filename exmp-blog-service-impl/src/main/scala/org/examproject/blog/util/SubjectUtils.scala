@@ -24,6 +24,7 @@ import org.springframework.context.ApplicationContext
 import org.springframework.stereotype.Component
 
 import org.examproject.blog.dto.EntryDto
+import org.examproject.blog.entity.Entry
 import org.examproject.blog.entity.CategoryItem
 import org.examproject.blog.entity.Subject
 import org.examproject.blog.repository.CategoryItemRepository
@@ -56,12 +57,23 @@ class SubjectUtils {
     ///////////////////////////////////////////////////////////////////////////
     // public methods
     
+    ///////////////////////////////////////////////////////////////////////////
+    /**
+     * get the subject.
+     */
     def getSubject(
         entryDto: EntryDto
     )
     : Subject = {
         try {
-            return subjectRepository.findByText(entryDto.getSubject())
+            if (entryDto.getSubject().equals("")) {
+                return getDefaultSubject(entryDto)
+            }
+            val subject: Subject = subjectRepository.findByText(entryDto.getSubject())
+            if (subject == null) {
+                return getNewSubject(entryDto)
+            }
+            return subject
         } catch {
             case e: Exception => {
                 throw new RuntimeException("an error occurred.", e)
@@ -69,7 +81,37 @@ class SubjectUtils {
         }
     }
     
-    def getDefaultSubject(
+    ///////////////////////////////////////////////////////////////////////////
+    /**
+     * get the category string of this.
+     */
+    def getCategoryString(
+        entry: Entry
+    )
+    : String = {
+        try {
+            val subject: Subject = entry.getSubject()
+            val categoryItemSet: Set[CategoryItem] = subject.getCategoryItemSet
+            // TODO: if composite..
+            for (categoryItem: CategoryItem <- categoryItemSet) {
+                return categoryItem.getCategory.getText()
+            }
+            return null
+        } catch {
+            case e: Exception => {
+                throw new RuntimeException("an error occurred.", e)
+            }
+        }
+    }
+    
+    ///////////////////////////////////////////////////////////////////////////
+    // private methods
+    
+    ///////////////////////////////////////////////////////////////////////////
+    /**
+     * get the default subject.
+     */
+    private def getDefaultSubject(
         entryDto: EntryDto
     )
     : Subject = {
@@ -84,6 +126,7 @@ class SubjectUtils {
                 newSubject.setText(entryDto.getAuthor())
                 newSubject.setCategoryItemSet(categoryItemSet)
                 subjectRepository.save(newSubject)
+                LOG.debug("create the subject.")
                 for (categoryItem: CategoryItem <- categoryItemSet) {
                     categoryItemRepository.save(categoryItem)
                 }
@@ -97,4 +140,32 @@ class SubjectUtils {
         }
     }
     
+    ///////////////////////////////////////////////////////////////////////////
+    /**
+     * get the new subject.
+     */
+    private def getNewSubject(
+        entryDto: EntryDto
+    )
+    : Subject ={
+        try {
+            val subject: Subject = context.getBean(classOf[Subject])
+            val categoryItemSet: Set[CategoryItem] = categoryUtils.getCategoryItemSet(entryDto, subject)
+            subject.setAuthor(entryDto.getAuthor())
+            subject.setCreated(new Date())
+            subject.setUpdated(new Date())
+            subject.setText(entryDto.getSubject())
+            subject.setCategoryItemSet(categoryItemSet)
+            subjectRepository.save(subject)
+            LOG.debug("create the subject.")
+            for (categoryItem: CategoryItem <- categoryItemSet) {
+                categoryItemRepository.save(categoryItem)
+            }
+            return subject
+        } catch {
+            case e: Exception => {
+                throw new RuntimeException("an error occurred.", e)
+            }
+        }
+    }
 }

@@ -43,7 +43,7 @@ class CodeToEntryTransformer extends Transformer {
     private val context: ApplicationContext = null
     
     @Inject
-    private val repository: EntryRepository = null
+    private val entryRepository: EntryRepository = null
     
     @Inject
     private val entryUtils: EntryUtils = null
@@ -77,7 +77,7 @@ class CodeToEntryTransformer extends Transformer {
         if (o != null) {
             // get the entity from repository.
             val code: String = o.toString()
-            val entryList: List[Entry] = repository.findByCode(code)
+            val entryList: List[Entry] = entryRepository.findByCode(code)
             if (entryList.size == 0) {
                 return null
             }

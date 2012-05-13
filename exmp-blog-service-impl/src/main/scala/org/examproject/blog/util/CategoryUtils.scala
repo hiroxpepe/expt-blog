@@ -23,6 +23,7 @@ import org.slf4j.LoggerFactory
 import org.springframework.context.ApplicationContext
 import org.springframework.stereotype.Component
 
+import org.examproject.blog.dto.EntryDto
 import org.examproject.blog.entity.Category
 import org.examproject.blog.entity.CategoryItem
 import org.examproject.blog.entity.Subject
@@ -53,17 +54,10 @@ class CategoryUtils {
     ///////////////////////////////////////////////////////////////////////////
     // public methods
     
-    def getDefaultCategory()
-    : Category = {
-        try {
-            return categoryRepository.findByText("General")
-        } catch {
-            case e: Exception => {
-                throw new RuntimeException("an error occurred.", e)
-            }
-        }
-    }
-    
+    ///////////////////////////////////////////////////////////////////////////
+    /**
+     * get the default categoryitem set.
+     */
     def getDefaultCategoryItemSet(
         subject: Subject
     )
@@ -76,6 +70,87 @@ class CategoryUtils {
             val categoryItemSet: Set[CategoryItem] = new HashSet[CategoryItem]
             categoryItemSet.add(categoryItem)
             return categoryItemSet
+        } catch {
+            case e: Exception => {
+                throw new RuntimeException("an error occurred.", e)
+            }
+        }
+    }
+    
+    ///////////////////////////////////////////////////////////////////////////
+    /**
+     * get the categoryitem set.
+     */
+    def getCategoryItemSet(
+        entryDto: EntryDto,
+        subject: Subject
+    )
+    : Set[CategoryItem] = {
+        try {
+            val category: Category = getCategory(entryDto)
+            val categoryItem: CategoryItem = context.getBean(classOf[CategoryItem])
+            categoryItem.setSubject(subject)
+            categoryItem.setCategory(category)
+            val categoryItemSet: Set[CategoryItem] = new HashSet[CategoryItem]
+            categoryItemSet.add(categoryItem)
+            return categoryItemSet
+        } catch {
+            case e: Exception => {
+                throw new RuntimeException("an error occurred.", e)
+            }
+        }
+    }
+    
+    ///////////////////////////////////////////////////////////////////////////
+    // private methods
+    
+    ///////////////////////////////////////////////////////////////////////////
+    /**
+     * get the default category.
+     */
+    private def getDefaultCategory()
+    : Category = {
+        try {
+            return categoryRepository.findByText("General")
+        } catch {
+            case e: Exception => {
+                throw new RuntimeException("an error occurred.", e)
+            }
+        }
+    }
+    
+    ///////////////////////////////////////////////////////////////////////////
+    /**
+     * get the category string.
+     */
+    private def getCategory(
+        entryDto: EntryDto
+    )
+    : Category = {
+        try {
+            val category: Category = categoryRepository.findByText(entryDto.getCategory)
+            if (category == null) {
+                return getNewCategory(entryDto)
+            }
+            return category
+        } catch {
+            case e: Exception => {
+                throw new RuntimeException("an error occurred.", e)
+            }
+        }
+    }
+    
+    ///////////////////////////////////////////////////////////////////////////
+    /**
+     * get the new category.
+     */
+    private def getNewCategory(
+        entryDto: EntryDto
+    )
+    : Category = {
+        try {
+            // TODO: the category cannot create by user.
+            return null
         } catch {
             case e: Exception => {
                 throw new RuntimeException("an error occurred.", e)

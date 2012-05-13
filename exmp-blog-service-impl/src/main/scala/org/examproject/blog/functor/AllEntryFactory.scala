@@ -16,7 +16,6 @@ package org.examproject.blog.functor
 
 import java.util.ArrayList
 import java.util.List
-//import java.util.Set
 import javax.inject.Inject
 
 import org.apache.commons.collections.Factory
@@ -28,8 +27,7 @@ import org.springframework.transaction.annotation.Transactional
 import org.examproject.blog.dto.EntryDto
 import org.examproject.blog.entity.Entry
 import org.examproject.blog.repository.EntryRepository
-import org.examproject.blog.util.ParagraphUtils
-import org.examproject.blog.util.TagUtils
+import org.examproject.blog.util.EntryUtils
 
 import scala.collection.JavaConversions._
 
@@ -46,13 +44,10 @@ class AllEntryFactory extends Factory {
     private val context: ApplicationContext = null
     
     @Inject
-    private val repository: EntryRepository = null
+    private val entryRepository: EntryRepository = null
     
     @Inject
-    private val paragraphUtils: ParagraphUtils = null
-    
-    @Inject
-    private val tagUtils: TagUtils = null
+    private val entryUtils: EntryUtils = null
 
     ///////////////////////////////////////////////////////////////////////////
     // public methods
@@ -81,24 +76,12 @@ class AllEntryFactory extends Factory {
         val dtoList: List[EntryDto] = new ArrayList[EntryDto]()
         
         // get the entities list from repository.
-        val list: List[Entry] = repository.findAll()
+        val list: List[Entry] = entryRepository.findAll()
         for (entry: Entry <- list) {
-                        
-            // map the object.
-            val dto: EntryDto = context.getBean(classOf[EntryDto])            
-            dto.setId(entry.getId)
-            dto.setUsername(entry.getUser.getUsername())
-            dto.setPassword(entry.getUser.getPassword())
-            dto.setAuthor(entry.getAuthor())
-            dto.setTitle(paragraphUtils.getTitleString(entry))
-            dto.setContent(paragraphUtils.getContentString(entry))
-            dto.setCategory("xxx")
-            dto.setTags(tagUtils.getTagItemString(entry))
-            dto.setCreated(entry.getCreated())
-            dto.setCode(entry.getCode())
             
-            // add to dto list.
-            dtoList.add(dto)
+            // map the object and add to dto list.
+            val dto: EntryDto = context.getBean(classOf[EntryDto])
+            dtoList.add(entryUtils.mapEntry(entry, dto))
         }
         return dtoList
     }

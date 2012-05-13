@@ -43,7 +43,7 @@ class IdToEntryTransformer extends Transformer {
     private val context: ApplicationContext = null
     
     @Inject
-    private val repository: EntryRepository = null
+    private val entryRepository: EntryRepository = null
     
     @Inject
     private val entryUtils: EntryUtils = null
@@ -77,7 +77,7 @@ class IdToEntryTransformer extends Transformer {
         if (o != null) {
             // get the entity from repository.
             val id: Long = Long.valueOf(o.toString())
-            val entry: Entry = repository.findOne(id).asInstanceOf[Entry]
+            val entry: Entry = entryRepository.findOne(id).asInstanceOf[Entry]
             
             // return a mapped dto.
             val dto: EntryDto = context.getBean(classOf[EntryDto])
