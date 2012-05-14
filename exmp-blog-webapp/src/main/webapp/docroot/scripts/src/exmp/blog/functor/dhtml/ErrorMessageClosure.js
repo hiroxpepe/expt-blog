@@ -34,9 +34,9 @@ exmp.blog.functor.dhtml.ErrorMessageClosure = {
             .css({
                 margin: "1em 0.25em 1em 0.25em",
                 padding: "0.25em",
-                color: "red",
-                backgroundColor: "pink",
-                border: "1px solid red"
+                color: "#ff8888",
+                backgroundColor: "#ffcccc",
+                border: "1px solid #ff8888"
             })
             .html(
                 '<img id="message_close_img" ' +

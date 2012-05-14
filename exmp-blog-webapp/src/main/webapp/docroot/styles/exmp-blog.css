@@ -64,6 +64,7 @@ div.container {
     border-right: 1px solid gainsboro;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+    box-shadow: 0 0 4px 0 gainsboro;
 }
     div.container.wide {
         width: 950px;
@@ -213,7 +214,7 @@ div.menu-content {
                 div.menu-bar-right a.feed:hover {
                     text-decoration: none;
                     color: dimgray;
-                    background: ffd47f;
+                    background: #ffd47f;
                     border-radius: 2px;
                 }
                 div.menu-bar-right img {
@@ -298,6 +299,7 @@ input.command-button {
         background: darkgray;
         border: 1px solid #d2b48c;
         border-radius: 4px;
+        box-shadow: 0 0 4px 0 gainsboro;
     }
 
 /* ****************************************************************************
@@ -313,6 +315,7 @@ div.index-content {
     text-align: center;
     border: 1px solid gainsboro;
     border-radius: 5px;
+    box-shadow: 0 0 4px 0 gainsboro;
 }
     h1.index-title {
         margin-top: 0.5em;
@@ -333,6 +336,7 @@ div.entry-content {
     padding: 0.25em 1em 1em 1em;
     border: 1px solid gainsboro;
     border-radius: 5px;
+    box-shadow: 0 0 2px 0 gainsboro;
 }
     div.entry-content input, textarea, select {
         border: 1px solid gainsboro;
@@ -461,7 +465,7 @@ div.entry-list-content {
             }
             table.entry-list-table td.entry-action-td {
                 padding-top: 0.5em;
-                padding-bottom: 0.5em;      
+                padding-bottom: 0.5em;
                 vertical-align: top;
                 border-bottom: 1px solid wheat;
             }
@@ -515,6 +519,7 @@ div.tab-content {
         border-left: 1px solid wheat;
         border-right: 1px solid wheat;
         border-radius: 5px 5px 0px 0px;
+        box-shadow: 0 0 2px 0 wheat;
     }
     div.tab-content ul li.active a {
         color: #333333;
@@ -531,15 +536,17 @@ div.tab-content {
         background: lightyellow;
         border: 1px solid wheat;
         border-radius: 5px;
+        box-shadow: 0 0 2px 0 wheat;
     }
     
 /* ****************************************************************************
  * define the appearance of the permalink entry content.
  */
 div.permalink-content {
-    margin: 1.25em 2em 1em 2em;    
+    margin: 1.25em 2em 1em 2em;
     border-top: 1px solid gainsboro;
     border-bottom: 1px solid gainsboro;
+    box-shadow: 0 0 2px 0 gainsboro;
 }
     div.permalink-entry-title {
         margin-bottom: 0.5em;
@@ -584,12 +591,14 @@ div.permalink-content {
     background: white;
     border: 1px solid gainsboro;
     border-radius: 6px;
+    box-shadow: 0 0 1px 0 lightsteelblue;
  }
     div.profile-content table td {
         padding: 0.25em;
         vertical-align: top;
     }
     div.profile-content table td div.profileName {
+        color: #4d4d4d;
         font-size: small;
     }
     div.profile-content img {
@@ -605,6 +614,7 @@ div.permalink-content {
         min-height: 50px;
         text-align: right;
         border-radius: 5px;
+        box-shadow: 0 0 4px 0 gainsboro;
     }
     #message-block img {
         cursor: pointer;
