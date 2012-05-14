@@ -72,10 +72,10 @@ class SaveEntryClosure extends Closure {
         LOG.debug("called save.")
         try {
             // if dto is new one, create a new date and code.
-            if (entryDto.getCode.equals("")) {
+            if (entryDto.getEntryCode.equals("")) {
                 LOG.debug("create the new entry.")
                 entryDto.setCreated(new Date())
-                entryDto.setCode(GeneralUtils.createCode())
+                entryDto.setEntryCode(GeneralUtils.createCode())
             }
                         
             // get the entry.

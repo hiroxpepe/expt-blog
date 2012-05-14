@@ -28,29 +28,29 @@ exmp.blog.functor.event.EditEventClosure = {
         console.log("exmp.blog.functor.event.EditEventClosure#execute");
                
         // dynamically generate an event handler.
-        $("#entry-edit-" + obj.code).click(function() {
+        $("#entry-edit-" + obj.entryCode).click(function() {
                         
             // get the entry value for from that need to edit.
             $("#entry-title").val(
-                $("#entry-title-" + obj.code).text()
+                $("#entry-title-" + obj.entryCode).text()
             );
             $("#entry-content").val(
-                $("#entry-content-" + obj.code).text()
+                $("#entry-content-" + obj.entryCode).text()
             );
             $("#entry-subject").val(
-                $("#entry-subject-" + obj.code).val()
+                $("#entry-subject-" + obj.entryCode).val()
             );
             $("#entry-category").val(
-                $("#entry-category-" + obj.code).val()
+                $("#entry-category-" + obj.entryCode).val()
             );
             $("#entry-tags").val(
-                $("#entry-tags-" + obj.code).val()
+                $("#entry-tags-" + obj.entryCode).val()
             );
             $("#id").val(
-                $("#entry-id-" + obj.code).val()
+                $("#entry-id-" + obj.entryCode).val()
             );
-            $("#code").val(
-                obj.code
+            $("#entry-code").val(
+                obj.entryCode
             );
         });
     }

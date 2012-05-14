@@ -62,19 +62,19 @@ class PermalinkController {
      * expected HTTP request is 'http://localhost:8080/entry/nnnnnnnnn.html'
      */
     @RequestMapping(
-        value=Array("/entry/{code}.html"),
+        value=Array("/entry/{entryCode}.html"),
         method=Array(RequestMethod.GET)
     )
     def doGet(
-        @PathVariable code: String,
+        @PathVariable entryCode: String,
         model: Model
     ): String = {
         LOG.info("called")
-        LOG.debug("code: " + code)
+        LOG.debug("entryCode: " + entryCode)
      
         // set the model-object to the model. 
         model.addAttribute(
-            getEntryModel(code)
+            getEntryModel(entryCode)
         )
         
         return "entry/permalink";
@@ -88,14 +88,14 @@ class PermalinkController {
      * get the model-object from service-object.
      */
     private def getEntryModel(
-        code: String
+        entryCode: String
     )
     : EntryModel = {
         LOG.debug("called");
                 
         // get a dto-object from service-object.
         val entryDto: EntryDto = entryService.getEntryByCode(
-            code
+            entryCode
         )
     
         // create a model-object.

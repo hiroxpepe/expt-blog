@@ -52,6 +52,10 @@ class Paragraph extends Serializable {
     @BeanProperty
     var id: Long = _
     
+    @Column(name="code", unique=true, length=9)
+    @BeanProperty
+    var code: String = _
+    
     @Column(name="created")
     @Temporal(TemporalType.TIMESTAMP)
     @BeanProperty
@@ -62,11 +66,11 @@ class Paragraph extends Serializable {
     @BeanProperty
     var updated: Date = _
     
-    @Column(name="content", length=2048)
+    @Column(name="content", length=140)
     @BeanProperty
     var content: String = _
     
-    @Column(name="key", length=16)
+    @Column(name="key", length=12)
     @BeanProperty
     var key: String = _
     

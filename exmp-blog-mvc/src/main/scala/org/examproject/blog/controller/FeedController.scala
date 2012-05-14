@@ -157,7 +157,7 @@ class FeedController {
             
             // create the permalink url.
             feedModel.setUrl(
-               serverUrl + "/entry/" + entryDto.getCode + ".html"
+               serverUrl + "/entry/" + entryDto.getEntryCode + ".html"
             )
             
             // add the object to the object list.

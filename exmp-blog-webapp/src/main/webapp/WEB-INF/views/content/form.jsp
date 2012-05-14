@@ -11,8 +11,9 @@
     <%-- in this form, the normal Http post is not used. --%>
     <%-- all of the data will request using Ajax. --%>
     <form:form id="entry-form" commandName="entryForm">
-        <form:hidden path="id" />
-        <form:hidden path="code" />
+        <form:hidden id="id" path="id" />
+        <form:hidden id="entry-code" path="entryCode" />
+        <form:hidden id="content-code" path="contentCode" />
         
         <%-- insert the entry content template. --%>
         <tiles:insertTemplate 

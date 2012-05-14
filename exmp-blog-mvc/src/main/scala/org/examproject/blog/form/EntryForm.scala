@@ -60,7 +60,10 @@ class EntryForm {
     var subject: String = _
     
     @BeanProperty
-    var code: String = _
+    var entryCode: String = _
+    
+    @BeanProperty
+    var contentCode: String = _
     
     @BeanProperty
     var created: Date = _

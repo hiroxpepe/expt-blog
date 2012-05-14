@@ -14,6 +14,7 @@
 
 package org.examproject.blog.util
 
+import java.util.List
 import java.util.Set
 import javax.inject.Inject
 
@@ -26,6 +27,7 @@ import org.examproject.blog.dto.EntryDto
 import org.examproject.blog.entity.Entry
 import org.examproject.blog.entity.Paragraph
 import org.examproject.blog.entity.TagItem
+import org.examproject.blog.entity.User
 import org.examproject.blog.repository.EntryRepository
 import org.examproject.blog.repository.ParagraphRepository
 import org.examproject.blog.repository.TagItemRepository
@@ -78,16 +80,37 @@ class EntryUtils {
     )
     : Entry = {
         try {
+            // create the entity if the dto has no id.
             if (entryDto.getId() == null) {
+                val user: User = userUtils.getUser(entryDto)
+                
+                // find the title...
+                val title: String = entryDto.getTitle()
+                val entryList: List[Entry] = entryRepository.findByUser(user)
+                for (entry: Entry <- entryList) {
+                    val paragraphSet: Set[Paragraph] = entry.getParagraphSet();
+                    for (paragraph: Paragraph <- paragraphSet) {
+                        if (paragraph.getKey.equals("title")) {
+                            if (paragraph.getContent.equals(title)) {
+                                LOG.debug("found the entry.")
+                                return paragraph.getEntry()
+                            }
+                        }
+                    }
+                }
+                
+                // cannot find the title.
                 val entry = context.getBean(classOf[Entry])
-                entry.setUser(userUtils.getUser(entryDto))
-                LOG.debug("create entry.")
+                entry.setUser(user)
+                LOG.debug("create the entry.")
                 return entry
+                
+            // edit the entity if the dto has id.
             } else {
                 val entry = entryRepository.findOne(
                     entryDto.getId()
                 ).asInstanceOf[Entry]
-                LOG.debug("update entry.")
+                LOG.debug("update the entry.")
                 return entry
             }
         } catch {
@@ -156,7 +179,7 @@ class EntryUtils {
             entryDto.setCategory(subjectUtils.getCategoryString(entry))
             entryDto.setTags(tagUtils.getTagItemString(entry))
             entryDto.setCreated(entry.getCreated())
-            entryDto.setCode(entry.getCode())
+            entryDto.setEntryCode(entry.getCode())
 
             return entryDto
         } catch {
@@ -182,7 +205,7 @@ class EntryUtils {
             entry.setTagItemSet(tagUtils.getTagItemSet(entryDto, entry))
             entry.setCreated(entryDto.getCreated())
             entry.setUpdated(entryDto.getCreated())
-            entry.setCode(entryDto.getCode())
+            entry.setCode(entryDto.getEntryCode())
             entry.setSubject(subjectUtils.getSubject(entryDto))
             return entry
         } catch {

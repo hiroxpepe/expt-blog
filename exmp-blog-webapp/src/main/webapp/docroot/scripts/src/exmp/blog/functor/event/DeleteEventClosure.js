@@ -30,9 +30,9 @@ exmp.blog.functor.event.DeleteEventClosure = {
         var deleteClosure = exmp.blog.functor.request.EntryDeleteClosure;
                
         // dynamically generate an event handler.
-        $("#entry-delete-" + obj.code).click(function() {
+        $("#entry-delete-" + obj.entryCode).click(function() {
             deleteClosure.execute({
-                code: obj.code
+                entryCode: obj.entryCode
             });
         });
     }

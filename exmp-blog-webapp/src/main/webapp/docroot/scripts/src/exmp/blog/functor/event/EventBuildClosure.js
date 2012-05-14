@@ -31,16 +31,16 @@ exmp.blog.functor.event.EventBuildClosure = {
         var deleteEventClosure = exmp.blog.functor.event.DeleteEventClosure;
         
         for (var i = 0; i < obj.entryModelList.length; i++) {
-            var code = obj.entryModelList[i].code;
+            var entryCode = obj.entryModelList[i].entryCode;
             
             // set the event handler for edit.
             editEventClosure.execute({
-                code: code
+                entryCode: entryCode
             });
             
             // set the event handler for delete.
             deleteEventClosure.execute({
-                code: code
+                entryCode: entryCode
             });
         }
     }

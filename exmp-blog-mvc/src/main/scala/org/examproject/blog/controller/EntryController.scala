@@ -213,13 +213,13 @@ class EntryController {
     )
     @ResponseBody
     def doDelete(
-        @RequestParam(value="code", defaultValue="")
-        code: String,
+        @RequestParam(value="entryCode", defaultValue="")
+        entryCode: String,
         model: Model
     )
     : EntryResponse = {
         LOG.info("called")
-        LOG.debug("code: " + code)
+        LOG.debug("entryCode: " + entryCode)
         
         // create a response-object.
         val response: EntryResponse = context.getBean(
@@ -229,7 +229,7 @@ class EntryController {
         // delete the entry.
         entryService.deleteEntry(
             entryService.getEntryByCode(
-                code
+                entryCode
             )
         )
         
@@ -358,7 +358,7 @@ class EntryController {
             
             // create the permalink url.
             entryModel.setPermalinkUrl(
-                serverUrl + "/entry/" + entryDto.getCode + ".html"
+                serverUrl + "/entry/" + entryDto.getEntryCode + ".html"
             )
 
             // add the object to the object list.

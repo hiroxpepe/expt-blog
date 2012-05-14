@@ -15,6 +15,7 @@
 package org.examproject.blog.util
 
 import java.util.Date
+import java.util.List
 import java.util.Set
 import java.util.HashSet
 import javax.inject.Inject
@@ -60,9 +61,9 @@ class ParagraphUtils {
     )
     : Set[Paragraph] = {
         try {
+            val paragraphSet: Set[Paragraph] = new HashSet[Paragraph]
             val titleParagraph: Paragraph = getTitle(entryDto, entry)
             val contentParagraph: Paragraph = getContent(entryDto, entry)
-            val paragraphSet: Set[Paragraph] = new HashSet[Paragraph]
             paragraphSet.add(titleParagraph)
             paragraphSet.add(contentParagraph)
             return paragraphSet
@@ -134,6 +135,7 @@ class ParagraphUtils {
         try {
             if (entry.getId() == null) {
                 val newTitle: Paragraph = context.getBean(classOf[Paragraph])
+                newTitle.setCode(GeneralUtils.createCode())
                 newTitle.setContent(entryDto.getTitle())
                 newTitle.setKey("title")
                 newTitle.setCreated(new Date())
@@ -164,6 +166,7 @@ class ParagraphUtils {
         try {
             if (entry.getId() == null) {
                 val newContent: Paragraph = context.getBean(classOf[Paragraph])
+                newContent.setCode(GeneralUtils.createCode())
                 newContent.setContent(entryDto.getContent())
                 newContent.setKey("content")
                 newContent.setCreated(new Date())
@@ -181,5 +184,35 @@ class ParagraphUtils {
             }
         }
     }
+    
+    ///////////////////////////////////////////////////////////////////////////
+    /**
+     * get the content paragraph List.
+     */
+//    private def getContentList(
+//        entryDto: EntryDto,
+//        entry: Entry
+//    )
+//    : List[Paragraph] = {
+//        try {
+//            if (entry.getId() == null) {
+//                val newContent: Paragraph = context.getBean(classOf[Paragraph])
+//                newContent.setContent(entryDto.getContent())
+//                newContent.setKey("content")
+//                newContent.setCreated(new Date())
+//                newContent.setUpdated(new Date())
+//                newContent.setEntry(entry)
+//                return newContent
+//            }
+//            val content: Paragraph = paragraphRepository.findByEntryAndKey(entry, "content")
+//            content.setContent(entryDto.getContent())
+//            content.setUpdated(new Date())
+//            return content
+//        } catch {
+//            case e: Exception => {
+//                throw new RuntimeException("an error occurred.", e)
+//            }
+//        }
+//    }
     
 }
