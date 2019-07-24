@@ -2,35 +2,33 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    
+
     <groupId>org.examproject</groupId>
     <artifactId>exmp-blog-mvc</artifactId>
     <packaging>jar</packaging>
-    <version>0.3.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>exmp-blog-mvc</name>
 
     <properties>
-        <exmp.version>0.3.0-SNAPSHOT</exmp.version>
-        <spring.version>3.1.1.RELEASE</spring.version>
-        <dozer.version>5.3.2</dozer.version>
-        <slf4j.version>1.6.1</slf4j.version>
-        <scala.version>2.9.1</scala.version>
-        <scala.plugin.version>2.9.1</scala.plugin.version>
-        <java.version>1.6</java.version>
+        <exmpblog.version>${version}</exmpblog.version>
+        <spring.version>5.1.8.RELEASE</spring.version>
+        <dozer.version>5.5.1</dozer.version>
+        <slf4j.version>1.7.26</slf4j.version>
+        <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
         <!--//////////////////////////////////////////////////////////////////////////-->
         <!-- USER LIB -->
-        
+
         <!-- exmp-blog-service -->
         <dependency>
             <groupId>org.examproject</groupId>
             <artifactId>exmp-blog-service</artifactId>
-            <version>${exmp.version}</version>
+            <version>${exmpblog.version}</version>
         </dependency>
-        
+
         <!--//////////////////////////////////////////////////////////////////////////-->
         <!-- OSS LIB -->
 
@@ -81,10 +79,15 @@
         </dependency>
 
         <!-- Rome -->
-        <dependency>
+        <!--<dependency>
             <groupId>rome</groupId>
             <artifactId>rome</artifactId>
             <version>1.0</version>
+        </dependency>-->
+        <dependency>
+            <groupId>com.rometools</groupId>
+            <artifactId>rome</artifactId>
+            <version>1.12.1</version>
         </dependency>
 
         <!-- Servlet -->
@@ -105,90 +108,48 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
-        
-        <!-- Scala -->
+
+        <!-- Lombok -->
         <dependency>
-            <groupId>org.scala-lang</groupId>
-            <artifactId>scala-library</artifactId>
-            <version>${scala.version}</version>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.8</version>
+            <scope>provided</scope>
         </dependency>
-        
+
         <!--//////////////////////////////////////////////////////////////////////////-->
         <!-- TEST LIB -->
-        
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.8.2</version>
             <scope>test</scope>
         </dependency>
-        
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
             <version>${spring.version}</version>
             <scope>test</scope>
         </dependency>
-       
     </dependencies>
 
-    <repositories>
-        <repository>
-            <id>scala-tools.org</id>
-            <name>Scala-tools Maven Repository</name>
-            <url>http://scala-tools.org/repo-releases</url>
-        </repository>
-    </repositories>
-
     <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.scala-tools</groupId>
-                    <artifactId>maven-scala-plugin</artifactId>
-                    <version>${scalaPluginVersion}</version>
-                </plugin>
-            </plugins>
-        </pluginManagement>
+        <!-- Name of the generated JAR file -->
+        <finalName>${name}-${version}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.0.2</version>
+                <version>3.5.1</version>
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>2.2</version>
-                <configuration>
-                    <encoding>${project.build.sourceEncoding}</encoding>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.scala-tools</groupId>
-                <artifactId>maven-scala-plugin</artifactId>
-                <version>${scala.plugin.version}</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>compile</goal>
-                            <goal>testCompile</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <jvmArgs>
-                        <jvmArg>-Xms64m</jvmArg>
-                        <jvmArg>-Xmx1024m</jvmArg>
-                    </jvmArgs>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
-    
+
 </project>

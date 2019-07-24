@@ -1,13 +1,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-        
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <div class="entry-content">
-    
+
     <h4 class="entry-content-title">
         <fmt:message key="label.entry" />
     </h4>
-    
+
     <table class="entry-table">
         <tr>
             <td class="label-td">
@@ -16,7 +17,7 @@
                 </label>
             </td>
             <td class="input-td" colspan=3>
-                <form:input 
+                <form:input
                     id="entry-title"
                     path="title"
                 />
@@ -29,12 +30,12 @@
                 </label>
             </td>
             <td class="input-td" colspan=3>
-                <form:textarea 
+                <form:textarea
                     id="entry-content"
                     path="content"
                 />
             </td>
-        </tr>   
+        </tr>
         <tr>
             <td class="label-td">
                 <label for="entry_tags">
@@ -42,7 +43,7 @@
                 </label>
             </td>
             <td class="input-td">
-                <form:input 
+                <form:input
                     id="entry-tags"
                     path="tags"
                 />
@@ -50,7 +51,7 @@
         </tr>
     </table>
     <div class="entry-command-block">
-        <input 
+        <input
             id="post-button"
             class="command-button"
             type="button"

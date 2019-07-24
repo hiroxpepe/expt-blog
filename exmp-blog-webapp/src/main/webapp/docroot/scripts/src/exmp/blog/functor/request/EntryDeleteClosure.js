@@ -47,7 +47,7 @@ exmp.blog.functor.request.EntryDeleteClosure = {
             url: "delete.html",
             type: "POST",
             data: {
-                entryCode: obj.entryCode
+                code: obj.code
             },
             dataType: "json",
             

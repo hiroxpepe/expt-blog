@@ -2,58 +2,67 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    
+
     <groupId>org.examproject</groupId>
     <artifactId>exmp-blog-webapp</artifactId>
-    <version>0.3.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>war</packaging>
     <name>exmp-blog-webapp</name>
-    
+
     <properties>
-        <exmp.version>0.3.0-SNAPSHOT</exmp.version>
-        <java.version>1.6</java.version>
-        <spring.version>3.1.1.RELEASE</spring.version>
-        <jackson.version>1.8.2</jackson.version>
-        <hibernate.version>3.6.0.Final</hibernate.version>
-        <tiles.version>2.1.4</tiles.version>
-        <slf4j.version>1.6.1</slf4j.version>
+        <exmpblog.version>${version}</exmpblog.version>
+        <!--<jackson.version>1.8.2</jackson.version>-->
+        <jackson.version>1.9.13</jackson.version>
+        <dozer.version>5.5.1</dozer.version>
+        <spring.version>5.1.8.RELEASE</spring.version>
+        <!--<hibernate.version>3.6.0.Final</hibernate.version>-->
+        <hibernate.version>5.4.3.Final</hibernate.version>
+        <!--<tiles.version>2.1.4</tiles.version>-->
+        <tiles.version>3.0.8</tiles.version>
+        <slf4j.version>1.7.26</slf4j.version>
+        <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    
+
     <dependencies>
         <!--//////////////////////////////////////////////////////////////////////////-->
         <!-- USER LIB -->
-        
+
         <!-- exmp-blog-mvc -->
         <dependency>
             <groupId>org.examproject</groupId>
             <artifactId>exmp-blog-mvc</artifactId>
-            <version>${exmp.version}</version>
+            <version>${exmpblog.version}</version>
         </dependency>
-        
+
         <!-- exmp-blog-service -->
-        <dependency>
+<!--        <dependency>
             <groupId>org.examproject</groupId>
             <artifactId>exmp-blog-service</artifactId>
             <version>${exmp.version}</version>
-        </dependency>
-        
-        <!-- exmp-blog-service-impl -->
-        <dependency>
+        </dependency>-->
+
+        <!-- exmp-blog-model -->
+<!--        <dependency>
             <groupId>org.examproject</groupId>
-            <artifactId>exmp-blog-service-impl</artifactId>
+            <artifactId>exmp-blog-model</artifactId>
             <version>${exmp.version}</version>
-        </dependency>
-        
-        <!-- exmp-blog-data-jpa -->
-        <dependency>
-            <groupId>org.examproject</groupId>
-            <artifactId>exmp-blog-data-jpa</artifactId>
-            <version>${exmp.version}</version>
-        </dependency>   
-        
+        </dependency>-->
+
         <!--//////////////////////////////////////////////////////////////////////////-->
         <!-- OSS LIB -->
+
+        <!-- Dozer -->
+        <dependency>
+            <groupId>net.sf.dozer</groupId>
+            <artifactId>dozer</artifactId>
+            <version>${dozer.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.dozer</groupId>
+            <artifactId>dozer-spring</artifactId>
+            <version>5.5.1</version>
+        </dependency>
 
         <!-- Spring -->
         <dependency>
@@ -63,7 +72,7 @@
         </dependency>
 
         <!-- Jackson -->
-        <dependency>
+<!--        <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-core-asl</artifactId>
             <version>${jackson.version}</version>
@@ -72,6 +81,16 @@
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-mapper-asl</artifactId>
             <version>${jackson.version}</version>
+        </dependency>-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.9.9</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.9.9</version>
         </dependency>
 
         <!-- Hibernate -->
@@ -85,14 +104,14 @@
             <artifactId>hibernate-entitymanager</artifactId>
             <version>${hibernate.version}</version>
         </dependency>
-        
+
         <!-- HSQLDB -->
         <dependency>
             <groupId>org.hsqldb</groupId>
             <artifactId>hsqldb</artifactId>
             <version>2.0.0</version>
         </dependency>
-        
+
         <!-- PostgreSQL -->
         <dependency>
             <groupId>postgresql</groupId>
@@ -101,16 +120,28 @@
         </dependency>
 
         <!-- Servlet -->
-        <dependency>
+<!--        <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
             <version>2.5</version>
             <scope>provided</scope>
-        </dependency>
+        </dependency>-->
         <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+<!--        <dependency>
             <groupId>javax.servlet.jsp</groupId>
             <artifactId>jsp-api</artifactId>
             <version>2.1</version>
+            <scope>provided</scope>
+        </dependency>-->
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>javax.servlet.jsp-api</artifactId>
+            <version>2.3.1</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -118,7 +149,7 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
-        
+
         <!-- Tiles -->
         <dependency>
             <groupId>org.apache.tiles</groupId>
@@ -150,13 +181,16 @@
             <version>1.2.16</version>
             <scope>runtime</scope>
         </dependency>
-        
+
     </dependencies>
 
     <build>
+        <!-- Name of the generated WAR file -->
+        <finalName>${name}-${version}</finalName>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
@@ -166,6 +200,7 @@
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>
                 <artifactId>maven-jetty-plugin</artifactId>
+                <version>6.1.26</version>
                 <configuration>
                     <contextPath>/</contextPath>
                     <scanIntervalSeconds>10</scanIntervalSeconds>

@@ -33,9 +33,8 @@ exmp.blog.functor.htmltag.EntryListTransformer = {
         for (var i = 0; i < obj.entryModelList.length; i++) {
             
             // get the value
-            var id = obj.entryModelList[i].id;
-            var entryCode = obj.entryModelList[i].entryCode;
-            var contentCode = obj.entryModelList[i].contentCode;
+            var id = obj.entryModelList[i].id;  
+            var code = obj.entryModelList[i].code;  
             var title = $.erasureHTML(
                 obj.entryModelList[i].title
             );
@@ -52,6 +51,7 @@ exmp.blog.functor.htmltag.EntryListTransformer = {
                 obj.entryModelList[i].tags
             );
             var permalinkUrl = obj.entryModelList[i].permalinkUrl;
+            var username = obj.entryModelList[i].username;
             var email = obj.entryModelList[i].email;
             var hash = 0;
             if (email) { hash = MD5_hexhash(email); }
@@ -68,24 +68,24 @@ exmp.blog.functor.htmltag.EntryListTransformer = {
                     "</td>" +
                     "<td class='entry-list-td' >" +
                         "<a href='" + permalinkUrl + "'>" + 
-                            "<span id='entry-title-" + entryCode + "'>" + title + "</span>" + 
+                            "<span id='entry-title-" + code + "'>" + title + "</span>" + 
                         "</a>" + " " +
-                        "<span id='entry-content-" + entryCode + "'>" + content + "</span>" +
-                        "<input id='entry-id-" + entryCode + "' type='hidden' value='" + id + "' />" +
-                        "<input id='entry-subject-" + entryCode + "' type='hidden' value='" + subject + "' />" +
-                        "<input id='entry-category-" + entryCode + "' type='hidden' value='" + category + "' />" +
-                        "<input id='entry-tags-" + entryCode + "' type='hidden' value='" + tags + "' />" +
+                        "<span id='entry-content-" + code + "'>" + content + "</span>" +
+                        "<input id='entry-id-" + code + "' type='hidden' value='" + id + "' />" +
+                        "<input id='entry-subject-" + code + "' type='hidden' value='" + subject + "' />" +
+                        "<input id='entry-category-" + code + "' type='hidden' value='" + category + "' />" +
+                        "<input id='entry-tags-" + code + "' type='hidden' value='" + tags + "' />" +
                     "</td>" +
                     "<td class='entry-action-td'>" +
                         "<table>" + 
                             "<tr>" +
                                 "<td>" + 
-                                    "<div id='entry-edit-" + entryCode + "'" + " class='entry-action'>eE</div>" + 
+                                    "<div id='entry-edit-" + code + "'" + " class='entry-action'>e</div>" + 
                                  "</td>" +
                             "</tr>" +
                             "<tr>" + 
                                 "<td>" + 
-                                    "<div id='entry-delete-" + entryCode + "'" + " class='entry-action'>eD</div>" + 
+                                    "<div id='entry-delete-" + code + "'" + " class='entry-action'>d</div>" + 
                                  "</td>" +
                             "</tr>" +
                         "</table>" +

@@ -1,22 +1,22 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%--<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>--%>
 
 <div class="tab-content">
-    
+
     <ul>
         <li><a href="#tab1"><fmt:message key="label.list" /></a></li>
         <li><a href="#tab2"><fmt:message key="label.subject" /></a></li>
         <li><a href="#tab3"><fmt:message key="label.setting" /></a></li>
     </ul>
-    
+
     <div id="tab1" class="tab">
-        <div 
+        <div
             id="entry-list-block"
             class="entry-list-content">
         </div>
     </div>
-    
+
     <div id="tab2" class="tab">
         <div class="subject-content">
             <table class="subject-table">
@@ -37,7 +37,7 @@
                         </label>
                     </td>
                     <td class="input-td">
-                        <form:select 
+                        <form:select
                             id="entry-category"
                             path="category"
                             items="${categoryList}"
@@ -48,13 +48,13 @@
             <div class="subject-command-block">
                 <input id="subject-button"
                        class="command-button"
-                       type="button" 
+                       type="button"
                        value="<fmt:message key="button.subject" />"
                  />
             </div>
         </div>
     </div>
-    
+
     <div id="tab3" class="tab">
         <div class="setting-content">
             <table class="setting-table">
@@ -102,7 +102,7 @@
             <div class="setting-command-block">
                 <input id="setting-button"
                        class="command-button"
-                       type="button" 
+                       type="button"
                        value="<fmt:message key="button.setting" />"
                  />
             </div>

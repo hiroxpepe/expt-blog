@@ -2,27 +2,26 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    
+
     <groupId>org.examproject</groupId>
     <artifactId>exmpblog</artifactId>
     <packaging>pom</packaging>
-    <version>0.3.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>exmpblog</name>
-    
+
     <properties>
-        <java.version>1.6</java.version>
+        <exmpblog.version>${version}</exmpblog.version>
+        <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    
+
     <modules>
       <module>exmp-blog-webapp</module>
       <module>exmp-blog-mvc</module>
       <module>exmp-blog-service</module>
-      <module>exmp-blog-service-impl</module>
-      <module>exmp-blog-util</module>
-      <module>exmp-blog-data-jpa</module>
+      <module>exmp-blog-model</module>
     </modules>
-    
+
     <build>
         <plugins>
             <plugin>
@@ -54,9 +53,11 @@
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
-                                    <groupId>org.mortbay.jetty</groupId>
+                                    <groupId>org.eclipse.jetty</groupId>
+                                    <!--<groupId>org.mortbay.jetty</groupId>-->
                                     <artifactId>jetty-runner</artifactId>
-                                    <version>7.4.5.v20110725</version>
+                                    <version>9.4.19.v20190610</version>
+                                    <!--<version>7.4.5.v20110725</version>-->
                                     <destFileName>jetty-runner.jar</destFileName>
                                 </artifactItem>
                             </artifactItems>

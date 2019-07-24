@@ -34,9 +34,9 @@ exmp.blog.functor.dhtml.SuccessMessageClosure = {
             .css({
                 margin: "1em 0.25em 1em 0.25em",
                 padding: "0.25em",
-                color: "#00dd00",
-                backgroundColor: "#c0fcc0",
-                border: "1px solid #00dd00"
+                color: "green",
+                backgroundColor: "palegreen",
+                border: "1px solid green"
             })
             .html(
                 '<img id="message_close_img" ' +

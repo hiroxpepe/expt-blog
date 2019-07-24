@@ -6,10 +6,10 @@
         http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context-3.1.xsd">
- 
+
     <!-- //////////////////////////////////////////////////////////////////////////// -->
     <!-- service object -->
-    
+
     <bean id="entryService" class="org.examproject.blog.service.SimpleEntryService">
         <constructor-arg name="idToEntryTransformer" ref="idToEntryTransformer" />
         <constructor-arg name="codeToEntryTransformer" ref="codeToEntryTransformer" />
@@ -17,75 +17,75 @@
         <constructor-arg name="saveEntryClosure" ref="saveEntryClosure" />
         <constructor-arg name="deleteEntryClosure" ref="deleteEntryClosure" />
     </bean>
-    
+
     <bean id="feedService" class="org.examproject.blog.service.SimpleFeedService">
         <constructor-arg name="allEntryFactory" ref="allEntryFactory" />
     </bean>
 
     <!-- //////////////////////////////////////////////////////////////////////////// -->
     <!-- functor object -->
-    
+
     <bean id="saveEntryClosure"
         class="org.examproject.blog.functor.SaveEntryClosure">
     </bean>
-    
+
     <bean id="deleteEntryClosure"
         class="org.examproject.blog.functor.DeleteEntryClosure">
     </bean>
-    
+
     <bean id="allEntryFactory"
         class="org.examproject.blog.functor.AllEntryFactory">
     </bean>
-        
+
     <bean id="idToEntryTransformer"
         class="org.examproject.blog.functor.IdToEntryTransformer">
     </bean>
-    
+
     <bean id="codeToEntryTransformer"
         class="org.examproject.blog.functor.CodeToEntryTransformer">
     </bean>
-     
+
     <!-- //////////////////////////////////////////////////////////////////////////// -->
     <!-- data transfer object -->
-    
+
     <bean id="entryDto"
-        class="org.examproject.blog.dto.SimpleEntryDto"
+        class="org.examproject.blog.dto.EntryDto"
         scope="prototype">
     </bean>
-    
+
     <!-- //////////////////////////////////////////////////////////////////////////// -->
     <!-- response object -->
- 
+
     <bean id="entryResponse"
         class="org.examproject.blog.response.EntryResponse"
         scope="prototype">
     </bean>
-    
+
     <!-- //////////////////////////////////////////////////////////////////////////// -->
     <!-- model object -->
-    
+
     <bean id="entryModel"
         class="org.examproject.blog.model.EntryModel"
         scope="prototype">
     </bean>
-    
+
     <bean id="feedModel"
         class="org.examproject.blog.model.FeedModel"
         scope="prototype">
     </bean>
-    
+
     <!--//////////////////////////////////////////////////////////////////////////////-->
     <!-- feed configure -->
-    
+
     <!-- map returned view name "feedView" to bean id "feedView" -->
     <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
 
     <bean id="rssFeedView"
         class="org.examproject.blog.view.SimpleRssFeedView">
     </bean>
-    
+
     <bean id="atomFeedView"
         class="org.examproject.blog.view.SimpleAtomFeedView">
     </bean>
- 
+
 </beans>

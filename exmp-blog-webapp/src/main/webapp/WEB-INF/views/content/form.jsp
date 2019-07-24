@@ -7,23 +7,22 @@
 
     <div id="message-block">
     </div>
-    
+
     <%-- in this form, the normal Http post is not used. --%>
     <%-- all of the data will request using Ajax. --%>
     <form:form id="entry-form" commandName="entryForm">
-        <form:hidden id="id" path="id" />
-        <form:hidden id="entry-code" path="entryCode" />
-        <form:hidden id="content-code" path="contentCode" />
-        
+        <form:hidden path="id" />
+        <form:hidden path="code" />
+
         <%-- insert the entry content template. --%>
-        <tiles:insertTemplate 
+        <tiles:insertTemplate
             template="/WEB-INF/views/content/_entryContent.jsp"
-        />
-        
+       />
+
         <%-- insert the tab content template. --%>
-        <tiles:insertTemplate 
+        <tiles:insertTemplate
             template="/WEB-INF/views/content/_tabContent.jsp"
-        />
-        
+       />
+
     </form:form>
 </div>
