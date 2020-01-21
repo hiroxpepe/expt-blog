@@ -14,7 +14,7 @@
         <!--<jackson.version>1.8.2</jackson.version>-->
         <jackson.version>1.9.13</jackson.version>
         <dozer.version>5.5.1</dozer.version>
-        <spring.version>5.1.8.RELEASE</spring.version>
+        <spring.version>5.2.0.RELEASE</spring.version>
         <!--<hibernate.version>3.6.0.Final</hibernate.version>-->
         <hibernate.version>5.4.3.Final</hibernate.version>
         <!--<tiles.version>2.1.4</tiles.version>-->
