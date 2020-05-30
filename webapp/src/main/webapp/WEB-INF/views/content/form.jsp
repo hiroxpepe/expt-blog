@@ -10,7 +10,7 @@
 
     <%-- in this form, the normal Http post is not used. --%>
     <%-- all of the data will request using Ajax. --%>
-    <form:form id="entry-form" commandName="entryForm">
+    <form:form id="entry-form" modelAttribute="entryForm">
         <form:hidden path="id" />
         <form:hidden path="code" />
 
