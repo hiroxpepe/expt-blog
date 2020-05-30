@@ -5,8 +5,8 @@
 
     <groupId>org.examproject</groupId>
     <artifactId>exmp-blog-webapp</artifactId>
-    <version>1.0.1</version>
     <packaging>war</packaging>
+    <version>1.0.1</version>
     <name>exmp-blog-webapp</name>
 
     <properties>
@@ -14,10 +14,10 @@
         <!--<jackson.version>1.8.2</jackson.version>-->
         <jackson.version>1.9.13</jackson.version>
         <dozer.version>5.5.1</dozer.version>
-        <spring.version>5.1.8.RELEASE</spring.version>
+        <spring.version>5.2.6.RELEASE</spring.version>
         <!--<hibernate.version>3.6.0.Final</hibernate.version>-->
         <hibernate.version>5.4.3.Final</hibernate.version>
-        <!--<tiles.version>2.1.4</tiles.version>-->
+        <!-- <tiles.version>2.2.2</tiles.version> -->
         <tiles.version>3.0.8</tiles.version>
         <slf4j.version>1.7.26</slf4j.version>
         <java.version>1.8</java.version>
@@ -34,20 +34,6 @@
             <artifactId>exmp-blog-mvc</artifactId>
             <version>${exmp-blog.version}</version>
         </dependency>
-
-        <!-- exmp-blog-service -->
-<!--        <dependency>
-            <groupId>org.examproject</groupId>
-            <artifactId>exmp-blog-service</artifactId>
-            <version>${exmp.version}</version>
-        </dependency>-->
-
-        <!-- exmp-blog-model -->
-<!--        <dependency>
-            <groupId>org.examproject</groupId>
-            <artifactId>exmp-blog-model</artifactId>
-            <version>${exmp.version}</version>
-        </dependency>-->
 
         <!--//////////////////////////////////////////////////////////////////////////-->
         <!-- OSS LIB -->
@@ -197,16 +183,7 @@
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.mortbay.jetty</groupId>
-                <artifactId>maven-jetty-plugin</artifactId>
-                <version>6.1.26</version>
-                <configuration>
-                    <contextPath>/</contextPath>
-                    <scanIntervalSeconds>10</scanIntervalSeconds>
-                </configuration>
-            </plugin>
-            <plugin>
+            <!-- <plugin>
                 <groupId>net.alchim31.maven</groupId>
                 <artifactId>yuicompressor-maven-plugin</artifactId>
                 <version>1.1</version>
@@ -237,21 +214,13 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin> -->
             <plugin>
-                <groupId>org.mortbay.jetty</groupId>
-                <artifactId>maven-jetty-plugin</artifactId>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.4.29.v20200521</version>
                 <configuration>
-                    <!-- Context path of the WAR app on jetty:run -->
-                    <contextPath>/</contextPath>
                     <scanIntervalSeconds>10</scanIntervalSeconds>
-                    <connectors>
-                        <connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
-                            <!-- TCP port of the WAR app on jetty:run -->
-                            <port>8080</port>
-                            <maxIdleTime>60000</maxIdleTime>
-                        </connector>
-                    </connectors>
                 </configuration>
             </plugin>
         </plugins>

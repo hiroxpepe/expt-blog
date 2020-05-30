@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
     <modelVersion>4.0.0</modelVersion>
+
     <groupId>org.examproject</groupId>
     <artifactId>exmp-blog-model</artifactId>
     <packaging>jar</packaging>
@@ -13,8 +12,9 @@
     <properties>
         <exmp-blog.version>${version}</exmp-blog.version>
         <spring.data.jpa.version>2.1.9.RELEASE</spring.data.jpa.version>
-        <spring.version>5.1.8.RELEASE</spring.version>
-        <hibernate.version>3.6.0.Final</hibernate.version>
+        <spring.version>5.2.6.RELEASE</spring.version>
+        <!--<hibernate.version>3.6.0.Final</hibernate.version>-->
+        <hibernate.version>5.4.3.Final</hibernate.version>
         <slf4j.version>1.7.26</slf4j.version>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
