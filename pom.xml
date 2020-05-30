@@ -4,10 +4,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.examproject</groupId>
-    <artifactId>exmpblog</artifactId>
+    <artifactId>exmp-blog</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.0</version>
-    <name>exmpblog</name>
+    <version>1.0.1</version>
+    <name>exmp-blog</name>
 
     <properties>
         <exmpblog.version>${version}</exmpblog.version>
@@ -16,10 +16,10 @@
     </properties>
 
     <modules>
-      <module>exmp-blog-webapp</module>
-      <module>exmp-blog-mvc</module>
-      <module>exmp-blog-service</module>
-      <module>exmp-blog-model</module>
+      <module>webapp</module>
+      <module>mvc</module>
+      <module>service</module>
+      <module>model</module>
     </modules>
 
     <build>
