@@ -37,28 +37,10 @@
     <!--//////////////////////////////////////////////////////////////////////////////-->
     <!-- Jackson Message Converter configure -->
 
-    <!-- declare the http message converter -->
-<!--    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
-       <property name="messageConverters">
-           <list>
-               <ref bean="jsonConverter"/>
-           </list>
-       </property>
-    </bean>
-
-    <bean id="jsonConverter"
-        class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
-       <property name="supportedMediaTypes" value="application/json"/>
-    </bean>-->
-
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
         <property name="messageConverters">
             <list>
                 <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
-                <bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter"/>
-                <bean class="org.springframework.http.converter.xml.SourceHttpMessageConverter"/>
-                <bean class="org.springframework.http.converter.FormHttpMessageConverter"/>
-                <bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
             </list>
         </property>
     </bean>

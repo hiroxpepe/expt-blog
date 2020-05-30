@@ -16,7 +16,6 @@ package org.examproject.blog.response;
 
 import java.util.List;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import org.examproject.blog.model.EntryModel;
@@ -25,14 +24,10 @@ import org.examproject.blog.model.EntryModel;
  * @author hiroxpepe
  */
 @Data
-@AllArgsConstructor
 public class EntryResponse {
 
-    List<EntryModel> entryModelList;// = null;
+    List<EntryModel> entryModelList = null;
 
-    Boolean isError;// = false;
+    Boolean isError = false;
 
 }
-//) {
-//    def this() = this(null, false)
-//}

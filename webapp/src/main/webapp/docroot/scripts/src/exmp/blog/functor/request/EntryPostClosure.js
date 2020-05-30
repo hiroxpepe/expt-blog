@@ -43,7 +43,7 @@ exmp.blog.functor.request.EntryPostClosure = {
         
         // create an ajax object.
         new $.ajax({
-            url: "post.html",
+            url: "post.json",
             type: "POST",
             data: obj,
             dataType: "json",

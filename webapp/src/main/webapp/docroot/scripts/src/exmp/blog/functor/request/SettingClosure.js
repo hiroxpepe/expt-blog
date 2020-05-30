@@ -39,7 +39,7 @@ exmp.blog.functor.request.SettingClosure = {
         
         // create an ajax object.
         new $.ajax({
-            url: "setting.html",
+            url: "setting.json",
             type: "POST",
             data: obj,
             dataType: "json",

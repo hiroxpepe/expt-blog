@@ -16,13 +16,11 @@ package org.examproject.blog.controller;
 
 import javax.inject.Inject;
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import lombok.val;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.dozer.Mapper;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -31,9 +29,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import org.examproject.blog.dto.EntryDto;
 import org.examproject.blog.form.EntryForm;
-import org.examproject.blog.service.EntryService;
 import org.examproject.blog.response.EntryResponse;
 
 /**
@@ -49,27 +45,18 @@ public class SettingController {
     @Inject
     private ApplicationContext context = null;
 
-    @Inject
-    private HttpServletRequest request = null;
-
-    @Inject
-    private Mapper mapper = null;
-
-    @Inject
-    private EntryService entryService = null;
-
     ///////////////////////////////////////////////////////////////////////////
     // public methods
 
     ///////////////////////////////////////////////////////////////////////////
     /**
      * store the configuration data to the cookie.
-     * expected Ajax HTTP request is '/entry/setting.html'
+     * expected Ajax HTTP request is '/entry/setting.json'
      */
     @RequestMapping(
-        value="/entry/setting.html",
+        value="/entry/setting.json",
         method=RequestMethod.POST,
-        headers="Accept=application/json"
+        produces="application/json"
     )
     public String doSetting(
         @RequestBody

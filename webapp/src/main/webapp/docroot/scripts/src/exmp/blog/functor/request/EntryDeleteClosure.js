@@ -44,7 +44,7 @@ exmp.blog.functor.request.EntryDeleteClosure = {
         
         // create an ajax object.
         new $.ajax({
-            url: "delete.html",
+            url: "delete.json",
             type: "POST",
             data: {
                 code: obj.code

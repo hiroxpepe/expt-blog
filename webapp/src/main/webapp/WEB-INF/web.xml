@@ -2,13 +2,11 @@
 <web-app  version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 
-    <display-name>exmpblog</display-name>
+    <display-name>exmp-blog</display-name>
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>
-            /WEB-INF/spring/app-config.xml
-        </param-value>
+        <param-value>/WEB-INF/spring/app-config.xml</param-value>
     </context-param>
 
     <listener>
@@ -28,6 +26,7 @@
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>*.html</url-pattern>
+        <url-pattern>*.json</url-pattern>
         <url-pattern>*.rss</url-pattern>
         <url-pattern>*.atom</url-pattern>
     </servlet-mapping>
@@ -51,7 +50,7 @@
         <session-timeout>30</session-timeout>
     </session-config>
 
-    <!-- start with this page (* this is necessary.) -->
+    <!-- start with this page (it's necessary.) -->
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>

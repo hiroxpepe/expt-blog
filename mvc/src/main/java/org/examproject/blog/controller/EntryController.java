@@ -104,12 +104,12 @@ public class EntryController {
     ///////////////////////////////////////////////////////////////////////////
     /**
      * post the entry.
-     * expected Ajax HTTP request is '/entry/post.html'
+     * expected Ajax HTTP request is '/entry/post.json'
      */
     @RequestMapping(
-        value="/entry/post.html",
+        value="/entry/post.json",
         method=RequestMethod.POST,
-        headers="Accept=application/json"
+        produces="application/json"
     )
     @ResponseBody
     public EntryResponse doPost(
@@ -153,12 +153,12 @@ public class EntryController {
     ///////////////////////////////////////////////////////////////////////////
     /**
      * get the entry list.
-     * expected Ajax HTTP request is '/entry/list.html'
+     * expected Ajax HTTP request is '/entry/list.json'
      */
     @RequestMapping(
-        value="/entry/list.html",
+        value="/entry/list.json",
         method=RequestMethod.POST,
-        headers="Accept=application/json"
+        produces="application/json"
     )
     @ResponseBody
     public EntryResponse doList(
@@ -190,12 +190,12 @@ public class EntryController {
     ///////////////////////////////////////////////////////////////////////////
     /**
      * delete the entry.
-     * expected Ajax HTTP request is '/entry/delete.html'
+     * expected Ajax HTTP request is '/entry/delete.json'
      */
     @RequestMapping(
-        value="/entry/delete.html",
+        value="/entry/delete.json",
         method=RequestMethod.POST,
-        headers="Accept=application/json"
+        produces="application/json"
     )
     @ResponseBody
     public EntryResponse doDelete(
