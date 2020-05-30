@@ -34,7 +34,7 @@ import org.examproject.blog.service.FeedService;
 /**
  * the feed controller class of the application.
  *
- * @author hiroxpepe
+ * @author h.adachi
  */
 @Controller
 public class FeedController {

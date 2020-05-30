@@ -22,7 +22,7 @@ import org.examproject.blog.entity.Entry;
 import org.examproject.blog.entity.TagItem;
 
 /**
- * @author hiroxpepe
+ * @author h.adachi
  */
 public interface TagItemRepository extends JpaRepository<TagItem, Long> {
 

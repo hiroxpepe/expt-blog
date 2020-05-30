@@ -21,7 +21,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.examproject.blog.entity.Category;
 
 /**
- * @author hiroxpepe
+ * @author h.adachi
  */
 public interface CategoryRepository extends JpaRepository<Category, Long> {
 

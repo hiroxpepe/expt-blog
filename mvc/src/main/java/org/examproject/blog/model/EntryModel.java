@@ -19,7 +19,7 @@ import java.util.Date;
 import lombok.Data;
 
 /**
- * @author hiroxpepe
+ * @author h.adachi
  */
 @Data
 public class EntryModel {

@@ -18,7 +18,7 @@
  * display an icon image when an ajax http request of
  * to get the entry list is waiting.
  * 
- * @author hiroxpepe
+ * @author h.adachi
  */
 exmp.blog.functor.dhtml.ListWaitingClosure = {
     

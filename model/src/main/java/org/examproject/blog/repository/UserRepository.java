@@ -22,7 +22,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.examproject.blog.entity.User;
 
 /**
- * @author hiroxpepe
+ * @author h.adachi
  */
 public interface UserRepository extends JpaRepository<User, Long> {
 

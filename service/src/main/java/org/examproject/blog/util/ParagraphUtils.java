@@ -30,7 +30,7 @@ import org.examproject.blog.entity.Paragraph;
 import org.examproject.blog.repository.ParagraphRepository;
 
 /**
- * @author hiroxpepe
+ * @author h.adachi
  */
 @Component
 public class ParagraphUtils {

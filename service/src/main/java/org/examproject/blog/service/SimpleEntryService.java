@@ -25,7 +25,7 @@ import org.apache.commons.collections.Transformer;
 import org.examproject.blog.dto.EntryDto;
 
 /**
- * @author hiroxpepe
+ * @author h.adachi
  */
 @AllArgsConstructor
 public class SimpleEntryService implements EntryService {

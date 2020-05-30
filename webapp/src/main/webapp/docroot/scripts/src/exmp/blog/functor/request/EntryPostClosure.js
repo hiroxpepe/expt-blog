@@ -17,7 +17,7 @@
  * a functor class of the application.
  * send HTTP request for the entry post.
  * 
- * @author hiroxpepe
+ * @author h.adachi
  */
 exmp.blog.functor.request.EntryPostClosure = {
     

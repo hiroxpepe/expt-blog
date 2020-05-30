@@ -16,7 +16,7 @@
 /**
  * an entry class of the application.
  * 
- * @author hiroxpepe
+ * @author h.adachi
  */
 exmp.blog.core.Application = function(sender) {
     $(document).ready(function() {

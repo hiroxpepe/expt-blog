@@ -22,7 +22,7 @@ import org.examproject.blog.entity.Entry;
 import org.examproject.blog.entity.User;
 
 /**
- * @author hiroxpepe
+ * @author h.adachi
  */
 public interface EntryRepository extends JpaRepository<Entry, Long> {
 

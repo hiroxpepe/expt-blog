@@ -17,7 +17,7 @@
  * a functor class of the application.
  * update the HTML table of the entry list.
  * 
- * @author hiroxpepe
+ * @author h.adachi
  */
 exmp.blog.functor.dhtml.EntryListUpdateClosure = {
     

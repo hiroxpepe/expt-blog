@@ -17,7 +17,7 @@
  * a functor class of the application.
  * display a message to div when the command is error.
  * 
- * @author hiroxpepe
+ * @author h.adachi
  */
 exmp.blog.functor.dhtml.ErrorMessageClosure = {
     

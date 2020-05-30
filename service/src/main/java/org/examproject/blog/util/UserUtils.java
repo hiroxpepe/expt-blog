@@ -28,7 +28,7 @@ import org.examproject.blog.repository.GroupRepository;
 import org.examproject.blog.repository.UserRepository;
 
 /**
- * @author hiroxpepe
+ * @author h.adachi
  */
 @Component
 public class UserUtils {

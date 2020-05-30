@@ -18,7 +18,7 @@ import java.util.Random;
 import org.apache.commons.lang.StringUtils;
 
 /**
- * @author hiroxpepe
+ * @author h.adachi
  */
 public class GeneralUtils {
 

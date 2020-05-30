@@ -5,5 +5,6 @@ target
 .project
 .classpath
 .factorypath
+.vscode
 nbactions.xml
 *.code-workspace

@@ -21,7 +21,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.examproject.blog.entity.Group;
 
 /**
- * @author hiroxpepe
+ * @author h.adachi
  */
 public interface GroupRepository extends JpaRepository<Group, Long> {
 }

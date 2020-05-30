@@ -22,7 +22,7 @@ import org.examproject.blog.entity.Entry;
 import org.examproject.blog.entity.Paragraph;
 
 /**
- * @author hiroxpepe
+ * @author h.adachi
  */
 public interface ParagraphRepository extends JpaRepository<Paragraph, Long> {
 

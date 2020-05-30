@@ -42,7 +42,7 @@ import org.examproject.blog.response.EntryResponse;
 /**
  * the entry controller class of the application.
  *
- * @author hiroxpepe
+ * @author h.adachi
  */
 @Controller
 public class EntryController {

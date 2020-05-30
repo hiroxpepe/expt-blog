@@ -33,7 +33,7 @@ import org.examproject.blog.service.EntryService;
 /**
  * the entry permalink controller class of the application.
  *
- * @author hiroxpepe
+ * @author h.adachi
  */
 @Controller
 public class PermalinkController {

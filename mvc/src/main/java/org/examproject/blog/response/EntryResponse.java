@@ -21,7 +21,7 @@ import lombok.Data;
 import org.examproject.blog.model.EntryModel;
 
 /**
- * @author hiroxpepe
+ * @author h.adachi
  */
 @Data
 public class EntryResponse {

@@ -32,7 +32,7 @@ import org.examproject.blog.repository.CategoryItemRepository;
 
 
 /**
- * @author hiroxpepe
+ * @author h.adachi
  */
 @Component
 public class CategoryUtils {

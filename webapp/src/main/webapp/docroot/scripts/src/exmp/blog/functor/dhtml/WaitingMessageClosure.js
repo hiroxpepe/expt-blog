@@ -17,7 +17,7 @@
  * a functor class of the application.
  * display a message to div when an ajax http request command waiting.
  * 
- * @author hiroxpepe
+ * @author h.adachi
  */
 exmp.blog.functor.dhtml.WaitingMessageClosure = {
     

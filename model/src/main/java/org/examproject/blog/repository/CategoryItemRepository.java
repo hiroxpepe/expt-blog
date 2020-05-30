@@ -23,7 +23,7 @@ import org.examproject.blog.entity.CategoryItem;
 import org.examproject.blog.entity.Subject;
 
 /**
- * @author hiroxpepe
+ * @author h.adachi
  */
 public interface CategoryItemRepository extends JpaRepository<CategoryItem, Long> {
 

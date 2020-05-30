@@ -30,7 +30,7 @@ import org.examproject.blog.repository.EntryRepository;
 import org.examproject.blog.repository.InterestRepository;
 
 /**
- * @author hiroxpepe
+ * @author h.adachi
  */
 @Component
 public class InteresUtils {

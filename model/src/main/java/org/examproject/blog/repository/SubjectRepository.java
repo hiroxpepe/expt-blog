@@ -21,7 +21,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.examproject.blog.entity.Subject;
 
 /**
- * @author hiroxpepe
+ * @author h.adachi
  */
 public interface SubjectRepository extends JpaRepository<Subject, Long> {
 

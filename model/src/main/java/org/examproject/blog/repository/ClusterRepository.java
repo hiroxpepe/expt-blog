@@ -21,7 +21,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.examproject.blog.entity.Cluster;
 
 /**
- * @author hiroxpepe
+ * @author h.adachi
  */
 public interface ClusterRepository extends JpaRepository<Cluster, Long> {
 }

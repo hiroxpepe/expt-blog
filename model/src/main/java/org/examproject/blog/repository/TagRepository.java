@@ -21,7 +21,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.examproject.blog.entity.Tag;
 
 /**
- * @author hiroxpepe
+ * @author h.adachi
  */
 public interface TagRepository extends JpaRepository<Tag, Long> {
 

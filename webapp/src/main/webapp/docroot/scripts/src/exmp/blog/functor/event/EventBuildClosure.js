@@ -17,7 +17,7 @@
  * a functor class of the application.
  * build the event handler.
  * 
- * @author hiroxpepe
+ * @author h.adachi
  */
 exmp.blog.functor.event.EventBuildClosure = {
     

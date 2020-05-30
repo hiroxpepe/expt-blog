@@ -17,7 +17,7 @@
  * a functor class of the application.
  * send HTTP request for the entry delete.
  * 
- * @author hiroxpepe
+ * @author h.adachi
  */
 exmp.blog.functor.request.EntryDeleteClosure = {
     

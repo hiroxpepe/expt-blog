@@ -29,7 +29,7 @@ import org.examproject.blog.repository.EntryRepository;
 import org.examproject.blog.util.EntryUtils;
 
 /**
- * @author hiroxpepe
+ * @author h.adachi
  */
 public class CodeToEntryTransformer implements Transformer {
 

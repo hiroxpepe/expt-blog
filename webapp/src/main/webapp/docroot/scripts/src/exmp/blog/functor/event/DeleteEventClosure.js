@@ -17,7 +17,7 @@
  * a functor class of the application.
  * set the event handler of entry delete action.
  * 
- * @author hiroxpepe
+ * @author h.adachi
  */
 exmp.blog.functor.event.DeleteEventClosure = {
     

@@ -23,7 +23,7 @@ import org.apache.commons.collections.Factory;
 import org.examproject.blog.dto.EntryDto;
 
 /**
- * @author hiroxpepe
+ * @author h.adachi
  */
 @AllArgsConstructor
 public class SimpleFeedService implements FeedService {

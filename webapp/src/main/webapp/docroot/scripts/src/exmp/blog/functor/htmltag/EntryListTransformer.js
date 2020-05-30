@@ -18,7 +18,7 @@
  * this class is a transformer that JSON data get by
  * Ajax HTTP requests and convert to HTML tables.
  * 
- * @author hiroxpepe
+ * @author h.adachi
  */
 exmp.blog.functor.htmltag.EntryListTransformer = {
     

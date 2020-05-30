@@ -31,7 +31,7 @@ import org.examproject.blog.repository.CategoryItemRepository;
 import org.examproject.blog.repository.SubjectRepository;
 
 /**
- * @author hiroxpepe
+ * @author h.adachi
  */
 @Component
 public class SubjectUtils {

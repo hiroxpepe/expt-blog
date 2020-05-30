@@ -23,7 +23,7 @@ import org.examproject.blog.entity.Interest;
 import org.examproject.blog.entity.User;
 
 /**
- * @author hiroxpepe
+ * @author h.adachi
  */
 public interface InterestRepository extends JpaRepository<Interest, Long> {
 

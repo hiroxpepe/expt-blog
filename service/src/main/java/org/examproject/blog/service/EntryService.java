@@ -20,7 +20,7 @@ import java.util.List;
 import org.examproject.blog.dto.EntryDto;
 
 /**
- * @author hiroxpepe
+ * @author h.adachi
  */
 public interface EntryService {
 

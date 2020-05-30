@@ -17,7 +17,7 @@
  * a functor class of the application.
  * update the html of the profile.
  * 
- * @author hiroxpepe
+ * @author h.adachi
  */
 exmp.blog.functor.dhtml.ProfileUpdateClosure  = {
     

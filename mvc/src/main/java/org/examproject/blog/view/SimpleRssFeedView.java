@@ -36,7 +36,7 @@ import org.examproject.blog.model.FeedModel;
 
 /**
  * the rss feed view class of the application.
- * @author hiroxpepe
+ * @author h.adachi
  */
 public class SimpleRssFeedView extends AbstractRssFeedView {
 

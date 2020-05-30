@@ -5,7 +5,7 @@ import org.junit.*;
 import static org.junit.Assert.*;
 
 /**
- * @author hiroxpepe
+ * @author h.adachi
  */
 public class GeneralUtilsTest {
     

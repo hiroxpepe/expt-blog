@@ -25,7 +25,7 @@ import org.examproject.blog.dto.EntryDto;
 import org.examproject.blog.util.EntryUtils;
 
 /**
- * @author hiroxpepe
+ * @author h.adachi
  */
 public class DeleteEntryClosure implements Closure {
 

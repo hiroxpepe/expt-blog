@@ -38,7 +38,7 @@ import org.examproject.blog.model.FeedModel;
 
 /**
  * the atom feed view class of the application.
- * @author hiroxpepe
+ * @author h.adachi
  */
 public class SimpleAtomFeedView extends AbstractAtomFeedView {
 

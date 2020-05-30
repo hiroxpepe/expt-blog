@@ -33,7 +33,7 @@ import org.examproject.blog.repository.TagRepository;
 import org.examproject.blog.repository.TagItemRepository;
 
 /**
- * @author hiroxpepe
+ * @author h.adachi
  */
 @Component
 public class TagUtils {

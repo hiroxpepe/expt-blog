@@ -31,7 +31,7 @@ import org.examproject.blog.repository.ParagraphRepository;
 import org.examproject.blog.repository.TagItemRepository;
 
 /**
- * @author hiroxpepe
+ * @author h.adachi
  */
 @Component
 public class EntryUtils {

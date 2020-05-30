@@ -29,7 +29,7 @@ import org.examproject.blog.util.EntryUtils;
 import org.examproject.blog.util.GeneralUtils;
 
 /**
- * @author hiroxpepe
+ * @author h.adachi
  */
 public class SaveEntryClosure implements Closure {
 

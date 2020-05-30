@@ -18,7 +18,7 @@
  * get the value from the HTML form and 
  * create a JSON object for HTTP POST.
  * 
- * @author hiroxpepe
+ * @author h.adachi
  */
 exmp.blog.functor.value.EntryFactory = {
     
