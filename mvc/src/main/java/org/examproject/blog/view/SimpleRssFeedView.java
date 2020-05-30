@@ -20,10 +20,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//import com.sun.syndication.feed.rss.Channel;
-//import com.sun.syndication.feed.rss.Content;
-//import com.sun.syndication.feed.rss.Item;
-
 import com.rometools.rome.feed.rss.Channel;
 import com.rometools.rome.feed.rss.Content;
 import com.rometools.rome.feed.rss.Item;
@@ -49,8 +45,8 @@ public class SimpleRssFeedView extends AbstractRssFeedView {
         HttpServletRequest request
     ) {
         // set the status.
-        feed.setTitle("exmpblog");
-        feed.setDescription("examproject.org - exmpblog");
+        feed.setTitle("exmp-blog");
+        feed.setDescription("examproject.org - exmp-blog");
         feed.setLink("http://examproject.org");
 
         super.buildFeedMetadata(

@@ -20,11 +20,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//import com.sun.syndication.feed.atom.Content;
-//import com.sun.syndication.feed.atom.Entry;
-//import com.sun.syndication.feed.atom.Feed;
-//import com.sun.syndication.feed.atom.Link;
-
 import com.rometools.rome.feed.atom.Content;
 import com.rometools.rome.feed.atom.Entry;
 import com.rometools.rome.feed.atom.Feed;
@@ -51,9 +46,9 @@ public class SimpleAtomFeedView extends AbstractAtomFeedView {
         HttpServletRequest request
     ) {
         // set the status.
-        feed.setTitle("exmpblog");
+        feed.setTitle("exmp-blog");
         Content description = new Content();
-        description.setValue("examproject.org - exmpblog");
+        description.setValue("examproject.org - exmp-blog");
         feed.setSubtitle(description);
         List<Link> links = new ArrayList<>();
         Link link = new Link();

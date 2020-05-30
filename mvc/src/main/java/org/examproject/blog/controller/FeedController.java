@@ -53,7 +53,6 @@ public class FeedController {
     ///////////////////////////////////////////////////////////////////////////
     // public methods
 
-    ///////////////////////////////////////////////////////////////////////////
     /**
      * rss feed request.
      * expected HTTP request is '/entry/feed.rss'
@@ -84,7 +83,6 @@ public class FeedController {
         return mv;
     }
 
-    ///////////////////////////////////////////////////////////////////////////
     /**
      * atom feed request.
      * expected HTTP request is '/entry/feed.atom'

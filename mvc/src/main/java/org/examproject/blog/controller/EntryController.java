@@ -64,7 +64,6 @@ public class EntryController {
     ///////////////////////////////////////////////////////////////////////////
     // public methods
 
-    ///////////////////////////////////////////////////////////////////////////
     /**
      * entry form request.
      * expected HTTP request is '/entry/form.html'
@@ -101,7 +100,6 @@ public class EntryController {
         );
     }
 
-    ///////////////////////////////////////////////////////////////////////////
     /**
      * post the entry.
      * expected Ajax HTTP request is '/entry/post.json'
@@ -150,7 +148,6 @@ public class EntryController {
         return response;
     }
 
-    ///////////////////////////////////////////////////////////////////////////
     /**
      * get the entry list.
      * expected Ajax HTTP request is '/entry/list.json'
@@ -187,7 +184,6 @@ public class EntryController {
         return response;
     }
 
-    ///////////////////////////////////////////////////////////////////////////
     /**
      * delete the entry.
      * expected Ajax HTTP request is '/entry/delete.json'
@@ -228,7 +224,6 @@ public class EntryController {
         return response;
     }
 
-    ///////////////////////////////////////////////////////////////////////////
     /**
      * if an error is occured, this method will be called.
      */
@@ -251,7 +246,6 @@ public class EntryController {
     ///////////////////////////////////////////////////////////////////////////
     // private methods
 
-    ///////////////////////////////////////////////////////////////////////////
     /**
      * get the dto-object of the entry using the form-object.
      */
@@ -272,7 +266,6 @@ public class EntryController {
         return entryDto;
     }
 
-    ///////////////////////////////////////////////////////////////////////////
     /**
      * post the dto-object of the entry using the service-object.
      */
@@ -287,7 +280,6 @@ public class EntryController {
         );
     }
 
-    ///////////////////////////////////////////////////////////////////////////
     /**
      * get the list of dto-obgect from the service-object.
      */
@@ -300,7 +292,6 @@ public class EntryController {
         return entryList;
     }
 
-    ///////////////////////////////////////////////////////////////////////////
     /**
      * add to the response-object.
      */
