@@ -34,8 +34,6 @@ public class EntryForm {
 
     String password;
 
-    String author;
-
     String email;
 
     String title;
@@ -45,8 +43,6 @@ public class EntryForm {
     String tags;
 
     String category;
-
-    String subject;
 
     String code;
 

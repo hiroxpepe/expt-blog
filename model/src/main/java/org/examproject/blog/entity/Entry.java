@@ -60,20 +60,11 @@ public class Entry implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     Date updated;
 
-    @Column(name="author", length=16)
-    String author;
-
-    // @OneToMany(mappedBy="entry", fetch=FetchType.EAGER)
-    // Set<Paragraph> paragraphSet = new HashSet<Paragraph>();
+    @Column(name="title", length=25)
+    String title;
 
     @Column(name="content", length=140)
     String content;
-
-    // @OneToMany(mappedBy="entry", fetch=FetchType.EAGER)
-    // Set<CategoryItem> categoryItemSet = new HashSet<CategoryItem>();
-
-    @OneToMany(mappedBy="entry", fetch=FetchType.EAGER)
-    Set<TagItem> tagItemSet = new HashSet<TagItem>();
 
     @ManyToOne
     Category category;
@@ -81,10 +72,7 @@ public class Entry implements Serializable {
     @ManyToOne
     User user;
 
-    // @ManyToOne
-    // Subject subject;
-
-    @Column(name="title", length=25)
-    String title;
-
+    @OneToMany(mappedBy="entry", fetch=FetchType.EAGER)
+    Set<TagItem> tagItemSet = new HashSet<TagItem>();
+    
 }

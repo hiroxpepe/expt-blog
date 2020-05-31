@@ -32,15 +32,11 @@ public class EntryModel {
 
     String username;
 
-    String author;
-
     String email;
 
     String tags;
 
     String category;
-
-    String subject;
 
     String code;
 

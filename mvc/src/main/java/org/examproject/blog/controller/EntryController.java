@@ -77,13 +77,14 @@ public class EntryController {
         String username,
         @CookieValue(value="__exmp_blog_password", defaultValue="")
         String password,
-        @CookieValue(value="__exmp_blog_author", defaultValue="")
-        String author,
         @CookieValue(value="__exmp_blog_email", defaultValue="")
         String email,
         Model model
     ) {
         LOG.info("called");
+        LOG.info("username:" + username);
+        LOG.info("password:" + password);
+        LOG.info("email:" + email);
 
         // create a form-object.
         EntryForm entryForm = context.getBean(EntryForm.class);
@@ -91,7 +92,6 @@ public class EntryController {
         // set the cookie value to the form-object.
         entryForm.setUsername(username);
         entryForm.setPassword(password);
-        entryForm.setAuthor(author);
         entryForm.setEmail(email);
 
         // set the form-object to the model.

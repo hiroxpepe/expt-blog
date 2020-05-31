@@ -136,7 +136,7 @@ exmp.blog.core.Controller = window; {
     
     /**
      * initializes a category select of form.
-     * TODO: a HTTP request of Ajax for get the data.. ? 
+     * FIXME: a HTTP request of Ajax for get the data.. ? 
      */
     exmp.blog.core.Controller._initializeCategorySelect = function() {
         $("#entry-category").append($('<option value="General">General</option>'));

@@ -37,9 +37,6 @@ exmp.blog.functor.event.EditEventClosure = {
             $("#entry-content").val(
                 $("#entry-content-" + obj.code).text()
             );
-            $("#entry-subject").val(
-                $("#entry-subject-" + obj.code).val()
-            );
             $("#entry-category").val(
                 $("#entry-category-" + obj.code).val()
             );

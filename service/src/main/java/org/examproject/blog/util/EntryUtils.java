@@ -136,7 +136,6 @@ public class EntryUtils {
             entryDto.setUsername(entry.getUser().getUsername());
             entryDto.setPassword(entry.getUser().getPassword());
             entryDto.setEmail(entry.getUser().getEmail());
-            entryDto.setAuthor(entry.getAuthor());
             entryDto.setTitle(entry.getTitle());
             entryDto.setContent(entry.getContent());
             entryDto.setCategory(entry.getCategory().getText());
@@ -159,7 +158,6 @@ public class EntryUtils {
         try {
             // map the dto value to the entity.
             entry.setUser(userUtils.getUser(entryDto));
-            entry.setAuthor(entryDto.getAuthor());
             entry.setContent(entryDto.getContent());
             entry.setCategory(categoryUtils.getCategory(entryDto));
             entry.setTagItemSet(tagUtils.getTagItemSet(entryDto, entry));

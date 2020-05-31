@@ -49,6 +49,20 @@
                 />
             </td>
         </tr>
+        <tr>
+            <td class="label-td">
+                <label for="entry_category">
+                    <fmt:message key="entry.form.category" />
+                </label>
+            </td>
+            <td class="input-td">
+                <form:select
+                    id="entry-category"
+                    path="category"
+                    items="${categoryList}"
+                />
+            </td>
+        </tr>
     </table>
     <div class="entry-command-block">
         <input

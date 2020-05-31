@@ -7,7 +7,6 @@
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <non-jta-data-source/>
         <class>org.examproject.blog.entity.Category</class>
-        <class>org.examproject.blog.entity.CategoryItem</class>
         <class>org.examproject.blog.entity.Entry</class>
         <class>org.examproject.blog.entity.Tag</class>
         <class>org.examproject.blog.entity.TagItem</class>
