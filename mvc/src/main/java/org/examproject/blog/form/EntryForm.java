@@ -32,7 +32,7 @@ public class EntryForm {
 
     String username;
 
-    String password;
+    String password; // FIXME: protect it with security.
 
     String email;
 

@@ -49,6 +49,6 @@ public class Tag implements Serializable {
     String text;
 
     @OneToMany(mappedBy="tag", fetch=FetchType.EAGER)
-    Set<TagItem> tagItemSet = new HashSet<TagItem>();
+    Set<EntryTag> entrySet = new HashSet<EntryTag>();
 
 }

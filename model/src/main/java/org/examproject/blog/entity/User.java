@@ -57,7 +57,7 @@ public class User implements Serializable {
     @Column(name="enable")
     Boolean enable = true;
 
-    @OneToMany(mappedBy="user", fetch=FetchType.EAGER)
-    Set<Entry> entrySet = new HashSet<Entry>();
+    // @OneToMany(mappedBy="user", fetch=FetchType.EAGER)
+    // Set<Entry> entrySet = new HashSet<Entry>();
 
 }

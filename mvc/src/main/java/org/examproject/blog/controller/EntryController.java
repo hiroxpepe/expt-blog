@@ -101,6 +101,56 @@ public class EntryController {
     }
 
     /**
+     * get the entry list.
+     * expected Ajax HTTP request is '/entry/list.json' and always called in initialized.
+     */
+    @RequestMapping(
+        value="/entry/list.json",
+        method=RequestMethod.POST,
+        produces="application/json"
+    )
+    @ResponseBody
+    public EntryResponse doList(
+        @RequestBody
+        EntryForm entryForm,
+        Model model
+    ) {
+        LOG.info("called");
+
+        // the response-object will be returned to the html page.
+
+        // create a response-object.
+        EntryResponse response = context.getBean(EntryResponse.class);
+
+        // get the mapped dto-object using the form-object data.
+        List<EntryDto> entryDtoList = getEntryDtoList();
+
+        // FIXME:
+        // if (entryDtoList.isEmpty()) {
+        //     LOG.warn("entryDtoList.isEmpty");
+        //     EntryDto entryDto = context.getBean(EntryDto.class);
+        //     entryDto.setUsername("anonymous");
+        //     entryDto.setPassword("anonymous");
+        //     entryDto.setEmail("expample@email.com");
+        //     entryDto.setTitle("Test title.");
+        //     entryDto.setContent("Test content.");
+        //     entryDto.setTags("C# Java Kotlin");
+        //     entryDto.setCategory("Music");
+        //     entryDtoList.add(entryDto);
+        // }
+
+        // add to the response-object.
+        addToResponse(
+            entryDtoList,
+            response
+        );
+
+        // return the response-object to html page.
+        // this will be converted into json.
+        return response;
+    }
+
+    /**
      * post the entry.
      * expected Ajax HTTP request is '/entry/post.json'
      */
@@ -135,42 +185,6 @@ public class EntryController {
         );
 
         // get the list of dto-object from the service-object.
-        List<EntryDto> entryDtoList = getEntryDtoList();
-
-        // add to the response-object.
-        addToResponse(
-            entryDtoList,
-            response
-        );
-
-        // return the response-object to html page.
-        // this will be converted into json.
-        return response;
-    }
-
-    /**
-     * get the entry list.
-     * expected Ajax HTTP request is '/entry/list.json'
-     */
-    @RequestMapping(
-        value="/entry/list.json",
-        method=RequestMethod.POST,
-        produces="application/json"
-    )
-    @ResponseBody
-    public EntryResponse doList(
-        @RequestBody
-        EntryForm entryForm,
-        Model model
-    ) {
-        LOG.info("called");
-
-        // the response-object will be returned to the html page.
-
-        // create a response-object.
-        EntryResponse response = context.getBean(EntryResponse.class);
-
-        // get the mapped dto-object using the form-object data.
         List<EntryDto> entryDtoList = getEntryDtoList();
 
         // add to the response-object.

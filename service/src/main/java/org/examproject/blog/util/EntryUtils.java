@@ -25,10 +25,8 @@ import org.springframework.stereotype.Component;
 import org.examproject.blog.dto.EntryDto;
 import org.examproject.blog.entity.Category;
 import org.examproject.blog.entity.Entry;
-import org.examproject.blog.entity.TagItem;
 import org.examproject.blog.repository.CategoryRepository;
 import org.examproject.blog.repository.EntryRepository;
-import org.examproject.blog.repository.TagItemRepository;
 
 /**
  * @author h.adachi
@@ -46,9 +44,6 @@ public class EntryUtils {
 
     @Inject
     private final CategoryRepository categoryRepository = null;
-
-    @Inject
-    private final TagItemRepository tagItemRepository = null;
 
     @Inject
     private final CategoryUtils categoryUtils = null;
@@ -92,30 +87,31 @@ public class EntryUtils {
     ) {
         try {
             if (entry.getId() == null) {
-                entryRepository.save(entry);
+                entryRepository.save(entry); // ここまで来た id: null
+                LOG.debug("entryRepository.save(entry)");
 //                Set<CategoryItem> categoryItemSet = entry.getCategoryItemSet();
 //                for (CategoryItem categoryItem : categoryItemSet) {
 //                    categoryRepository.save(categoryItem);
 //                }
 
-                Category category = context.getBean(Category.class);
-                category.setText(entry.getCategory().getText()); // ?
-                categoryRepository.save(category);
+//                Category category = context.getBean(Category.class);
+//                category.setText(entry.getCategory().getText()); // ?
+//                categoryRepository.save(category);
 
-                Set<TagItem> tagItemSet = entry.getTagItemSet();
-                for (TagItem tagItem : tagItemSet) {
-                    tagItemRepository.save(tagItem);
-                }
+//                Set<TagItem> tagItemSet = entry.getTagItemSet();
+//                for (TagItem tagItem : tagItemSet) {
+//                    tagItemRepository.save(tagItem);
+//                }
             }
             else if (entry.getId() != null) {
 //                Set<CategoryItem> categoryItemSet = entry.getCategoryItemSet();
 //                for (CategoryItem categoryItem : categoryItemSet) {
 //                    categoryRepository.save(categoryItem);
 //                }
-                Set<TagItem> tagItemSet = entry.getTagItemSet();
-                for (TagItem tagItem : tagItemSet) {
-                    tagItemRepository.save(tagItem);
-                }
+//                Set<TagItem> tagItemSet = entry.getTagItemSet();
+//                for (TagItem tagItem : tagItemSet) {
+//                    tagItemRepository.save(tagItem);
+//                }
                 entryRepository.save(entry);
             }
         } catch (Exception e) {
@@ -160,7 +156,7 @@ public class EntryUtils {
             entry.setUser(userUtils.getUser(entryDto));
             entry.setContent(entryDto.getContent());
             entry.setCategory(categoryUtils.getCategory(entryDto));
-            entry.setTagItemSet(tagUtils.getTagItemSet(entryDto, entry));
+            //entry.setTagSet(tagUtils.getTagSet(entryDto));
             entry.setCreated(entryDto.getCreated());
             entry.setUpdated(entryDto.getCreated());
             entry.setCode(entryDto.getCode());
@@ -185,13 +181,13 @@ public class EntryUtils {
 //            for (CategoryItem categoryItem : categoryItemSet) {
 //                categoryRepository.delete(categoryItem);
 //            }
-            // FIXME: 紐づけが外れたカテゴリーは削除されない
+            // FIXME: 紐づけが外れたカテゴリーは削除されない?
 
-            // delete the entry's tagitems.
-            Set<TagItem> tagItemSet = entry.getTagItemSet();
-            for (TagItem tagItem : tagItemSet) {
-                tagItemRepository.delete(tagItem);
-            }
+//            // delete the entry's tagitems.
+//            Set<TagItem> tagItemSet = entry.getTagItemSet();
+//            for (TagItem tagItem : tagItemSet) {
+//                tagItemRepository.delete(tagItem);
+//            }
 
             // delete the entry.
             entryRepository.delete(entry);

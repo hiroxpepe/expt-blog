@@ -14,16 +14,15 @@
 
 package org.examproject.blog.entity;
 
-import java.io.Serializable;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.EmbeddedId;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.ToString;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -31,21 +30,24 @@ import org.springframework.stereotype.Component;
  * @author h.adachi
  */
 @Data
+@ToString(exclude={"entry","tag"})
 @Entity
-@Table(name="tag_items")
+@Table(name="entries_tags")
 @Component
 @Scope(value="prototype")
-public class TagItem implements Serializable {
+public class EntryTag {
 
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(unique=true)
-    Long id;
+    @EmbeddedId
+    TagKey id;
 
     @ManyToOne
+    @MapsId("entry_id")
+    @JoinColumn(name="entry_id")
     Entry entry;
 
     @ManyToOne
+    @MapsId("tag_id")
+    @JoinColumn(name="tag_id")
     Tag tag;
 
 }

@@ -28,9 +28,7 @@ import org.springframework.stereotype.Component;
 import org.examproject.blog.dto.EntryDto;
 import org.examproject.blog.entity.Entry;
 import org.examproject.blog.entity.Tag;
-import org.examproject.blog.entity.TagItem;
 import org.examproject.blog.repository.TagRepository;
-import org.examproject.blog.repository.TagItemRepository;
 
 /**
  * @author h.adachi
@@ -46,9 +44,6 @@ public class TagUtils {
     @Inject
     private TagRepository tagRepository = null;
 
-    @Inject
-    private TagItemRepository tagItemRepository = null;
-
     ///////////////////////////////////////////////////////////////////////////
     // public methods
 
@@ -63,62 +58,62 @@ public class TagUtils {
         }
     }
 
-    /**
-     * get the default tag item set.
-     */
-    public Set<TagItem> getDefaultTagItemSet(
-        Entry entry
-    ){
-        try {
-            Tag tag = getDefaultTag();
-            TagItem tagItem = context.getBean(TagItem.class);
-            tagItem.setEntry(entry);
-            tagItem.setTag(tag);
-             Set<TagItem> tagItemSet = new HashSet<>();
-            tagItemSet.add(tagItem);
-            return tagItemSet;
-        } catch (Exception e) {
-            throw new RuntimeException("an error occurred.", e);
-        }
-    }
+//    /**
+//     * get the default tag item set.
+//     */
+//    public Set<TagItem> getDefaultTagItemSet(
+//        Entry entry
+//    ){
+//        try {
+//            Tag tag = getDefaultTag();
+//            TagItem tagItem = context.getBean(TagItem.class);
+//            tagItem.setEntry(entry);
+//            tagItem.setTag(tag);
+//             Set<TagItem> tagSet = new HashSet<>();
+//            tagSet.add(tagItem);
+//            return tagSet;
+//        } catch (Exception e) {
+//            throw new RuntimeException("an error occurred.", e);
+//        }
+//    }
+
+//    /**
+//     * get the tag item set.
+//     */
+//    public Set<TagItem> getTagItemSet(
+//        EntryDto entryDto,
+//        Entry entry
+//    ){
+//        try {
+//            // if the entry is new one.
+//            if (entry.getId() == null) {
+//                // create the tag items for entity.
+//                return getNewTagItemSet(
+//                    entryDto,
+//                    entry
+//                );
+//            }
+//
+//            // if entry is updated.
+//
+//            // delete the tag items of entity.
+//            Set<TagItem> tagSet = entry.getTagItemSet();
+//            for (TagItem tagItem : tagSet) {
+//                tagItemRepository.delete(tagItem);
+//            }
+//
+//            // create the tag items for entity.
+//            return getNewTagItemSet(
+//                entryDto,
+//                entry
+//            );
+//        } catch (Exception e) {
+//            throw new RuntimeException("an error occurred.", e);
+//        }
+//    }
 
     /**
-     * get the tag item set.
-     */
-    public Set<TagItem> getTagItemSet(
-        EntryDto entryDto,
-        Entry entry
-    ){
-        try {
-            // if the entry is new one.
-            if (entry.getId() == null) {
-                // create the tag items for entity.
-                return getNewTagItemSet(
-                    entryDto,
-                    entry
-                );
-            }
-
-            // if entry is updated.
-
-            // delete the tag items of entity.
-            Set<TagItem> tagItemSet = entry.getTagItemSet();
-            for (TagItem tagItem : tagItemSet) {
-                tagItemRepository.delete(tagItem);
-            }
-
-            // create the tag items for entity.
-            return getNewTagItemSet(
-                entryDto,
-                entry
-            );
-        } catch (Exception e) {
-            throw new RuntimeException("an error occurred.", e);
-        }
-    }
-
-    /**
-     * get the tag item set.
+     * get the tags string.
      */
     public String getTagItemString(
         Entry entry
@@ -126,30 +121,25 @@ public class TagUtils {
         try {
             // get the tag items of entity.
             StringBuilder builder = new StringBuilder();
-            Set<TagItem> tagItemSet = entry.getTagItemSet();
-            for (TagItem tagItem : tagItemSet) {
-                Tag tag = tagRepository.getOne(tagItem.getTag().getId());
-                builder.append(tag.getText());
-                builder.append(" ");
-            }
+//            Set<Tag> tagSet = entry.getTagSet();
+//            for (Tag tag : tagSet) {
+//                builder.append(tag.getText());
+//                builder.append(" ");
+//            }
             return builder.toString();
         } catch (Exception e) {
             throw new RuntimeException("an error occurred.", e);
         }
     }
 
-    ///////////////////////////////////////////////////////////////////////////
-    // private methods
-
     /**
-     * get the new tag item set.
+     * get the tag set.
      */
-    private Set<TagItem> getNewTagItemSet(
-        EntryDto entryDto,
-        Entry entry
+    public Set<Tag> getTagSet(
+        EntryDto entryDto
     ){
         try {
-            Set<TagItem> tagItemSet = new HashSet<>();
+            Set<Tag> tagSet = new HashSet<>();
             List<String> tags = Arrays.asList(entryDto.getTags().split(" "));
             for (String tagString : tags) {
                 String lowerTagString = tagString.toLowerCase();
@@ -161,22 +151,57 @@ public class TagUtils {
                     newTag.setText(lowerTagString);
                     tagRepository.save(newTag);
                     LOG.debug("create the new tag.");
-                    TagItem tagItem = context.getBean(TagItem.class);
-                    tagItem.setEntry(entry);
-                    tagItem.setTag(newTag);
-                    tagItemSet.add(tagItem);
+                    tagSet.add(newTag);
                 // if already exist set this.
                 } else {
-                    TagItem tagItem = context.getBean(TagItem.class);
-                    tagItem.setEntry(entry);
-                    tagItem.setTag(tag);
-                    tagItemSet.add(tagItem);
+                    tagSet.add(tag);
                 }
             }
-            return tagItemSet;
+            return tagSet;
         } catch (Exception e) {
             throw new RuntimeException("an error occurred.", e);
         }
     }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // private methods
+
+//    /**
+//     * get the new tag item set.
+//     */
+//    private Set<TagItem> getNewTagItemSet(
+//        EntryDto entryDto,
+//        Entry entry
+//    ){
+//        try {
+//            Set<TagItem> tagSet = new HashSet<>();
+//            List<String> tags = Arrays.asList(entryDto.getTags().split(" "));
+//            for (String tagString : tags) {
+//                String lowerTagString = tagString.toLowerCase();
+//                // confirm the existence.
+//                Tag tag = tagRepository.findByText(lowerTagString);
+//                // create a new tag.
+//                if (tag == null) {
+//                    Tag newTag = context.getBean(Tag.class);
+//                    newTag.setText(lowerTagString);
+//                    tagRepository.save(newTag);
+//                    LOG.debug("create the new tag.");
+//                    TagItem tagItem = context.getBean(TagItem.class);
+//                    tagItem.setEntry(entry);
+//                    tagItem.setTag(newTag);
+//                    tagSet.add(tagItem);
+//                // if already exist set this.
+//                } else {
+//                    TagItem tagItem = context.getBean(TagItem.class);
+//                    tagItem.setEntry(entry);
+//                    tagItem.setTag(tag);
+//                    tagSet.add(tagItem);
+//                }
+//            }
+//            return tagSet;
+//        } catch (Exception e) {
+//            throw new RuntimeException("an error occurred.", e);
+//        }
+//    }
 
 }

@@ -9,7 +9,7 @@
         <class>org.examproject.blog.entity.Category</class>
         <class>org.examproject.blog.entity.Entry</class>
         <class>org.examproject.blog.entity.Tag</class>
-        <class>org.examproject.blog.entity.TagItem</class>
+        <class>org.examproject.blog.entity.EntryTag</class>
         <class>org.examproject.blog.entity.User</class>
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
