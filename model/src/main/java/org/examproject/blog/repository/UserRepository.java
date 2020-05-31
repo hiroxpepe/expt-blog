@@ -15,7 +15,6 @@
 package org.examproject.blog.repository;
 
 import java.lang.Long;
-import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

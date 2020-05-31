@@ -23,11 +23,11 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 import org.examproject.blog.dto.EntryDto;
+import org.examproject.blog.entity.Category;
 import org.examproject.blog.entity.Entry;
-import org.examproject.blog.entity.Paragraph;
 import org.examproject.blog.entity.TagItem;
+import org.examproject.blog.repository.CategoryRepository;
 import org.examproject.blog.repository.EntryRepository;
-import org.examproject.blog.repository.ParagraphRepository;
 import org.examproject.blog.repository.TagItemRepository;
 
 /**
@@ -45,16 +45,13 @@ public class EntryUtils {
     private final EntryRepository entryRepository = null;
 
     @Inject
-    private final ParagraphRepository paragraphRepository = null;
+    private final CategoryRepository categoryRepository = null;
 
     @Inject
     private final TagItemRepository tagItemRepository = null;
 
     @Inject
-    private final ParagraphUtils paragraphUtils = null;
-
-    @Inject
-    private final SubjectUtils subjectUtils = null;
+    private final CategoryUtils categoryUtils = null;
 
     @Inject
     private final TagUtils tagUtils = null;
@@ -78,9 +75,6 @@ public class EntryUtils {
                 LOG.debug("create entry.");
                 return entry;
             } else {
-                //val entry = entryRepository.findOne(
-                //    entryDto.getId()
-                //).asInstanceOf[Entry]
                 Entry entry = entryRepository.getOne(entryDto.getId());
                 LOG.debug("update entry.");
                 return entry;
@@ -99,20 +93,25 @@ public class EntryUtils {
         try {
             if (entry.getId() == null) {
                 entryRepository.save(entry);
-                Set<Paragraph> paragraphSet = entry.getParagraphSet();
-                for (Paragraph paragraph : paragraphSet) {
-                    paragraphRepository.save(paragraph);
-                }
+//                Set<CategoryItem> categoryItemSet = entry.getCategoryItemSet();
+//                for (CategoryItem categoryItem : categoryItemSet) {
+//                    categoryRepository.save(categoryItem);
+//                }
+
+                Category category = context.getBean(Category.class);
+                category.setText(entry.getCategory().getText()); // ?
+                categoryRepository.save(category);
+
                 Set<TagItem> tagItemSet = entry.getTagItemSet();
                 for (TagItem tagItem : tagItemSet) {
                     tagItemRepository.save(tagItem);
                 }
             }
             else if (entry.getId() != null) {
-                Set<Paragraph> paragraphSet = entry.getParagraphSet();
-                for (Paragraph paragraph : paragraphSet) {
-                    paragraphRepository.save(paragraph);
-                }
+//                Set<CategoryItem> categoryItemSet = entry.getCategoryItemSet();
+//                for (CategoryItem categoryItem : categoryItemSet) {
+//                    categoryRepository.save(categoryItem);
+//                }
                 Set<TagItem> tagItemSet = entry.getTagItemSet();
                 for (TagItem tagItem : tagItemSet) {
                     tagItemRepository.save(tagItem);
@@ -138,14 +137,12 @@ public class EntryUtils {
             entryDto.setPassword(entry.getUser().getPassword());
             entryDto.setEmail(entry.getUser().getEmail());
             entryDto.setAuthor(entry.getAuthor());
-            entryDto.setTitle(paragraphUtils.getTitleString(entry));
-            entryDto.setContent(paragraphUtils.getContentString(entry));
-            entryDto.setSubject(entry.getSubject().getText());
-            entryDto.setCategory(subjectUtils.getCategoryString(entry));
+            entryDto.setTitle(entry.getTitle());
+            entryDto.setContent(entry.getContent());
+            entryDto.setCategory(entry.getCategory().getText());
             entryDto.setTags(tagUtils.getTagItemString(entry));
             entryDto.setCreated(entry.getCreated());
             entryDto.setCode(entry.getCode());
-
             return entryDto;
         } catch (Exception e) {
             throw new RuntimeException("an error occurred.", e);
@@ -161,13 +158,15 @@ public class EntryUtils {
     ){
         try {
             // map the dto value to the entity.
+            entry.setUser(userUtils.getUser(entryDto));
             entry.setAuthor(entryDto.getAuthor());
-            entry.setParagraphSet(paragraphUtils.getParagraphSet(entryDto, entry));
+            entry.setContent(entryDto.getContent());
+            entry.setCategory(categoryUtils.getCategory(entryDto));
             entry.setTagItemSet(tagUtils.getTagItemSet(entryDto, entry));
             entry.setCreated(entryDto.getCreated());
             entry.setUpdated(entryDto.getCreated());
             entry.setCode(entryDto.getCode());
-            entry.setSubject(subjectUtils.getSubject(entryDto));
+            entry.setTitle(entryDto.getTitle());
             return entry;
         } catch (Exception e) {
             throw new RuntimeException("an error occurred.", e);
@@ -181,28 +180,22 @@ public class EntryUtils {
         EntryDto entryDto
     ) {
         try {
-            // to search the repository for delete.
-            //val entry: Entry = entryRepository.findOne(
-            //    entryDto.getId();
-            //).asInstanceOf[Entry]
             Entry entry = entryRepository.getOne(entryDto.getId());
 
-            // delete the entry's paragraphs.
-            Set<Paragraph> paragraphSet = entry.getParagraphSet();
-            for (Paragraph paragraph : paragraphSet) {
-                //paragraphRepository.delete(paragraph.getId());
-                paragraphRepository.delete(paragraph);
-            }
+//            // delete the entry's categoryitems.
+//            Set<CategoryItem> categoryItemSet = entry.getCategoryItemSet();
+//            for (CategoryItem categoryItem : categoryItemSet) {
+//                categoryRepository.delete(categoryItem);
+//            }
+            // FIXME: 紐づけが外れたカテゴリーは削除されない
 
             // delete the entry's tagitems.
             Set<TagItem> tagItemSet = entry.getTagItemSet();
             for (TagItem tagItem : tagItemSet) {
-                //tagItemRepository.delete(tagItem.getId());
                 tagItemRepository.delete(tagItem);
             }
 
             // delete the entry.
-            //entryRepository.delete(entry.getId());
             entryRepository.delete(entry);
         } catch (Exception e) {
             throw new RuntimeException("an error occurred.", e);

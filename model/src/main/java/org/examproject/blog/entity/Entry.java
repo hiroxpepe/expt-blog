@@ -63,16 +63,28 @@ public class Entry implements Serializable {
     @Column(name="author", length=16)
     String author;
 
-    @OneToMany(mappedBy="entry", fetch=FetchType.EAGER)
-    Set<Paragraph> paragraphSet = new HashSet<Paragraph>();
+    // @OneToMany(mappedBy="entry", fetch=FetchType.EAGER)
+    // Set<Paragraph> paragraphSet = new HashSet<Paragraph>();
+
+    @Column(name="content", length=140)
+    String content;
+
+    // @OneToMany(mappedBy="entry", fetch=FetchType.EAGER)
+    // Set<CategoryItem> categoryItemSet = new HashSet<CategoryItem>();
 
     @OneToMany(mappedBy="entry", fetch=FetchType.EAGER)
     Set<TagItem> tagItemSet = new HashSet<TagItem>();
 
     @ManyToOne
-    User user;
+    Category category;
 
     @ManyToOne
-    Subject subject;
+    User user;
+
+    // @ManyToOne
+    // Subject subject;
+
+    @Column(name="title", length=25)
+    String title;
 
 }

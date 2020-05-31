@@ -92,7 +92,6 @@ public class TagUtils {
         try {
             // if the entry is new one.
             if (entry.getId() == null) {
-
                 // create the tag items for entity.
                 return getNewTagItemSet(
                     entryDto,
@@ -105,7 +104,6 @@ public class TagUtils {
             // delete the tag items of entity.
             Set<TagItem> tagItemSet = entry.getTagItemSet();
             for (TagItem tagItem : tagItemSet) {
-                //tagItemRepository.delete(tagItem.getId());
                 tagItemRepository.delete(tagItem);
             }
 
@@ -130,7 +128,6 @@ public class TagUtils {
             StringBuilder builder = new StringBuilder();
             Set<TagItem> tagItemSet = entry.getTagItemSet();
             for (TagItem tagItem : tagItemSet) {
-                //Tag tag = tagRepository.findOne(tagItem.getTag().getId());
                 Tag tag = tagRepository.getOne(tagItem.getTag().getId());
                 builder.append(tag.getText());
                 builder.append(" ");
@@ -155,10 +152,6 @@ public class TagUtils {
             Set<TagItem> tagItemSet = new HashSet<>();
             List<String> tags = Arrays.asList(entryDto.getTags().split(" "));
             for (String tagString : tags) {
-                // to lowercase.
-                //val lowerTagString = tagString.map(
-                //    c => c.toLower
-                //);
                 String lowerTagString = tagString.toLowerCase();
                 // confirm the existence.
                 Tag tag = tagRepository.findByText(lowerTagString);

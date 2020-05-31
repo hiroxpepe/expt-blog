@@ -51,7 +51,7 @@ public class User implements Serializable {
     @Column(name="password", length=16)
     String password;
 
-    @Column(name="email", length=36)
+    @Column(name="email", unique=true, length=36)
     String email;
 
     @Column(name="enable")
@@ -59,11 +59,5 @@ public class User implements Serializable {
 
     @OneToMany(mappedBy="user", fetch=FetchType.EAGER)
     Set<Entry> entrySet = new HashSet<Entry>();
-
-    @OneToMany(mappedBy="user", fetch=FetchType.EAGER)
-    Set<Group> groupSet = new HashSet<Group>();
-
-    @OneToMany(mappedBy="user", fetch=FetchType.EAGER)
-    Set<Interest> interestSet = new HashSet<Interest>();
 
 }

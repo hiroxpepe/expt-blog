@@ -263,6 +263,8 @@ public class EntryController {
             entryDto
         );
 
+        //LOG.debug(entryDto.getUsername());
+
         return entryDto;
     }
 

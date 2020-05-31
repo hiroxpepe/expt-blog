@@ -49,6 +49,9 @@ public class Category implements Serializable {
     String text;
 
     @OneToMany(mappedBy="category", fetch=FetchType.EAGER)
-    Set<CategoryItem> categoryItemSet = new HashSet<CategoryItem>();
+    Set<Entry> entrySet = new HashSet<Entry>();
+
+    // @OneToMany(mappedBy="category", fetch=FetchType.EAGER)
+    // Set<CategoryItem> categoryItemSet = new HashSet<CategoryItem>();
 
 }

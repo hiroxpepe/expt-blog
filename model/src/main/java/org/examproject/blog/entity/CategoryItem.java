@@ -43,7 +43,10 @@ public class CategoryItem implements Serializable {
     Long id;
 
     @ManyToOne
-    Subject subject;
+    Entry entry;
+
+    // @ManyToOne
+    // Subject subject;
 
     @ManyToOne
     Category category;

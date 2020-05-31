@@ -20,7 +20,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import org.examproject.blog.entity.Category;
 import org.examproject.blog.entity.CategoryItem;
-import org.examproject.blog.entity.Subject;
+// import org.examproject.blog.entity.Subject;
 
 /**
  * @author h.adachi
@@ -29,6 +29,6 @@ public interface CategoryItemRepository extends JpaRepository<CategoryItem, Long
 
     List<CategoryItem> findByCategory(Category category);
 
-    List<CategoryItem> findBySubject(Subject subject);
+    // List<CategoryItem> findBySubject(Subject subject);
 
 }

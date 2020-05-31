@@ -22,9 +22,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 import org.examproject.blog.dto.EntryDto;
-import org.examproject.blog.entity.Group;
 import org.examproject.blog.entity.User;
-import org.examproject.blog.repository.GroupRepository;
 import org.examproject.blog.repository.UserRepository;
 
 /**
@@ -37,9 +35,6 @@ public class UserUtils {
 
     @Inject
     private ApplicationContext context = null;
-
-    @Inject
-    private GroupRepository groupRepository = null;
 
     @Inject
     private UserRepository userRepository = null;
@@ -59,12 +54,6 @@ public class UserUtils {
                 newUser.setEmail(entryDto.getEmail());
                 userRepository.save(newUser);
                 LOG.debug("create the new user.");
-                Group group = context.getBean(Group.class);
-                group.setUser(newUser);
-                group.setName("own");
-                groupRepository.save(group);
-
-                //getDefaultInterestSet()
                 return newUser;
             }
             return user;
