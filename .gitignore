@@ -8,3 +8,4 @@ target
 .vscode
 nbactions.xml
 *.code-workspace
+*.bat
