@@ -16,8 +16,8 @@ package org.examproject.blog.controller;
 
 import javax.inject.Inject;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 import org.dozer.Mapper;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -35,19 +35,18 @@ import org.examproject.blog.service.EntryService;
  *
  * @author h.adachi
  */
+@Slf4j
 @Controller
 public class PermalinkController {
 
-    private Logger LOG = LoggerFactory.getLogger(PermalinkController.class);
+    @Inject
+    private final ApplicationContext context = null;
 
     @Inject
-    private ApplicationContext context = null;
+    private final Mapper mapper = null;
 
     @Inject
-    private Mapper mapper = null;
-
-    @Inject
-    private EntryService entryService = null;
+    private final EntryService entryService = null;
 
     ///////////////////////////////////////////////////////////////////////////
     // public methods
@@ -64,8 +63,8 @@ public class PermalinkController {
         @PathVariable String code,
         Model model
     ) {
-        LOG.info("called");
-        LOG.debug("code: " + code);
+        log.info("called");
+        log.debug("code: " + code);
 
         // set the model-object to the model.
         model.addAttribute(
@@ -84,13 +83,13 @@ public class PermalinkController {
     private EntryModel getEntryModel(
         String code
     ) {
-        LOG.debug("called");
+        log.debug("called");
 
         // get a dto-object from service-object.
         EntryDto entryDto = entryService.getEntryByCode(code);
 
         // create a model-object.
-        EntryModel entryModel = context.getBean(EntryModel.class);
+        val entryModel = context.getBean(EntryModel.class);
 
         // map the dto-object to the model-object.
         mapper.map(

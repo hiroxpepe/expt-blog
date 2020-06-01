@@ -17,9 +17,8 @@ package org.examproject.blog.functor;
 import java.util.List;
 import javax.inject.Inject;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.Transformer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,9 +30,8 @@ import org.examproject.blog.util.EntryUtils;
 /**
  * @author h.adachi
  */
+@Slf4j
 public class CodeToEntryTransformer implements Transformer {
-
-    private Logger LOG = LoggerFactory.getLogger(CodeToEntryTransformer.class);
 
     @Inject
     private final ApplicationContext context = null;
@@ -49,7 +47,7 @@ public class CodeToEntryTransformer implements Transformer {
 
     @Override
     public Object transform(Object o) {
-        LOG.debug("called.");
+        log.debug("called.");
         try {
             return getEntryDto(o);
         } catch (Exception e) {

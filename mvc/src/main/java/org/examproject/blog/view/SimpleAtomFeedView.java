@@ -24,9 +24,8 @@ import com.rometools.rome.feed.atom.Content;
 import com.rometools.rome.feed.atom.Entry;
 import com.rometools.rome.feed.atom.Feed;
 import com.rometools.rome.feed.atom.Link;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 import org.springframework.web.servlet.view.feed.AbstractAtomFeedView;
 
 import org.examproject.blog.model.FeedModel;
@@ -35,9 +34,8 @@ import org.examproject.blog.model.FeedModel;
  * the atom feed view class of the application.
  * @author h.adachi
  */
+@Slf4j
 public class SimpleAtomFeedView extends AbstractAtomFeedView {
-
-    private Logger LOG = LoggerFactory.getLogger(SimpleAtomFeedView.class);
 
     @Override
     protected void buildFeedMetadata(
@@ -47,11 +45,11 @@ public class SimpleAtomFeedView extends AbstractAtomFeedView {
     ) {
         // set the status.
         feed.setTitle("exmp-blog");
-        Content description = new Content();
+        val description = new Content();
         description.setValue("examproject.org - exmp-blog");
         feed.setSubtitle(description);
         List<Link> links = new ArrayList<>();
-        Link link = new Link();
+        val link = new Link();
         link.setHref("http://examproject.org");
         links.add(link);
         feed.setAlternateLinks(links);
@@ -79,15 +77,15 @@ public class SimpleAtomFeedView extends AbstractAtomFeedView {
 
         // create the entries.
         for (FeedModel feedModel : feedModelList ) {
-            Entry entry = new Entry();
-            Content content = new Content();
+            val entry = new Entry();
+            val content = new Content();
             content.setValue(feedModel.getSummary());
-            Content summary = new Content();
+            val summary = new Content();
             summary.setValue(content.getValue());
             entry.setSummary(summary);
             entry.setTitle(feedModel.getTitle());
             List<Link> links = new ArrayList<>();
-            Link link = new Link();
+            val link = new Link();
             link.setHref(feedModel.getUrl());
             links.add(link);
             entry.setAlternateLinks(links);

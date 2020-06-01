@@ -18,8 +18,7 @@ import java.util.List;
 import java.util.Optional;
 import javax.inject.Inject;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
@@ -33,10 +32,9 @@ import org.examproject.blog.repository.EntryTagRepository;
 /**
  * @author h.adachi
  */
+@Slf4j
 @Component
 public class EntryUtils {
-
-    private final Logger LOG = LoggerFactory.getLogger(EntryUtils.class);
 
     @Inject
     private final ApplicationContext context = null;
@@ -70,18 +68,18 @@ public class EntryUtils {
                 Entry entry = context.getBean(Entry.class);
                 entryRepository.save(entry); // save it once to get the ld.
                 entryDto.setId(entry.getId());
-                LOG.info("new entry.id: " + entry.getId());
-                LOG.debug("to create entry.");
+                log.info("new entry.id: " + entry.getId());
+                log.debug("to create entry.");
                 return entry;
             } else {
                 Optional<Entry> optional = entryRepository.findById(entryDto.getId());
                 Entry entry = optional.get();
-                LOG.info("entry.id: " + entry.getId());
-                LOG.debug("to update entry.");
+                log.info("entry.id: " + entry.getId());
+                log.debug("to update entry.");
                 return entry;
             }
         } catch (Exception e) {
-            LOG.error(ExceptionUtils.getStackTrace(e));
+            log.error(ExceptionUtils.getStackTrace(e));
             throw new RuntimeException("an error occurred.", e);
         }
     }
@@ -95,9 +93,9 @@ public class EntryUtils {
         try {
             // save the entry.
             entryRepository.save(entry);
-            LOG.debug("save entry.");
+            log.debug("save entry.");
         } catch (Exception e) {
-            LOG.error(ExceptionUtils.getStackTrace(e));
+            log.error(ExceptionUtils.getStackTrace(e));
             throw new RuntimeException("an error occurred.", e);
         }
     }
@@ -123,7 +121,7 @@ public class EntryUtils {
             entryDto.setEmail(entry.getUser().getEmail());
             return entryDto;
         } catch (Exception e) {
-            LOG.error(ExceptionUtils.getStackTrace(e));
+            log.error(ExceptionUtils.getStackTrace(e));
             throw new RuntimeException("an error occurred.", e);
         }
     }
@@ -147,7 +145,7 @@ public class EntryUtils {
             tagUtils.getEntryTagSet(entry, entryDto.getTags()); // FIXME: get the entryTag set from enrty itself!
             return entry;
         } catch (Exception e) {
-            LOG.error(ExceptionUtils.getStackTrace(e));
+            log.error(ExceptionUtils.getStackTrace(e));
             throw new RuntimeException("an error occurred.", e);
         }
     }
@@ -167,9 +165,9 @@ public class EntryUtils {
             }
             // delete the entry.
             entryRepository.delete(entry);
-            LOG.debug("delete entry.");
+            log.debug("delete entry.");
         } catch (Exception e) {
-            LOG.error(ExceptionUtils.getStackTrace(e));
+            log.error(ExceptionUtils.getStackTrace(e));
             throw new RuntimeException("an error occurred.", e);
         }
     }

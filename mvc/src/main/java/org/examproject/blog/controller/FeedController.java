@@ -19,8 +19,8 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,19 +36,18 @@ import org.examproject.blog.service.FeedService;
  *
  * @author h.adachi
  */
+@Slf4j
 @Controller
 public class FeedController {
 
-    private Logger LOG = LoggerFactory.getLogger(FeedController.class);
+    @Inject
+    private final ApplicationContext context = null;
 
     @Inject
-    private ApplicationContext context = null;
+    private final HttpServletRequest request = null;
 
     @Inject
-    private HttpServletRequest request = null;
-
-    @Inject
-    private FeedService feedService = null;
+    private final FeedService feedService = null;
 
     ///////////////////////////////////////////////////////////////////////////
     // public methods
@@ -62,10 +61,10 @@ public class FeedController {
         method=RequestMethod.GET
     )
     public ModelAndView getFeedInRss() {
-        LOG.info("called");
+        log.info("called");
 
         // create the model-view object of spring mvc.
-        ModelAndView mv = new ModelAndView();
+        val mv = new ModelAndView();
 
         // set the view name for render.
         mv.setViewName(
@@ -92,10 +91,10 @@ public class FeedController {
         method=RequestMethod.GET
     )
     public ModelAndView getFeedInAtom() {
-        LOG.info("called");
+        log.info("called");
 
         // create the model-view object of spring mvc.
-        ModelAndView mv = new ModelAndView();
+        val mv = new ModelAndView();
 
         // set the view name for render.
         mv.setViewName(
@@ -131,7 +130,7 @@ public class FeedController {
         for (EntryDto entryDto : entryDtoList) {
 
             // create a object to build to the feed.
-            FeedModel feedModel = context.getBean(FeedModel.class);
+            val feedModel = context.getBean(FeedModel.class);
 
             // set the value to the object.
             feedModel.setTitle(

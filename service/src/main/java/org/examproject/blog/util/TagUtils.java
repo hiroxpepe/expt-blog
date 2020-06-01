@@ -20,8 +20,7 @@ import java.util.HashSet;
 import java.util.List;
 import javax.inject.Inject;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
@@ -29,17 +28,15 @@ import org.springframework.stereotype.Component;
 import org.examproject.blog.entity.Entry;
 import org.examproject.blog.entity.EntryTag;
 import org.examproject.blog.entity.Tag;
-import org.examproject.blog.repository.EntryRepository;
 import org.examproject.blog.repository.EntryTagRepository;
 import org.examproject.blog.repository.TagRepository;
 
 /**
  * @author h.adachi
  */
+@Slf4j
 @Component
 public class TagUtils {
-
-    private Logger LOG = LoggerFactory.getLogger(TagUtils.class);
 
     @Inject
     private final ApplicationContext context = null;
@@ -62,15 +59,14 @@ public class TagUtils {
         try {
             // get tags string of the entity.
             StringBuilder builder = new StringBuilder();
-            //List<EntryTag> entryTagList = entryTagRepository.findByEntryId(entry.getId()); // ここで 0
-            List<EntryTag> entryTagList = entryTagRepository.findByEntry(entry); // ここで 0
+            List<EntryTag> entryTagList = entryTagRepository.findByEntry(entry);
             for (EntryTag entryTag : entryTagList) {
                 builder.append(entryTag.getTag().getText());
                 builder.append(" ");
             }
             return builder.toString();
         } catch (Exception e) {
-            LOG.error(ExceptionUtils.getStackTrace(e));
+            log.error(ExceptionUtils.getStackTrace(e));
             throw new RuntimeException("an error occurred.", e);
         }
     }
@@ -90,22 +86,21 @@ public class TagUtils {
                 EntryTag entryTag = null;
                 String lowerTagString = tagString.toLowerCase();
                 // confirm the existence of the tag.
-                Tag tag = tagRepository.findByText(lowerTagString); // ここでおかしい？
+                Tag tag = tagRepository.findByText(lowerTagString);
                 // the tag is completely new one.
                 if (tag == null) {
                     tag = context.getBean(Tag.class);
                     tag.setText(tagString);
                     tagRepository.save(tag); // MEMO
-                    LOG.debug("save tag.");
+                    log.debug("save tag.");
                     entryTag = context.getBean(EntryTag.class);
                     entryTag.setEntry(entry);
                     entryTag.setTag(tag);
                     entryTagRepository.save(entryTag); // MEMO
-                    LOG.debug("save entryTag.");
+                    log.debug("save entryTag.");
                 // the tag already exists.
                 } else {
                     // confirm the existence of the entry's tag.
-                    //List<EntryTag> entryTagList = entryTagRepository.findByEntryIdAndTagId(entry.getId(), tag.getId());
                     List<EntryTag> entryTagList = entryTagRepository.findByEntryAndTag(entry, tag);
                     // this tag is new one for the entry.
                     if (entryTagList == null) {
@@ -113,7 +108,7 @@ public class TagUtils {
                         entryTag.setEntry(entry);
                         entryTag.setTag(tag);
                         entryTagRepository.save(entryTag); // MEMO
-                        LOG.debug("save entryTag.");
+                        log.debug("save entryTag.");
                     // already exist a pair of the entry and the tag.
                     } else {
                         entryTag = entryTagList.get(0);
@@ -123,7 +118,7 @@ public class TagUtils {
             }
             return entryTagSet;
         } catch (Exception e) {
-            LOG.error(ExceptionUtils.getStackTrace(e));
+            log.error(ExceptionUtils.getStackTrace(e));
             throw new RuntimeException("an error occurred.", e);
         }
     }

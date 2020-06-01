@@ -19,8 +19,9 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
+import lombok.val;
+import org.apache.commons.lang.exception.ExceptionUtils;
 import org.dozer.Mapper;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -44,22 +45,21 @@ import org.examproject.blog.response.EntryResponse;
  *
  * @author h.adachi
  */
+@Slf4j
 @Controller
 public class EntryController {
 
-    private Logger LOG = LoggerFactory.getLogger(EntryController.class);
+    @Inject
+    private final ApplicationContext context = null;
 
     @Inject
-    private ApplicationContext context = null;
+    private final HttpServletRequest request = null;
 
     @Inject
-    private HttpServletRequest request = null;
+    private final Mapper mapper = null;
 
     @Inject
-    private Mapper mapper = null;
-
-    @Inject
-    private EntryService entryService = null;
+    private final EntryService entryService = null;
 
     ///////////////////////////////////////////////////////////////////////////
     // public methods
@@ -81,13 +81,10 @@ public class EntryController {
         String email,
         Model model
     ) {
-        LOG.info("called");
-        LOG.info("username:" + username);
-        LOG.info("password:" + password);
-        LOG.info("email:" + email);
+        log.info("called");
 
         // create a form-object.
-        EntryForm entryForm = context.getBean(EntryForm.class);
+        val entryForm = context.getBean(EntryForm.class);
 
         // set the cookie value to the form-object.
         entryForm.setUsername(username);
@@ -115,29 +112,15 @@ public class EntryController {
         EntryForm entryForm,
         Model model
     ) {
-        LOG.info("called");
+        log.info("called");
 
         // the response-object will be returned to the html page.
 
         // create a response-object.
-        EntryResponse response = context.getBean(EntryResponse.class);
+        val response = context.getBean(EntryResponse.class);
 
         // get the mapped dto-object using the form-object data.
         List<EntryDto> entryDtoList = getEntryDtoList();
-
-        // FIXME:
-        // if (entryDtoList.isEmpty()) {
-        //     LOG.warn("entryDtoList.isEmpty");
-        //     EntryDto entryDto = context.getBean(EntryDto.class);
-        //     entryDto.setUsername("anonymous");
-        //     entryDto.setPassword("anonymous");
-        //     entryDto.setEmail("expample@email.com");
-        //     entryDto.setTitle("Test title.");
-        //     entryDto.setContent("Test content.");
-        //     entryDto.setTags("C# Java Kotlin");
-        //     entryDto.setCategory("Music");
-        //     entryDtoList.add(entryDto);
-        // }
 
         // add to the response-object.
         addToResponse(
@@ -165,7 +148,7 @@ public class EntryController {
         EntryForm entryForm,
         Model model
     ) {
-        LOG.info("called");
+        log.info("called");
 
         // the response-object will be returned to the html page.
 
@@ -174,7 +157,7 @@ public class EntryController {
         }
 
         // create a response-object.
-        EntryResponse response = context.getBean(EntryResponse.class);
+        val response = context.getBean(EntryResponse.class);
 
         // get the mapped dto-object using the form-object data.
         EntryDto entryDto = getMappedEntryDto(entryForm);
@@ -213,11 +196,11 @@ public class EntryController {
         String code,
         Model model
     ) {
-        LOG.info("called");
-        LOG.debug("code: " + code);
+        log.info("called");
+        log.debug("code: " + code);
 
         // create a response-object.
-        EntryResponse response = context.getBean(EntryResponse.class);
+        val response = context.getBean(EntryResponse.class);
 
         // delete the entry.
         entryService.deleteEntry(
@@ -246,11 +229,11 @@ public class EntryController {
     public EntryResponse handleException(
         Exception e
     ) {
-        LOG.info("called");
-        LOG.error(e.getMessage());
+        log.info("called");
+        log.error(ExceptionUtils.getStackTrace(e));
 
         // create a response-object.
-        EntryResponse response = context.getBean(EntryResponse.class);
+        val response = context.getBean(EntryResponse.class);
 
         // notify the occurrence of errors to the html page.
         response.setIsError(true);
@@ -266,18 +249,16 @@ public class EntryController {
     private EntryDto getMappedEntryDto(
         EntryForm entryForm
     ) {
-        LOG.debug("called");
+        log.debug("called");
 
         // create a dto-object.
-        EntryDto entryDto = context.getBean(EntryDto.class);
+        val entryDto = context.getBean(EntryDto.class);
 
         // map the form-object to the dto-object.
         mapper.map(
             entryForm,
             entryDto
         );
-
-        //LOG.debug(entryDto.getUsername());
 
         return entryDto;
     }
@@ -288,7 +269,7 @@ public class EntryController {
     private void postEntry(
         EntryDto entryDto
     ) {
-        LOG.debug("called");
+        log.debug("called");
 
         // save the dto-object.
         entryService.saveEntry(
@@ -300,7 +281,7 @@ public class EntryController {
      * get the list of dto-obgect from the service-object.
      */
     private List<EntryDto> getEntryDtoList() {
-        LOG.debug("called");
+        log.debug("called");
 
         // get the dto-object list from service-object.
         List<EntryDto> entryList = entryService.findAllEntry();
@@ -315,7 +296,7 @@ public class EntryController {
         List<EntryDto> entryDtoList,
         EntryResponse response
     ) {
-        LOG.debug("called");
+        log.debug("called");
 
         // get the server URL of the request.
         StringBuffer fullUrl = request.getRequestURL();
@@ -329,7 +310,7 @@ public class EntryController {
         entryDtoList.forEach((EntryDto entryDto) -> {
 
             // create a object to send to the html page.
-            EntryModel entryModel = context.getBean(EntryModel.class);
+            val entryModel = context.getBean(EntryModel.class);
 
             // map the value to the object.
             mapper.map(

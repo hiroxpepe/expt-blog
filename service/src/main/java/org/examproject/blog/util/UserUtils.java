@@ -16,8 +16,7 @@ package org.examproject.blog.util;
 
 import javax.inject.Inject;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
@@ -29,10 +28,9 @@ import org.examproject.blog.repository.UserRepository;
 /**
  * @author h.adachi
  */
+@Slf4j
 @Component
 public class UserUtils {
-
-    private Logger LOG = LoggerFactory.getLogger(UserUtils.class);
 
     @Inject
     private final ApplicationContext context = null;
@@ -54,12 +52,12 @@ public class UserUtils {
                 newUser.setPassword(entryDto.getPassword());
                 newUser.setEmail(entryDto.getEmail());
                 userRepository.save(newUser);
-                LOG.debug("create the new user.");
+                log.debug("create the new user.");
                 return newUser;
             }
             return user;
         } catch (Exception e) {
-            LOG.error(ExceptionUtils.getStackTrace(e));
+            log.error(ExceptionUtils.getStackTrace(e));
             throw new RuntimeException("an error occurred.", e);
         }
     }

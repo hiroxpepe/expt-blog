@@ -23,9 +23,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.rometools.rome.feed.rss.Channel;
 import com.rometools.rome.feed.rss.Content;
 import com.rometools.rome.feed.rss.Item;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 import org.springframework.web.servlet.view.feed.AbstractRssFeedView;
 
 import org.examproject.blog.model.FeedModel;
@@ -34,9 +33,8 @@ import org.examproject.blog.model.FeedModel;
  * the rss feed view class of the application.
  * @author h.adachi
  */
+@Slf4j
 public class SimpleRssFeedView extends AbstractRssFeedView {
-
-    private Logger LOG = LoggerFactory.getLogger(SimpleRssFeedView.class);
 
     @Override
     protected void buildFeedMetadata(
@@ -72,8 +70,8 @@ public class SimpleRssFeedView extends AbstractRssFeedView {
 
         // create the entries.
         for (FeedModel feedModel : feedModelList ) {
-            Item item = new Item();
-            Content content = new Content();
+            val item = new Item();
+            val content = new Content();
             content.setValue(feedModel.getSummary());
             item.setContent(content);
             item.setTitle(feedModel.getTitle());

@@ -18,9 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.Factory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,9 +31,8 @@ import org.examproject.blog.util.EntryUtils;
 /**
  * @author h.adachi
  */
+@Slf4j
 public class AllEntryFactory implements Factory {
-
-    private final Logger LOG = LoggerFactory.getLogger(AllEntryFactory.class);
 
     @Inject
     private final ApplicationContext context = null;
@@ -50,11 +48,11 @@ public class AllEntryFactory implements Factory {
 
     @Override
     public Object create() {
-        LOG.debug("called.");
+        log.debug("called.");
         try {
             return searchAllEntry();
         } catch (RuntimeException re) {
-            LOG.error("RuntimeException occurred. " + re.getMessage());
+            log.error("RuntimeException occurred. " + re.getMessage());
             throw re;
         }
     }

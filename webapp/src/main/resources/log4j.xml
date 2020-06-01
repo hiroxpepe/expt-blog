@@ -13,12 +13,12 @@
     </appender>
 
     <appender name="file" class="org.apache.log4j.RollingFileAppender">
-        <param name="File" value="${catalina.base}/logs/exmpblog.log" />
+        <param name="File" value="./logs/exmp-blog.log" />
         <param name="Append" value="true" />
         <param name="MaxFileSize" value="1MB" />
         <param name="MaxBackupIndex" value="10" />
         <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern" value="%d{yyyy-MMM-dd HH:mm:ss.SSS} [%-5p] %C{10}#%M() - %m%n" />
+            <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5p] %C{10}#%M() - %m%n" />
         </layout>
     </appender>
 

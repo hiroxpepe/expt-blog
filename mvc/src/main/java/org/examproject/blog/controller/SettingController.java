@@ -18,9 +18,8 @@ import javax.inject.Inject;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
+import lombok.extern.slf4j.Slf4j;
 import lombok.val;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -37,13 +36,12 @@ import org.examproject.blog.response.EntryResponse;
  *
  * @author h.adachi
  */
+@Slf4j
 @Controller
 public class SettingController {
 
-    private Logger LOG = LoggerFactory.getLogger(SettingController.class);
-
     @Inject
-    private ApplicationContext context = null;
+    private final ApplicationContext context = null;
 
     ///////////////////////////////////////////////////////////////////////////
     // public methods
@@ -62,10 +60,10 @@ public class SettingController {
         EntryForm entryForm,
         HttpServletResponse response
     ) {
-        LOG.info("called");
+        log.info("called");
 
-        if (entryForm.getUsername().equals("") || 
-            entryForm.getPassword().equals("") || 
+        if (entryForm.getUsername().equals("") ||
+            entryForm.getPassword().equals("") ||
             entryForm.getEmail().equals("")) {
             throw new RuntimeException("the username, password and email are must be set.");
         }
@@ -89,11 +87,11 @@ public class SettingController {
     public EntryResponse handleException(
         Exception e
     ) {
-        LOG.info("called");
-        LOG.error(e.getMessage());
+        log.info("called");
+        log.error(e.getMessage());
 
         // create a response-object.
-        EntryResponse response = context.getBean(EntryResponse.class);
+        val response = context.getBean(EntryResponse.class);
 
         // notify the occurrence of errors to the html page.
         response.setIsError(true);
@@ -111,7 +109,7 @@ public class SettingController {
         HttpServletResponse response,
         int maxAge
     ) {
-        LOG.debug("called");
+        log.debug("called");
 
         val username = new Cookie(
             "__exmp_blog_username", entryForm.getUsername()
