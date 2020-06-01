@@ -64,6 +64,12 @@ public class SettingController {
     ) {
         LOG.info("called");
 
+        if (entryForm.getUsername().equals("") || 
+            entryForm.getPassword().equals("") || 
+            entryForm.getEmail().equals("")) {
+            throw new RuntimeException("the username, password and email are must be set.");
+        }
+
         // store the setting param to the cookie.
         storeToCookie(
             entryForm,
@@ -118,12 +124,6 @@ public class SettingController {
         );
         password.setMaxAge(maxAge);
         response.addCookie(password);
-
-        val author = new Cookie(
-            "__exmp_blog_author", entryForm.getAuthor()
-        );
-        author.setMaxAge(maxAge);
-        response.addCookie(author);
 
         val email = new Cookie(
             "__exmp_blog_email", entryForm.getEmail()

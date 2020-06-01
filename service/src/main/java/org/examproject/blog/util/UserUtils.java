@@ -18,13 +18,12 @@ import javax.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.apache.commons.lang.exception.ExceptionUtils;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 import org.examproject.blog.dto.EntryDto;
-import org.examproject.blog.entity.Group;
 import org.examproject.blog.entity.User;
-import org.examproject.blog.repository.GroupRepository;
 import org.examproject.blog.repository.UserRepository;
 
 /**
@@ -36,13 +35,10 @@ public class UserUtils {
     private Logger LOG = LoggerFactory.getLogger(UserUtils.class);
 
     @Inject
-    private ApplicationContext context = null;
+    private final ApplicationContext context = null;
 
     @Inject
-    private GroupRepository groupRepository = null;
-
-    @Inject
-    private UserRepository userRepository = null;
+    private final UserRepository userRepository = null;
 
     ///////////////////////////////////////////////////////////////////////////
     // public methods
@@ -59,16 +55,11 @@ public class UserUtils {
                 newUser.setEmail(entryDto.getEmail());
                 userRepository.save(newUser);
                 LOG.debug("create the new user.");
-                Group group = context.getBean(Group.class);
-                group.setUser(newUser);
-                group.setName("own");
-                groupRepository.save(group);
-
-                //getDefaultInterestSet()
                 return newUser;
             }
             return user;
         } catch (Exception e) {
+            LOG.error(ExceptionUtils.getStackTrace(e));
             throw new RuntimeException("an error occurred.", e);
         }
     }

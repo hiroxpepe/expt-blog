@@ -14,22 +14,17 @@
 
 package org.examproject.blog.util;
 
-import java.util.Set;
-import java.util.HashSet;
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.apache.commons.lang.exception.ExceptionUtils;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 import org.examproject.blog.dto.EntryDto;
 import org.examproject.blog.entity.Category;
-import org.examproject.blog.entity.CategoryItem;
-import org.examproject.blog.entity.Subject;
 import org.examproject.blog.repository.CategoryRepository;
-import org.examproject.blog.repository.CategoryItemRepository;
-
 
 /**
  * @author h.adachi
@@ -37,7 +32,7 @@ import org.examproject.blog.repository.CategoryItemRepository;
 @Component
 public class CategoryUtils {
 
-    private final Logger LOG = LoggerFactory.getLogger(CategoryUtils.class);
+    private Logger LOG = LoggerFactory.getLogger(CategoryUtils.class);
 
     @Inject
     private final ApplicationContext context = null;
@@ -45,93 +40,24 @@ public class CategoryUtils {
     @Inject
     private final CategoryRepository categoryRepository = null;
 
-    @Inject
-    private final CategoryItemRepository categoryItemRepository = null;
-
     ///////////////////////////////////////////////////////////////////////////
     // public methods
 
-    /**
-     * get the default categoryitem set.
-     */
-    public Set<CategoryItem> getDefaultCategoryItemSet(
-        Subject subject
-    ){
-        try {
-            Category category = getDefaultCategory();
-            CategoryItem categoryItem = context.getBean(CategoryItem.class);
-            categoryItem.setSubject(subject);
-            categoryItem.setCategory(category);
-            Set<CategoryItem> categoryItemSet = new HashSet<>();
-            categoryItemSet.add(categoryItem);
-            return categoryItemSet;
-        } catch (Exception e) {
-            throw new RuntimeException("an error occurred.", e);
-        }
-    }
-
-    /**
-     * get the categoryitem set.
-     */
-    public Set<CategoryItem> getCategoryItemSet(
-        EntryDto entryDto,
-        Subject subject
-    ){
-        try {
-            Category category = getCategory(entryDto);
-            CategoryItem categoryItem = context.getBean(CategoryItem.class);
-            categoryItem.setSubject(subject);
-            categoryItem.setCategory(category);
-            Set<CategoryItem> categoryItemSet = new HashSet<>();
-            categoryItemSet.add(categoryItem);
-            return categoryItemSet;
-        } catch (Exception e) {
-            throw new RuntimeException("an error occurred.", e);
-        }
-    }
-
-    ///////////////////////////////////////////////////////////////////////////
-    // private methods
-
-    /**
-     * get the default category.
-     */
-    private Category getDefaultCategory() {
-        try {
-            return categoryRepository.findByText("General");
-        } catch (Exception e) {
-            throw new RuntimeException("an error occurred.", e);
-        }
-    }
-
-    /**
-     * get the category string.
-     */
-    private Category getCategory(
+    public Category getCategory(
         EntryDto entryDto
-    ) {
+    ){
         try {
             Category category = categoryRepository.findByText(entryDto.getCategory());
             if (category == null) {
-                return getNewCategory(entryDto);
+                Category newCategory = context.getBean(Category.class);
+                newCategory.setText(entryDto.getCategory());
+                categoryRepository.save(newCategory);
+                LOG.debug("create the new category.");
+                return newCategory;
             }
             return category;
         } catch (Exception e) {
-            throw new RuntimeException("an error occurred.", e);
-        }
-    }
-
-    ///////////////////////////////////////////////////////////////////////////
-    /**
-     * get the new category.
-     */
-    private Category getNewCategory(
-        EntryDto entryDto
-    ) {
-        try {
-            // TODO: the category cannot create by user.
-            return null;
-        } catch (Exception e) {
+            LOG.error(ExceptionUtils.getStackTrace(e));
             throw new RuntimeException("an error occurred.", e);
         }
     }

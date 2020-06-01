@@ -32,15 +32,13 @@ public class EntryModel {
 
     String username;
 
-    String author;
+    // String password; // FIXME: protect it with security.
 
     String email;
 
     String tags;
 
     String category;
-
-    String subject;
 
     String code;
 

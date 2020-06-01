@@ -14,21 +14,21 @@
 
 package org.examproject.blog.util;
 
-import java.util.Set;
+import java.util.List;
+import java.util.Optional;
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.apache.commons.lang.exception.ExceptionUtils;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 import org.examproject.blog.dto.EntryDto;
 import org.examproject.blog.entity.Entry;
-import org.examproject.blog.entity.Paragraph;
-import org.examproject.blog.entity.TagItem;
+import org.examproject.blog.entity.EntryTag;
 import org.examproject.blog.repository.EntryRepository;
-import org.examproject.blog.repository.ParagraphRepository;
-import org.examproject.blog.repository.TagItemRepository;
+import org.examproject.blog.repository.EntryTagRepository;
 
 /**
  * @author h.adachi
@@ -45,16 +45,7 @@ public class EntryUtils {
     private final EntryRepository entryRepository = null;
 
     @Inject
-    private final ParagraphRepository paragraphRepository = null;
-
-    @Inject
-    private final TagItemRepository tagItemRepository = null;
-
-    @Inject
-    private final ParagraphUtils paragraphUtils = null;
-
-    @Inject
-    private final SubjectUtils subjectUtils = null;
+    private final CategoryUtils categoryUtils = null;
 
     @Inject
     private final TagUtils tagUtils = null;
@@ -62,64 +53,51 @@ public class EntryUtils {
     @Inject
     private final UserUtils userUtils = null;
 
+    @Inject
+    private final EntryTagRepository entryTagRepository = null;
+
     ///////////////////////////////////////////////////////////////////////////
     // public methods
 
     /**
      * get the entry dto.
      */
-    public Entry getEntry(
+    public Entry getEntryWithId(
         EntryDto entryDto
     ){
         try {
             if (entryDto.getId() == null) {
                 Entry entry = context.getBean(Entry.class);
-                entry.setUser(userUtils.getUser(entryDto));
-                LOG.debug("create entry.");
+                entryRepository.save(entry); // save it once to get the ld.
+                entryDto.setId(entry.getId());
+                LOG.info("new entry.id: " + entry.getId());
+                LOG.debug("to create entry.");
                 return entry;
             } else {
-                //val entry = entryRepository.findOne(
-                //    entryDto.getId()
-                //).asInstanceOf[Entry]
-                Entry entry = entryRepository.getOne(entryDto.getId());
-                LOG.debug("update entry.");
+                Optional<Entry> optional = entryRepository.findById(entryDto.getId());
+                Entry entry = optional.get();
+                LOG.info("entry.id: " + entry.getId());
+                LOG.debug("to update entry.");
                 return entry;
             }
         } catch (Exception e) {
+            LOG.error(ExceptionUtils.getStackTrace(e));
             throw new RuntimeException("an error occurred.", e);
         }
     }
 
     /**
-     * get the entry entity.
+     * save the entry entity.
      */
     public void saveEntry(
         Entry entry
     ) {
         try {
-            if (entry.getId() == null) {
-                entryRepository.save(entry);
-                Set<Paragraph> paragraphSet = entry.getParagraphSet();
-                for (Paragraph paragraph : paragraphSet) {
-                    paragraphRepository.save(paragraph);
-                }
-                Set<TagItem> tagItemSet = entry.getTagItemSet();
-                for (TagItem tagItem : tagItemSet) {
-                    tagItemRepository.save(tagItem);
-                }
-            }
-            else if (entry.getId() != null) {
-                Set<Paragraph> paragraphSet = entry.getParagraphSet();
-                for (Paragraph paragraph : paragraphSet) {
-                    paragraphRepository.save(paragraph);
-                }
-                Set<TagItem> tagItemSet = entry.getTagItemSet();
-                for (TagItem tagItem : tagItemSet) {
-                    tagItemRepository.save(tagItem);
-                }
-                entryRepository.save(entry);
-            }
+            // save the entry.
+            entryRepository.save(entry);
+            LOG.debug("save entry.");
         } catch (Exception e) {
+            LOG.error(ExceptionUtils.getStackTrace(e));
             throw new RuntimeException("an error occurred.", e);
         }
     }
@@ -134,20 +112,18 @@ public class EntryUtils {
         try {
             // map the entity to the dto.
             entryDto.setId(entry.getId());
+            entryDto.setTitle(entry.getTitle());
+            entryDto.setContent(entry.getContent());
+            entryDto.setCode(entry.getCode());
+            entryDto.setCreated(entry.getCreated());
+            entryDto.setCategory(entry.getCategory().getText());
+            entryDto.setTags(tagUtils.getTagItemString(entry));
             entryDto.setUsername(entry.getUser().getUsername());
             entryDto.setPassword(entry.getUser().getPassword());
             entryDto.setEmail(entry.getUser().getEmail());
-            entryDto.setAuthor(entry.getAuthor());
-            entryDto.setTitle(paragraphUtils.getTitleString(entry));
-            entryDto.setContent(paragraphUtils.getContentString(entry));
-            entryDto.setSubject(entry.getSubject().getText());
-            entryDto.setCategory(subjectUtils.getCategoryString(entry));
-            entryDto.setTags(tagUtils.getTagItemString(entry));
-            entryDto.setCreated(entry.getCreated());
-            entryDto.setCode(entry.getCode());
-
             return entryDto;
         } catch (Exception e) {
+            LOG.error(ExceptionUtils.getStackTrace(e));
             throw new RuntimeException("an error occurred.", e);
         }
     }
@@ -161,15 +137,17 @@ public class EntryUtils {
     ){
         try {
             // map the dto value to the entity.
-            entry.setAuthor(entryDto.getAuthor());
-            entry.setParagraphSet(paragraphUtils.getParagraphSet(entryDto, entry));
-            entry.setTagItemSet(tagUtils.getTagItemSet(entryDto, entry));
+            entry.setTitle(entryDto.getTitle());
+            entry.setContent(entryDto.getContent());
+            entry.setCode(entryDto.getCode());
             entry.setCreated(entryDto.getCreated());
             entry.setUpdated(entryDto.getCreated());
-            entry.setCode(entryDto.getCode());
-            entry.setSubject(subjectUtils.getSubject(entryDto));
+            entry.setUser(userUtils.getUser(entryDto));
+            entry.setCategory(categoryUtils.getCategory(entryDto));
+            tagUtils.getEntryTagSet(entry, entryDto.getTags()); // FIXME: get the entryTag set from enrty itself!
             return entry;
         } catch (Exception e) {
+            LOG.error(ExceptionUtils.getStackTrace(e));
             throw new RuntimeException("an error occurred.", e);
         }
     }
@@ -181,30 +159,17 @@ public class EntryUtils {
         EntryDto entryDto
     ) {
         try {
-            // to search the repository for delete.
-            //val entry: Entry = entryRepository.findOne(
-            //    entryDto.getId();
-            //).asInstanceOf[Entry]
-            Entry entry = entryRepository.getOne(entryDto.getId());
-
-            // delete the entry's paragraphs.
-            Set<Paragraph> paragraphSet = entry.getParagraphSet();
-            for (Paragraph paragraph : paragraphSet) {
-                //paragraphRepository.delete(paragraph.getId());
-                paragraphRepository.delete(paragraph);
+            Entry entry = entryRepository.getOne(entryDto.getId()); // getOne() is lazily fetched.
+            // delete the entryTag.
+            List<EntryTag> entryTagList = entryTagRepository.findByEntry(entry);
+            for (EntryTag entryTag : entryTagList) {
+                entryTagRepository.delete(entryTag);
             }
-
-            // delete the entry's tagitems.
-            Set<TagItem> tagItemSet = entry.getTagItemSet();
-            for (TagItem tagItem : tagItemSet) {
-                //tagItemRepository.delete(tagItem.getId());
-                tagItemRepository.delete(tagItem);
-            }
-
             // delete the entry.
-            //entryRepository.delete(entry.getId());
             entryRepository.delete(entry);
+            LOG.debug("delete entry.");
         } catch (Exception e) {
+            LOG.error(ExceptionUtils.getStackTrace(e));
             throw new RuntimeException("an error occurred.", e);
         }
     }

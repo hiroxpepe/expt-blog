@@ -32,7 +32,7 @@ public class DeleteEntryClosure implements Closure {
     private Logger LOG = LoggerFactory.getLogger(DeleteEntryClosure.class);
 
     @Inject
-    private EntryUtils entryUtils = null;
+    private final EntryUtils entryUtils = null;
 
     ///////////////////////////////////////////////////////////////////////////
     // public methods

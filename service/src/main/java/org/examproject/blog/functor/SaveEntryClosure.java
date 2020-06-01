@@ -20,7 +20,6 @@ import javax.inject.Inject;
 import org.apache.commons.collections.Closure;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.ApplicationContext;
 import org.springframework.transaction.annotation.Transactional;
 
 import org.examproject.blog.dto.EntryDto;
@@ -36,10 +35,7 @@ public class SaveEntryClosure implements Closure {
     private Logger LOG = LoggerFactory.getLogger(SaveEntryClosure.class);
 
     @Inject
-    private ApplicationContext context = null;
-
-    @Inject
-    private EntryUtils entryUtils = null;
+    private final EntryUtils entryUtils = null;
 
     ///////////////////////////////////////////////////////////////////////////
     // public methods
@@ -71,21 +67,19 @@ public class SaveEntryClosure implements Closure {
                 entryDto.setCode(GeneralUtils.createCode());
             }
 
-            // get the entry.
-            Entry entry = entryUtils.getEntry(entryDto);
+            // get the entry already have the id.
+            Entry entry = entryUtils.getEntryWithId(entryDto);
 
             // map the dto value to the entity. and push the entity to repository.
             entryUtils.saveEntry(
                 entryUtils.mapEntry(entryDto, entry)
             );
 
-            LOG.debug("save a entry.");
-
             // if dto is new one, set the entity's id.
             if (entryDto.getId() == null) {
                 entryDto.setId(entry.getId());
             }
-            
+
         } catch (Exception e) {
             throw new RuntimeException("an error occurred.", e);
         }

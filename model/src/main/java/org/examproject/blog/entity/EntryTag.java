@@ -14,20 +14,17 @@
 
 package org.examproject.blog.entity;
 
-import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.ToString;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -35,24 +32,24 @@ import org.springframework.stereotype.Component;
  * @author h.adachi
  */
 @Data
+@ToString(exclude={"entry","tag"})
 @Entity
-@Table(name="interests")
+@Table(name="entries_tags")
 @Component
 @Scope(value="prototype")
-public class Interest implements Serializable {
+public class EntryTag {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(unique=true)
     Long id;
 
-    @Column(name="name", length=24)
-    String name;
-
-    @OneToMany(mappedBy="interest", fetch=FetchType.EAGER)
-    Set<Cluster> clusterSet = new HashSet<Cluster>();
+    @ManyToOne
+    @JoinColumn(name="entry_id")
+    Entry entry;
 
     @ManyToOne
-    User user;
+    @JoinColumn(name="tag_id")
+    Tag tag;
 
 }

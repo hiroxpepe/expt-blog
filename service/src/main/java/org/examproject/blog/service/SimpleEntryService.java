@@ -14,7 +14,6 @@
 
 package org.examproject.blog.service;
 
-import java.lang.Long;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -32,15 +31,15 @@ public class SimpleEntryService implements EntryService {
 
     // there is nothing of a logic here, it's just an adapter class..
 
-    private Transformer idToEntryTransformer;
+    private final Transformer idToEntryTransformer;
 
-    private Transformer codeToEntryTransformer;
+    private final Transformer codeToEntryTransformer;
 
-    private Factory allEntryFactory;
+    private final Factory allEntryFactory;
 
-    private Closure saveEntryClosure;
+    private final Closure saveEntryClosure;
 
-    private Closure deleteEntryClosure;
+    private final Closure deleteEntryClosure;
 
     @Override
     public EntryDto getEntryById(Long id) {

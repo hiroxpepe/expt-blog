@@ -36,13 +36,13 @@ public class CodeToEntryTransformer implements Transformer {
     private Logger LOG = LoggerFactory.getLogger(CodeToEntryTransformer.class);
 
     @Inject
-    private ApplicationContext context = null;
+    private final ApplicationContext context = null;
 
     @Inject
-    private EntryRepository entryRepository = null;
+    private final EntryRepository entryRepository = null;
 
     @Inject
-    private EntryUtils entryUtils = null;
+    private final EntryUtils entryUtils = null;
 
     ///////////////////////////////////////////////////////////////////////////
     // public methods

@@ -15,17 +15,20 @@
 package org.examproject.blog.repository;
 
 import java.util.List;
+import org.examproject.blog.entity.Entry;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import org.examproject.blog.entity.Entry;
-import org.examproject.blog.entity.Paragraph;
+import org.examproject.blog.entity.EntryTag;
+import org.examproject.blog.entity.Tag;
 
 /**
  * @author h.adachi
  */
-public interface ParagraphRepository extends JpaRepository<Paragraph, Long> {
+public interface EntryTagRepository extends JpaRepository<EntryTag, Long> {
 
-    Paragraph findByEntryAndKey(Entry entry, String key);
+    List<EntryTag> findByEntryAndTag(Entry entry, Tag tag);
+    
+    List<EntryTag> findByEntry(Entry entry);
 
 }

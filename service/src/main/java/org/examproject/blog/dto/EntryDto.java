@@ -36,15 +36,11 @@ public class EntryDto {
 
     String email;
 
-    String author;
-
     String title;
 
     String content;
 
     String category;
-
-    String subject;
 
     String tags;
 

@@ -41,9 +41,6 @@ exmp.blog.functor.htmltag.EntryListTransformer = {
             var content = $.erasureHTML(
                 obj.entryModelList[i].content
             );
-            var subject = $.erasureHTML(
-                obj.entryModelList[i].subject
-            );
             var category = $.erasureHTML(
                 obj.entryModelList[i].category
             );
@@ -72,7 +69,6 @@ exmp.blog.functor.htmltag.EntryListTransformer = {
                         "</a>" + " " +
                         "<span id='entry-content-" + code + "'>" + content + "</span>" +
                         "<input id='entry-id-" + code + "' type='hidden' value='" + id + "' />" +
-                        "<input id='entry-subject-" + code + "' type='hidden' value='" + subject + "' />" +
                         "<input id='entry-category-" + code + "' type='hidden' value='" + category + "' />" +
                         "<input id='entry-tags-" + code + "' type='hidden' value='" + tags + "' />" +
                     "</td>" +

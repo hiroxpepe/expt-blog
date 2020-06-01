@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 
-import lombok.val;
 import org.apache.commons.collections.Factory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

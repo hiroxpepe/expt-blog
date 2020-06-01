@@ -31,6 +31,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import lombok.Data;
+import lombok.ToString;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -38,6 +39,7 @@ import org.springframework.stereotype.Component;
  * @author h.adachi
  */
 @Data
+@ToString(exclude={"category","user"})
 @Entity
 @Table(name="entries")
 @Component
@@ -60,19 +62,19 @@ public class Entry implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     Date updated;
 
-    @Column(name="author", length=16)
-    String author;
+    @Column(name="title", length=25)
+    String title;
 
-    @OneToMany(mappedBy="entry", fetch=FetchType.EAGER)
-    Set<Paragraph> paragraphSet = new HashSet<Paragraph>();
+    @Column(name="content", length=140)
+    String content;
 
-    @OneToMany(mappedBy="entry", fetch=FetchType.EAGER)
-    Set<TagItem> tagItemSet = new HashSet<TagItem>();
+    @ManyToOne
+    Category category;
 
     @ManyToOne
     User user;
 
-    @ManyToOne
-    Subject subject;
+//    @OneToMany(mappedBy="entry", fetch=FetchType.EAGER)
+//    Set<EntryTag> entryTagSet = new HashSet<>();
 
 }
