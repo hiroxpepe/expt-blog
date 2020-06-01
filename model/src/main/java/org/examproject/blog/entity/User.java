@@ -15,15 +15,11 @@
 package org.examproject.blog.entity;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -56,8 +52,5 @@ public class User implements Serializable {
 
     @Column(name="enable")
     Boolean enable = true;
-
-    // @OneToMany(mappedBy="user", fetch=FetchType.EAGER)
-    // Set<Entry> entrySet = new HashSet<Entry>();
 
 }

@@ -14,7 +14,6 @@
 
 package org.examproject.blog.service;
 
-import java.lang.Long;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -30,11 +29,11 @@ public class SimpleFeedService implements FeedService {
 
     // there is nothing of a logic here, it's just an adapter class..
 
-    private Factory allEntryFactory;
+    private final Factory allEntryFactory;
 
     @Override
     public  List<EntryDto> findAllEntry() {
         return (List<EntryDto>) allEntryFactory.create();
     }
-    
+
 }

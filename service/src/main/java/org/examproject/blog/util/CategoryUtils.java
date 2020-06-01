@@ -18,6 +18,7 @@ import javax.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.apache.commons.lang.exception.ExceptionUtils;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
@@ -34,10 +35,10 @@ public class CategoryUtils {
     private Logger LOG = LoggerFactory.getLogger(CategoryUtils.class);
 
     @Inject
-    private ApplicationContext context = null;
+    private final ApplicationContext context = null;
 
     @Inject
-    private CategoryRepository categoryRepository = null;
+    private final CategoryRepository categoryRepository = null;
 
     ///////////////////////////////////////////////////////////////////////////
     // public methods
@@ -50,14 +51,13 @@ public class CategoryUtils {
             if (category == null) {
                 Category newCategory = context.getBean(Category.class);
                 newCategory.setText(entryDto.getCategory());
-                // newCategory.setPassword(entryDto.getPassword());
-                // newCategory.setEmail(entryDto.getEmail());
                 categoryRepository.save(newCategory);
                 LOG.debug("create the new category.");
                 return newCategory;
             }
             return category;
         } catch (Exception e) {
+            LOG.error(ExceptionUtils.getStackTrace(e));
             throw new RuntimeException("an error occurred.", e);
         }
     }

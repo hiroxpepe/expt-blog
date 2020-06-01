@@ -18,6 +18,7 @@ import javax.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.apache.commons.lang.exception.ExceptionUtils;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
@@ -34,10 +35,10 @@ public class UserUtils {
     private Logger LOG = LoggerFactory.getLogger(UserUtils.class);
 
     @Inject
-    private ApplicationContext context = null;
+    private final ApplicationContext context = null;
 
     @Inject
-    private UserRepository userRepository = null;
+    private final UserRepository userRepository = null;
 
     ///////////////////////////////////////////////////////////////////////////
     // public methods
@@ -58,6 +59,7 @@ public class UserUtils {
             }
             return user;
         } catch (Exception e) {
+            LOG.error(ExceptionUtils.getStackTrace(e));
             throw new RuntimeException("an error occurred.", e);
         }
     }

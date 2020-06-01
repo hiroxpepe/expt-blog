@@ -74,7 +74,7 @@ public class Entry implements Serializable {
     @ManyToOne
     User user;
 
-    @OneToMany(mappedBy="entry", fetch=FetchType.EAGER)
-    Set<EntryTag> tagSet = new HashSet<EntryTag>();
+//    @OneToMany(mappedBy="entry", fetch=FetchType.EAGER)
+//    Set<EntryTag> entryTagSet = new HashSet<>();
 
 }

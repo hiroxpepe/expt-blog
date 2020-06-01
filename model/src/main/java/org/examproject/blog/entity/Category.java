@@ -15,15 +15,11 @@
 package org.examproject.blog.entity;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -47,8 +43,5 @@ public class Category implements Serializable {
 
     @Column(name="text", unique=true, length=24)
     String text;
-
-    // @OneToMany(mappedBy="category", fetch=FetchType.EAGER)
-    // Set<Entry> entrySet = new HashSet<Entry>();
 
 }

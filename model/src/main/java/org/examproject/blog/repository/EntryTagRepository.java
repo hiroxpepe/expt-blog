@@ -12,24 +12,23 @@
  * limitations under the License.
  */
 
-package org.examproject.blog.entity;
+package org.examproject.blog.repository;
 
-import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import java.util.List;
+import org.examproject.blog.entity.Entry;
 
-import lombok.Data;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import org.examproject.blog.entity.EntryTag;
+import org.examproject.blog.entity.Tag;
 
 /**
  * @author h.adachi
  */
-@Data
-@Embeddable
-class TagKey implements Serializable {
+public interface EntryTagRepository extends JpaRepository<EntryTag, Long> {
 
-    @Column(name = "entry_id")
-    Long entryId;
+    List<EntryTag> findByEntryAndTag(Entry entry, Tag tag);
+    
+    List<EntryTag> findByEntry(Entry entry);
 
-    @Column(name = "tag_id")
-    Long tagId;
 }

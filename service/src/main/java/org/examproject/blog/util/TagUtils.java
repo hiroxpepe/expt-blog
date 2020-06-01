@@ -22,12 +22,15 @@ import javax.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.apache.commons.lang.exception.ExceptionUtils;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
-import org.examproject.blog.dto.EntryDto;
 import org.examproject.blog.entity.Entry;
+import org.examproject.blog.entity.EntryTag;
 import org.examproject.blog.entity.Tag;
+import org.examproject.blog.repository.EntryRepository;
+import org.examproject.blog.repository.EntryTagRepository;
 import org.examproject.blog.repository.TagRepository;
 
 /**
@@ -39,78 +42,16 @@ public class TagUtils {
     private Logger LOG = LoggerFactory.getLogger(TagUtils.class);
 
     @Inject
-    private ApplicationContext context = null;
+    private final ApplicationContext context = null;
 
     @Inject
-    private TagRepository tagRepository = null;
+    private final TagRepository tagRepository = null;
+
+    @Inject
+    private final EntryTagRepository entryTagRepository = null;
 
     ///////////////////////////////////////////////////////////////////////////
     // public methods
-
-    /**
-     * get the default tag.
-     */
-    public Tag getDefaultTag() {
-        try {
-            return tagRepository.findByText("default");
-        } catch (Exception e) {
-            throw new RuntimeException("an error occurred.", e);
-        }
-    }
-
-//    /**
-//     * get the default tag item set.
-//     */
-//    public Set<TagItem> getDefaultTagItemSet(
-//        Entry entry
-//    ){
-//        try {
-//            Tag tag = getDefaultTag();
-//            TagItem tagItem = context.getBean(TagItem.class);
-//            tagItem.setEntry(entry);
-//            tagItem.setTag(tag);
-//             Set<TagItem> tagSet = new HashSet<>();
-//            tagSet.add(tagItem);
-//            return tagSet;
-//        } catch (Exception e) {
-//            throw new RuntimeException("an error occurred.", e);
-//        }
-//    }
-
-//    /**
-//     * get the tag item set.
-//     */
-//    public Set<TagItem> getTagItemSet(
-//        EntryDto entryDto,
-//        Entry entry
-//    ){
-//        try {
-//            // if the entry is new one.
-//            if (entry.getId() == null) {
-//                // create the tag items for entity.
-//                return getNewTagItemSet(
-//                    entryDto,
-//                    entry
-//                );
-//            }
-//
-//            // if entry is updated.
-//
-//            // delete the tag items of entity.
-//            Set<TagItem> tagSet = entry.getTagItemSet();
-//            for (TagItem tagItem : tagSet) {
-//                tagItemRepository.delete(tagItem);
-//            }
-//
-//            // create the tag items for entity.
-//            return getNewTagItemSet(
-//                entryDto,
-//                entry
-//            );
-//        } catch (Exception e) {
-//            throw new RuntimeException("an error occurred.", e);
-//        }
-//    }
 
     /**
      * get the tags string.
@@ -119,89 +60,72 @@ public class TagUtils {
         Entry entry
     ){
         try {
-            // get the tag items of entity.
+            // get tags string of the entity.
             StringBuilder builder = new StringBuilder();
-//            Set<Tag> tagSet = entry.getTagSet();
-//            for (Tag tag : tagSet) {
-//                builder.append(tag.getText());
-//                builder.append(" ");
-//            }
+            //List<EntryTag> entryTagList = entryTagRepository.findByEntryId(entry.getId()); // ここで 0
+            List<EntryTag> entryTagList = entryTagRepository.findByEntry(entry); // ここで 0
+            for (EntryTag entryTag : entryTagList) {
+                builder.append(entryTag.getTag().getText());
+                builder.append(" ");
+            }
             return builder.toString();
         } catch (Exception e) {
+            LOG.error(ExceptionUtils.getStackTrace(e));
             throw new RuntimeException("an error occurred.", e);
         }
     }
+
+    // FIXME: get the entryTag set from enrty itself!
 
     /**
-     * get the tag set.
+     * get the entrytag set. * arg of the entry reference itself must be required! *
      */
-    public Set<Tag> getTagSet(
-        EntryDto entryDto
+    public Set<EntryTag> getEntryTagSet(
+        Entry entry, String tags
     ){
         try {
-            Set<Tag> tagSet = new HashSet<>();
-            List<String> tags = Arrays.asList(entryDto.getTags().split(" "));
-            for (String tagString : tags) {
+            Set<EntryTag> entryTagSet = new HashSet<>();
+            List<String> tagList = Arrays.asList(tags.split(" "));
+            for (String tagString : tagList) {
+                EntryTag entryTag = null;
                 String lowerTagString = tagString.toLowerCase();
-                // confirm the existence.
-                Tag tag = tagRepository.findByText(lowerTagString);
-                // create a new tag.
+                // confirm the existence of the tag.
+                Tag tag = tagRepository.findByText(lowerTagString); // ここでおかしい？
+                // the tag is completely new one.
                 if (tag == null) {
-                    Tag newTag = context.getBean(Tag.class);
-                    newTag.setText(lowerTagString);
-                    tagRepository.save(newTag);
-                    LOG.debug("create the new tag.");
-                    tagSet.add(newTag);
-                // if already exist set this.
+                    tag = context.getBean(Tag.class);
+                    tag.setText(tagString);
+                    tagRepository.save(tag); // MEMO
+                    LOG.debug("save tag.");
+                    entryTag = context.getBean(EntryTag.class);
+                    entryTag.setEntry(entry);
+                    entryTag.setTag(tag);
+                    entryTagRepository.save(entryTag); // MEMO
+                    LOG.debug("save entryTag.");
+                // the tag already exists.
                 } else {
-                    tagSet.add(tag);
+                    // confirm the existence of the entry's tag.
+                    //List<EntryTag> entryTagList = entryTagRepository.findByEntryIdAndTagId(entry.getId(), tag.getId());
+                    List<EntryTag> entryTagList = entryTagRepository.findByEntryAndTag(entry, tag);
+                    // this tag is new one for the entry.
+                    if (entryTagList == null) {
+                        entryTag = context.getBean(EntryTag.class);
+                        entryTag.setEntry(entry);
+                        entryTag.setTag(tag);
+                        entryTagRepository.save(entryTag); // MEMO
+                        LOG.debug("save entryTag.");
+                    // already exist a pair of the entry and the tag.
+                    } else {
+                        entryTag = entryTagList.get(0);
+                    }
                 }
+                entryTagSet.add(entryTag);
             }
-            return tagSet;
+            return entryTagSet;
         } catch (Exception e) {
+            LOG.error(ExceptionUtils.getStackTrace(e));
             throw new RuntimeException("an error occurred.", e);
         }
     }
-
-    ///////////////////////////////////////////////////////////////////////////
-    // private methods
-
-//    /**
-//     * get the new tag item set.
-//     */
-//    private Set<TagItem> getNewTagItemSet(
-//        EntryDto entryDto,
-//        Entry entry
-//    ){
-//        try {
-//            Set<TagItem> tagSet = new HashSet<>();
-//            List<String> tags = Arrays.asList(entryDto.getTags().split(" "));
-//            for (String tagString : tags) {
-//                String lowerTagString = tagString.toLowerCase();
-//                // confirm the existence.
-//                Tag tag = tagRepository.findByText(lowerTagString);
-//                // create a new tag.
-//                if (tag == null) {
-//                    Tag newTag = context.getBean(Tag.class);
-//                    newTag.setText(lowerTagString);
-//                    tagRepository.save(newTag);
-//                    LOG.debug("create the new tag.");
-//                    TagItem tagItem = context.getBean(TagItem.class);
-//                    tagItem.setEntry(entry);
-//                    tagItem.setTag(newTag);
-//                    tagSet.add(tagItem);
-//                // if already exist set this.
-//                } else {
-//                    TagItem tagItem = context.getBean(TagItem.class);
-//                    tagItem.setEntry(entry);
-//                    tagItem.setTag(tag);
-//                    tagSet.add(tagItem);
-//                }
-//            }
-//            return tagSet;
-//        } catch (Exception e) {
-//            throw new RuntimeException("an error occurred.", e);
-//        }
-//    }
 
 }

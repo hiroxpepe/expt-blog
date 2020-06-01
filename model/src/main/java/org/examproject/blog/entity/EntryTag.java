@@ -14,11 +14,13 @@
 
 package org.examproject.blog.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EmbeddedId;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -37,16 +39,16 @@ import org.springframework.stereotype.Component;
 @Scope(value="prototype")
 public class EntryTag {
 
-    @EmbeddedId
-    TagKey id;
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(unique=true)
+    Long id;
 
     @ManyToOne
-    @MapsId("entry_id")
     @JoinColumn(name="entry_id")
     Entry entry;
 
     @ManyToOne
-    @MapsId("tag_id")
     @JoinColumn(name="tag_id")
     Tag tag;
 

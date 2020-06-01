@@ -14,7 +14,6 @@
 
 package org.examproject.blog.service;
 
-import java.lang.Long;
 import java.util.List;
 
 import org.examproject.blog.dto.EntryDto;

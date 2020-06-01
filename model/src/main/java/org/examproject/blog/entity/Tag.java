@@ -48,7 +48,7 @@ public class Tag implements Serializable {
     @Column(name="text", unique=true, length=16)
     String text;
 
-    @OneToMany(mappedBy="tag", fetch=FetchType.EAGER)
-    Set<EntryTag> entrySet = new HashSet<EntryTag>();
+//    @OneToMany(mappedBy="tag", fetch=FetchType.EAGER)
+//    Set<EntryTag> entrySet = new HashSet<>();
 
 }
