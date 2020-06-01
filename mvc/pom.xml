@@ -6,7 +6,7 @@
     <groupId>org.examproject</groupId>
     <artifactId>exmp-blog-mvc</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <name>exmp-blog-mvc</name>
 
     <properties>
@@ -119,11 +119,11 @@
             <version>2.3.1</version>
             <scope>provided</scope>
         </dependency>
-        <!-- <dependency>
+        <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
             <version>1.2</version>
-        </dependency> -->
+        </dependency>
 
         <!--//////////////////////////////////////////////////////////////////////////-->
         <!-- TEST LIB -->

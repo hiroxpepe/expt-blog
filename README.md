@@ -1,54 +1,51 @@
-# exmpblog (c) by examproject
+# blog-examproject
 
-***
-### What's this?
-A blog based project using [Spring MVC](http://static.springsource.org/spring/docs/3.1.x/spring-framework-reference/html/mvc.html).  
+---
+## What's this?
+a based project of a blog type application.
+#### by using  
+- [Spring Framework 5.2.x](https://spring.io/projects/spring-framework)
+- [Spring Data JPA 2.3.x](https://spring.io/projects/spring-data-jpa)
+- [Hibernate 5.4.x](http://hibernate.org/)
+- [jackson 2.11.0](https://github.com/FasterXML/jackson)
+- [Apache Tiles 3.0.x](https://tiles.apache.org/)
+- [Lombok 1.18.x](https://projectlombok.org/)
+- [Logback 1.2.x](http://logback.qos.ch/)
+- [Java 8](https://www.oracle.com/)
 
-***
-### How to run at the local?
-You will need to get [Apache Maven](http://maven.apache.org/).
+---
+## How to run the application on your local?
+- get [Apache Maven](http://maven.apache.org/).
+- build this project by using command line.
+```bash
+> cd { path to this README.md directory. }
+> mvn compile
+> mvn install
+```
+- move to the directory of webapp.
+```bash
+> cd webapp
+```
+- run the web application by using jetty plugin.
+```bash
+> mvn jetty:run
+```
+- can access to http://localhost:8080/ on your web browser.  
+to stop the application hit ctrl + c
 
-You will need to build this example at your command line.
+---
+## Repository on Github.
+[hiroxpepe/blog-examproject](https://github.com/hiroxpepe/blog-examproject)
 
-    > cd { path to this README.md directory. }
-    > mvn compile
-    > mvn install
+---
+## Running on Heroku.
+http://blog-examproject.herokuapp.com/
 
-Move to launcher project directory.
-
-    > cd exmp-blog-webapp
-
-To run the .war application by jetty plugin.
-
-    > mvn jetty:run
-
-You can access to http://localhost:8080/ on your web browser.  
-To stop the application hit ctrl + c
-
-***
-### How to run on the Heroku?
-You will need to get [Git](http://git-scm.com/), of course.  
-You will need to create a application for [Heroku](http://www.heroku.com/), and must need to get the heroku tools, used [RubyGems](http://rubygems.org/).  
-
-To push the application for Heroku at your command line.
-
-    > cd { path to this README.md directory. }
-    > heroku login
-    > git push git@heroku.com:your-app-name.git
-
-***
-### Hosted on GitHub.
-[hiroxpepe/exmpblog](https://github.com/hiroxpepe/exmpblog)
-
-***
-### Running on Heroku.
-http://exmpblog.herokuapp.com/
-
-***
-### Author
+---
+## Author
 [hiroxpepe](mailto:hiroxpepe@gmail.com)
 
-***
-### License
+---
+## License
 The examproject is released under version 2.0 of the
 [Apache License](http://www.apache.org/licenses/LICENSE-2.0).
