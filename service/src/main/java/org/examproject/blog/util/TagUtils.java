@@ -103,7 +103,7 @@ public class TagUtils {
                     // confirm the existence of the entry's tag.
                     List<EntryTag> entryTagList = entryTagRepository.findByEntryAndTag(entry, tag);
                     // this tag is new one for the entry.
-                    if (entryTagList == null) {
+                    if (entryTagList.isEmpty()) {
                         entryTag = context.getBean(EntryTag.class);
                         entryTag.setEntry(entry);
                         entryTag.setTag(tag);
