@@ -14,8 +14,8 @@
 
 package org.examproject.blog.controller;
 
-import javax.inject.Inject;
-
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.dozer.Mapper;
@@ -36,17 +36,18 @@ import org.examproject.blog.service.EntryService;
  * @author h.adachi
  */
 @Slf4j
+@RequiredArgsConstructor
 @Controller
 public class PermalinkController {
 
-    @Inject
-    private final ApplicationContext context = null;
+    @NonNull
+    private final ApplicationContext context;
 
-    @Inject
-    private final Mapper mapper = null;
+    @NonNull
+    private final Mapper mapper;
 
-    @Inject
-    private final EntryService entryService = null;
+    @NonNull
+    private final EntryService entryService;
 
     ///////////////////////////////////////////////////////////////////////////
     // public methods

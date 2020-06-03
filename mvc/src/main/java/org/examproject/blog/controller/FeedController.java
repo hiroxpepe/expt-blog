@@ -16,9 +16,10 @@ package org.examproject.blog.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.springframework.context.ApplicationContext;
@@ -37,17 +38,18 @@ import org.examproject.blog.service.FeedService;
  * @author h.adachi
  */
 @Slf4j
+@RequiredArgsConstructor
 @Controller
 public class FeedController {
 
-    @Inject
-    private final ApplicationContext context = null;
+    @NonNull
+    private final ApplicationContext context;
 
-    @Inject
-    private final HttpServletRequest request = null;
+    @NonNull
+    private final HttpServletRequest request;
 
-    @Inject
-    private final FeedService feedService = null;
+    @NonNull
+    private final FeedService feedService;
 
     ///////////////////////////////////////////////////////////////////////////
     // public methods

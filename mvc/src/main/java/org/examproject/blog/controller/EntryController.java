@@ -16,9 +16,10 @@ package org.examproject.blog.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.apache.commons.lang.exception.ExceptionUtils;
@@ -46,20 +47,21 @@ import org.examproject.blog.response.EntryResponse;
  * @author h.adachi
  */
 @Slf4j
+@RequiredArgsConstructor
 @Controller
 public class EntryController {
 
-    @Inject
-    private final ApplicationContext context = null;
+    @NonNull
+    private final ApplicationContext context;
 
-    @Inject
-    private final HttpServletRequest request = null;
+    @NonNull
+    private final HttpServletRequest request;
 
-    @Inject
-    private final Mapper mapper = null;
+    @NonNull
+    private final Mapper mapper;
 
-    @Inject
-    private final EntryService entryService = null;
+    @NonNull
+    private final EntryService entryService;
 
     ///////////////////////////////////////////////////////////////////////////
     // public methods
