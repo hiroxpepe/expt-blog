@@ -16,8 +16,9 @@ package org.examproject.blog.util;
 
 import java.util.List;
 import java.util.Optional;
-import javax.inject.Inject;
 
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.springframework.context.ApplicationContext;
@@ -33,26 +34,27 @@ import org.examproject.blog.repository.EntryTagRepository;
  * @author h.adachi
  */
 @Slf4j
+@RequiredArgsConstructor
 @Component
 public class EntryUtils {
 
-    @Inject
-    private final ApplicationContext context = null;
+    @NonNull
+    private final ApplicationContext context;
 
-    @Inject
-    private final EntryRepository entryRepository = null;
+    @NonNull
+    private final EntryRepository entryRepository;
 
-    @Inject
-    private final CategoryUtils categoryUtils = null;
+    @NonNull
+    private final CategoryUtils categoryUtils;
 
-    @Inject
-    private final TagUtils tagUtils = null;
+    @NonNull
+    private final TagUtils tagUtils;
 
-    @Inject
-    private final UserUtils userUtils = null;
+    @NonNull
+    private final UserUtils userUtils;
 
-    @Inject
-    private final EntryTagRepository entryTagRepository = null;
+    @NonNull
+    private final EntryTagRepository entryTagRepository;
 
     ///////////////////////////////////////////////////////////////////////////
     // public methods

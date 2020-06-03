@@ -16,8 +16,9 @@ package org.examproject.blog.functor;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.inject.Inject;
 
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.Factory;
 import org.springframework.context.ApplicationContext;
@@ -32,16 +33,17 @@ import org.examproject.blog.util.EntryUtils;
  * @author h.adachi
  */
 @Slf4j
+@RequiredArgsConstructor
 public class AllEntryFactory implements Factory {
 
-    @Inject
-    private final ApplicationContext context = null;
+    @NonNull
+    private final ApplicationContext context;
 
-    @Inject
-    private final EntryRepository entryRepository = null;
+    @NonNull
+    private final EntryRepository entryRepository;
 
-    @Inject
-    private final EntryUtils entryUtils = null;
+    @NonNull
+    private final EntryUtils entryUtils;
 
     ///////////////////////////////////////////////////////////////////////////
     // public methods

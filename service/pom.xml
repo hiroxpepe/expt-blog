@@ -33,13 +33,6 @@
         <!--///////////////////////////////////////////////////////////////////////////-->
         <!-- OSS LIB-->
 
-        <!--Javax Inject-->
-        <dependency>
-            <groupId>javax.inject</groupId>
-            <artifactId>javax.inject</artifactId>
-            <version>1</version>
-        </dependency>
-
         <!-- Commons -->
         <dependency>
             <groupId>commons-collections</groupId>
