@@ -75,11 +75,11 @@ public class EntryController {
         method=RequestMethod.GET
     )
     public void doForm(
-        @CookieValue(value="__exmp_blog_username", defaultValue="")
+        @CookieValue(value="__exmp_blog_username", defaultValue="anonymous")
         String username,
-        @CookieValue(value="__exmp_blog_password", defaultValue="")
+        @CookieValue(value="__exmp_blog_password", defaultValue="password")
         String password,
-        @CookieValue(value="__exmp_blog_email", defaultValue="")
+        @CookieValue(value="__exmp_blog_email", defaultValue="example@email.com")
         String email,
         Model model
     ) {
