@@ -19,17 +19,17 @@
  * 
  * @author h.adachi
  */
-functor.event.EditEventClosure = {
+export class EditEventClosure {
     
     ///////////////////////////////////////////////////////////////////////////
     // public methods
     
-    execute: function(obj) {
-        console.log("functor.event.EditEventClosure#execute");
-               
+    execute(obj) {
+        console.log("/functor/event/EditEventClosure#execute");
+        
         // dynamically generate an event handler.
         $("#entry-edit-" + obj.code).click(function() {
-                        
+            
             // get the entry value for from that need to edit.
             $("#entry-title").val(
                 $("#entry-title-" + obj.code).text()

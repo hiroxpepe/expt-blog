@@ -12,14 +12,20 @@
  * limitations under the License.
  */
 
+import { EntryFactory } from '../functor/value/EntryFactory';
+import { EntryListClosure } from '../functor/request/EntryListClosure';
+import { EntryPostClosure } from '../functor/request/EntryPostClosure';
+import { SettingClosure } from '../functor/request/SettingClosure';
+import { ProfileUpdateClosure } from '../functor/dhtml/ProfileUpdateClosure';
+
 ///////////////////////////////////////////////////////////////////////////////
 /**
  * a controller class of the application.
  * 
  * @author h.adachi
  */
-core.Controller = window; {
-    
+export class Controller {
+
     ///////////////////////////////////////////////////////////////////////////
     // public methods
     
@@ -27,11 +33,8 @@ core.Controller = window; {
      * the initialization method of the Controller class.
      * this method should be called.
      */
-    core.Controller.init = function() {
-        
-        var controller = core.Controller;
-        
-        controller._initializeComponent();
+    init() {
+        this._initializeComponent();
     }
     
     ///////////////////////////////////////////////////////////////////////////
@@ -41,10 +44,10 @@ core.Controller = window; {
      * an event handler that called when 
      * the button of post is clicked.
      */
-    core.Controller._postButtonOnClick = function() {
+    _postButtonOnClick() {
         
-        var entryPostClosure = functor.request.EntryPostClosure;
-        var entryFactory = functor.value.EntryFactory;
+        const entryPostClosure = new EntryPostClosure();
+        const entryFactory = new EntryFactory();
         
         entryPostClosure.execute(
             entryFactory.create()
@@ -55,10 +58,10 @@ core.Controller = window; {
      * an event handler that called when 
      * the button of setting is clicked.
      */
-    core.Controller._settingButtonOnClick = function() {
+    _settingButtonOnClick() {
         
-        var settingClosure = functor.request.SettingClosure;
-        var entryFactory = functor.value.EntryFactory;
+        const settingClosure = new SettingClosure();
+        const entryFactory = new EntryFactory();
         
         settingClosure.execute(
             entryFactory.create()
@@ -69,7 +72,7 @@ core.Controller = window; {
      * an event handler that called when 
      * the div of message close is clicked.
      */
-    core.Controller._messageDivOnClick = function() {
+    _messageDivOnClick() {
         $("#message-block")
             .removeClass("show")
             .css({
@@ -84,7 +87,7 @@ core.Controller = window; {
      * an event handler that called when
      * the div of title is clicked.
      */
-    core.Controller._headerTitleDivOnClick = function() {
+    _headerTitleDivOnClick() {
         $("div.container")
             .toggleClass(
                 "wide", 300
@@ -97,7 +100,7 @@ core.Controller = window; {
     /**
      * initializes a div of the tabs area.
      */
-    core.Controller._initializeTabsDiv = function() {
+    _initializeTabsDiv() {
         $("div.tab-content div.tab").hide();
         $("div.tab-content div.tab:first").show();
         $("div.tab-content ul li:first").addClass("active");
@@ -115,12 +118,12 @@ core.Controller = window; {
      * initializes a div of entry list.
      * a HTTP request of Ajax for get the entry data.
      */
-    core.Controller._initializeEntryListDiv = function() {
+    _initializeEntryListDiv() {
         
-        var profileUpdateClosure = functor.dhtml.ProfileUpdateClosure;
-        var entryListClosure = functor.request.EntryListClosure;
-        var entryFactory = functor.value.EntryFactory;
-        var pageUrl = location.href;
+        const profileUpdateClosure = new ProfileUpdateClosure();
+        const entryListClosure = new EntryListClosure();
+        const entryFactory = new EntryFactory();
+        const pageUrl = location.href;
         
         profileUpdateClosure.execute({
             username: $("#entry_username").val(),
@@ -138,7 +141,7 @@ core.Controller = window; {
      * initializes a category select of form.
      * FIXME: a HTTP request of Ajax for get the data.. ? 
      */
-    core.Controller._initializeCategorySelect = function() {
+    _initializeCategorySelect() {
         $("#entry-category").append($('<option value="General">General</option>'));
         $("#entry-category").append($('<option value="Technology">Technology</option>'));
         $("#entry-category").append($('<option value="Language">Language</option>'));
@@ -150,9 +153,8 @@ core.Controller = window; {
     /**
      * initialize a component of the view class.
      */
-    core.Controller._initializeComponent = function() {
-        
-        var controller = core.Controller;
+    _initializeComponent() {
+        var controller = this; // need
         
         // calls for the initialization methods.
         

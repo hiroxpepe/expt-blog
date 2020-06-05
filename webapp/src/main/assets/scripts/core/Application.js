@@ -12,14 +12,19 @@
  * limitations under the License.
  */
 
+import { Controller } from './Controller';
+
 ///////////////////////////////////////////////////////////////////////////////
 /**
  * an entry class of the application.
  * 
  * @author h.adachi
  */
-core.Application = function(sender) {
-    $(document).ready(function() {
-        sender.init();
-    })
+export class Application {
+    run() {
+        const controller = new Controller();
+        $(document).ready(function() {
+            controller.init();
+        })
+    }
 }

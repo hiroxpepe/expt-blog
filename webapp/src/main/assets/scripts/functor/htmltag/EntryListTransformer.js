@@ -20,37 +20,37 @@
  * 
  * @author h.adachi
  */
-functor.htmltag.EntryListTransformer = {
+export class EntryListTransformer {
     
     ///////////////////////////////////////////////////////////////////////////
     // public methods
     
-    transform: function(obj) {
-        console.log("functor.htmltag.EntryListTransformer#transform");
-                
+    transform(obj) {
+        console.log("/functor/htmltag/EntryListTransformer#transform");
+        
         // dynamically generate an html table.
-        var table = "<table class='entry-list-table'>";
-        for (var i = 0; i < obj.entryModelList.length; i++) {
+        let table = "<table class='entry-list-table'>";
+        for (let i = 0; i < obj.entryModelList.length; i++) {
             
             // get the value
-            var id = obj.entryModelList[i].id;  
-            var code = obj.entryModelList[i].code;  
-            var title = $.erasureHTML(
+            let id = obj.entryModelList[i].id;  
+            let code = obj.entryModelList[i].code;  
+            let title = $.erasureHTML(
                 obj.entryModelList[i].title
             );
-            var content = $.erasureHTML(
+            let content = $.erasureHTML(
                 obj.entryModelList[i].content
             );
-            var category = $.erasureHTML(
+            let category = $.erasureHTML(
                 obj.entryModelList[i].category
             );
-            var tags = $.erasureHTML(
+            let tags = $.erasureHTML(
                 obj.entryModelList[i].tags
             );
-            var permalinkUrl = obj.entryModelList[i].permalinkUrl;
-            var username = obj.entryModelList[i].username;
-            var email = obj.entryModelList[i].email;
-            var hash = 0;
+            let permalinkUrl = obj.entryModelList[i].permalinkUrl;
+            let username = obj.entryModelList[i].username;
+            let email = obj.entryModelList[i].email;
+            let hash = 0;
             if (email) { hash = MD5_hexhash(email); }
             
             // create an html tag and set the entry code.

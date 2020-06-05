@@ -19,12 +19,12 @@
  * 
  * @author h.adachi
  */
-functor.dhtml.SuccessMessageClosure = {
+export class SuccessMessageClosure {
     
     ///////////////////////////////////////////////////////////////////////////
     // public methods
     
-    execute: function(obj) {
+    execute(obj) {
         
         // update the html element and the css style.
         $("#message-block")

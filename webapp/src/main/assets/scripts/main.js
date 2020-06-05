@@ -12,12 +12,13 @@
  * limitations under the License.
  */
 
+import { Application } from './core/Application';
+
 ///////////////////////////////////////////////////////////////////////////////
 /**
  * called the main entry.
  * 
  * @author h.adachi
  */
-new core.Application(
-    this
-);
+const app = new Application();
+app.run();

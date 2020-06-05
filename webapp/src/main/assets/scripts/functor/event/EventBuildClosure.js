@@ -12,6 +12,9 @@
  * limitations under the License.
  */
 
+import { EditEventClosure } from '../event/EditEventClosure';
+import { DeleteEventClosure } from '../event/DeleteEventClosure';
+
 ///////////////////////////////////////////////////////////////////////////////
 /**
  * a functor class of the application.
@@ -19,19 +22,19 @@
  * 
  * @author h.adachi
  */
-functor.event.EventBuildClosure = {
+export class EventBuildClosure {
     
     ///////////////////////////////////////////////////////////////////////////
     // public methods
     
-    execute: function(obj) {
+    execute(obj) {
         
-        var editEventClosure = functor.event.EditEventClosure;
+        const editEventClosure = new EditEventClosure();
         
-        var deleteEventClosure = functor.event.DeleteEventClosure;
+        const deleteEventClosure = new DeleteEventClosure();
         
-        for (var i = 0; i < obj.entryModelList.length; i++) {
-            var code = obj.entryModelList[i].code;
+        for (let i = 0; i < obj.entryModelList.length; i++) {
+            let code = obj.entryModelList[i].code;
             
             // set the event handler for edit.
             editEventClosure.execute({

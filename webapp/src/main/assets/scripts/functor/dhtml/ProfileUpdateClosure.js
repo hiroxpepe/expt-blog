@@ -19,19 +19,19 @@
  * 
  * @author h.adachi
  */
-functor.dhtml.ProfileUpdateClosure  = {
+export class ProfileUpdateClosure {
     
     ///////////////////////////////////////////////////////////////////////////
     // public methods
     
-    execute: function(obj) {
+    execute(obj) {
         var username = obj.username;
         var email = obj.email;
         var hash = 0;
         if (!username) { username = "undefined"; }
         if (email) { hash = MD5_hexhash(email); }
         
-        $("#user-profile").html(               
+        $("#user-profile").html(
             "<table>" +
                 "<tr>" +
                     "<td>" +

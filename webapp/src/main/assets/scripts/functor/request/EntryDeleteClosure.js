@@ -12,6 +12,12 @@
  * limitations under the License.
  */
 
+import { WaitingMessageClosure } from '../dhtml/WaitingMessageClosure';
+import { SuccessMessageClosure } from '../dhtml/SuccessMessageClosure';
+import { ErrorMessageClosure } from '../dhtml/ErrorMessageClosure';
+import { EntryListUpdateClosure } from '../dhtml/EntryListUpdateClosure';
+import { EventBuildClosure } from '../event/EventBuildClosure';
+
 ///////////////////////////////////////////////////////////////////////////////
 /**
  * a functor class of the application.
@@ -19,23 +25,23 @@
  * 
  * @author h.adachi
  */
-functor.request.EntryDeleteClosure = {
+export class EntryDeleteClosure {
     
     ///////////////////////////////////////////////////////////////////////////
     // public methods
     
-    execute: function(obj) {
-        console.log("functor.request.EntryDeleteClosure#execute");
+    execute(obj) {
+        console.log("/functor/request/EntryDeleteClosure#execute");
         
-        var waitingMessageClosure = functor.dhtml.WaitingMessageClosure;
+        const waitingMessageClosure = new WaitingMessageClosure();
         
-        var successMessageClosure = functor.dhtml.SuccessMessageClosure;
+        const successMessageClosure = new SuccessMessageClosure();
         
-        var errorMessageClosure = functor.dhtml.ErrorMessageClosure;
+        const errorMessageClosure = new ErrorMessageClosure();
         
-        var entryListUpdateClosure = functor.dhtml.EntryListUpdateClosure;
+        const entryListUpdateClosure = new EntryListUpdateClosure();
         
-        var eventBuildClosure = functor.event.EventBuildClosure;
+        const eventBuildClosure = new EventBuildClosure();
         
         // show the waiting message.
         waitingMessageClosure.execute({

@@ -12,6 +12,8 @@
  * limitations under the License.
  */
 
+import { EntryDeleteClosure } from '../request/EntryDeleteClosure';
+
 ///////////////////////////////////////////////////////////////////////////////
 /**
  * a functor class of the application.
@@ -19,16 +21,16 @@
  * 
  * @author h.adachi
  */
-functor.event.DeleteEventClosure = {
+export class DeleteEventClosure {
     
     ///////////////////////////////////////////////////////////////////////////
     // public methods
     
-    execute: function(obj) {
-        console.log("functor.event.DeleteEventClosure#execute");
+    execute(obj) {
+        console.log("/functor/event/DeleteEventClosure#execute");
         
-        var deleteClosure = functor.request.EntryDeleteClosure;
-               
+        const deleteClosure = new EntryDeleteClosure();
+        
         // dynamically generate an event handler.
         $("#entry-delete-" + obj.code).click(function() {
             deleteClosure.execute({

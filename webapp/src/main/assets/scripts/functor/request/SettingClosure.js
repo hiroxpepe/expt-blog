@@ -12,6 +12,10 @@
  * limitations under the License.
  */
 
+import { WaitingMessageClosure } from '../dhtml/WaitingMessageClosure';
+import { SuccessMessageClosure } from '../dhtml/SuccessMessageClosure';
+import { ErrorMessageClosure } from '../dhtml/ErrorMessageClosure';
+
 ///////////////////////////////////////////////////////////////////////////////
 /**
  * a functor class of the application.
@@ -19,18 +23,18 @@
  * 
  * @author h.adachi
  */
-functor.request.SettingClosure = {
+export class SettingClosure {
     
     ///////////////////////////////////////////////////////////////////////////
     // public methods
     
-    execute: function(obj) {
+    execute(obj) {
         
-        var waitingMessageClosure = functor.dhtml.WaitingMessageClosure;
+        const waitingMessageClosure = new WaitingMessageClosure();
         
-        var successMessageClosure = functor.dhtml.SuccessMessageClosure;
+        const successMessageClosure = new SuccessMessageClosure();
         
-        var errorMessageClosure = functor.dhtml.ErrorMessageClosure;
+        const errorMessageClosure = new ErrorMessageClosure();
         
         // show the waiting message.
         waitingMessageClosure.execute({

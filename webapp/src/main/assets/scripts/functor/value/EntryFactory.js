@@ -20,14 +20,14 @@
  * 
  * @author h.adachi
  */
-functor.value.EntryFactory = {
+export class EntryFactory {
     
     ///////////////////////////////////////////////////////////////////////////
     // public methods
     
-    create: function() {
+    create() {
         // convert the form data to JSON.
-        var param = {};
+        let param = {};
         $($("#entry-form").serializeArray()).each(
             function(i, v) {
                 param[v.name] = v.value;

@@ -19,12 +19,12 @@
  * 
  * @author h.adachi
  */
-functor.dhtml.WaitingMessageClosure = {
+export class WaitingMessageClosure {
     
     ///////////////////////////////////////////////////////////////////////////
     // public methods
     
-    execute: function(obj) {
+    execute(obj) {
         
         // update the html element and the css style.
         $("#message-block")

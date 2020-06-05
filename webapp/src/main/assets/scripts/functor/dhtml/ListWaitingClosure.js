@@ -20,12 +20,12 @@
  * 
  * @author h.adachi
  */
-functor.dhtml.ListWaitingClosure = {
+export class ListWaitingClosure {
     
     ///////////////////////////////////////////////////////////////////////////
     // public methods
     
-    execute: function(obj) {
+    execute(obj) {
         
         // update the html element.
         $("#entry-list-block")

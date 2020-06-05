@@ -12,6 +12,8 @@
  * limitations under the License.
  */
 
+import { EntryListTransformer } from '../htmltag/EntryListTransformer';
+
 ///////////////////////////////////////////////////////////////////////////////
 /**
  * a functor class of the application.
@@ -19,14 +21,14 @@
  * 
  * @author h.adachi
  */
-functor.dhtml.EntryListUpdateClosure = {
+export class EntryListUpdateClosure {
     
     ///////////////////////////////////////////////////////////////////////////
     // public methods
     
-    execute: function(obj) {
+    execute(obj) {
         
-        var transformer = functor.htmltag.EntryListTransformer;
+        const transformer = new EntryListTransformer();
         
         $("#entry-list-block").html(
             transformer.transform(

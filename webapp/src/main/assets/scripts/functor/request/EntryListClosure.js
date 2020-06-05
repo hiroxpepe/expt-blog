@@ -12,6 +12,11 @@
  * limitations under the License.
  */
 
+import { ListWaitingClosure } from '../dhtml/ListWaitingClosure';
+import { ErrorMessageClosure } from '../dhtml/ErrorMessageClosure';
+import { EntryListUpdateClosure } from '../dhtml/EntryListUpdateClosure';
+import { EventBuildClosure } from '../event/EventBuildClosure';
+
 ///////////////////////////////////////////////////////////////////////////////
 /**
  * a functor class of the application.
@@ -19,20 +24,20 @@
  * 
  * @author h.adachi
  */
-functor.request.EntryListClosure = {
+export class EntryListClosure {
     
     ///////////////////////////////////////////////////////////////////////////
     // public methods
     
-    execute: function(obj) {
+    execute(obj) {
         
-        var listWaitingClosure = functor.dhtml.ListWaitingClosure;
+        const listWaitingClosure = new ListWaitingClosure();
         
-        var errorMessageClosure = functor.dhtml.ErrorMessageClosure;
+        const errorMessageClosure = new ErrorMessageClosure();
         
-        var entryListUpdateClosure = functor.dhtml.EntryListUpdateClosure;
+        const entryListUpdateClosure = new EntryListUpdateClosure();
         
-        var eventBuildClosure = functor.event.EventBuildClosure;
+        const eventBuildClosure = new EventBuildClosure();
         
         // show the waiting message.
         listWaitingClosure.execute(
