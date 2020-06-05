@@ -18,8 +18,9 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.List;
-import javax.inject.Inject;
 
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.springframework.context.ApplicationContext;
@@ -35,17 +36,18 @@ import org.examproject.blog.repository.TagRepository;
  * @author h.adachi
  */
 @Slf4j
+@RequiredArgsConstructor
 @Component
 public class TagUtils {
 
-    @Inject
-    private final ApplicationContext context = null;
+    @NonNull
+    private final ApplicationContext context;
 
-    @Inject
-    private final TagRepository tagRepository = null;
+    @NonNull
+    private final TagRepository tagRepository;
 
-    @Inject
-    private final EntryTagRepository entryTagRepository = null;
+    @NonNull
+    private final EntryTagRepository entryTagRepository;
 
     ///////////////////////////////////////////////////////////////////////////
     // public methods

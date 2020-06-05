@@ -6,7 +6,7 @@
     <groupId>org.examproject</groupId>
     <artifactId>exmp-blog-service</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <name>exmp-blog-service</name>
 
     <properties>
@@ -32,13 +32,6 @@
 
         <!--///////////////////////////////////////////////////////////////////////////-->
         <!-- OSS LIB-->
-
-        <!--Javax Inject-->
-        <dependency>
-            <groupId>javax.inject</groupId>
-            <artifactId>javax.inject</artifactId>
-            <version>1</version>
-        </dependency>
 
         <!-- Commons -->
         <dependency>

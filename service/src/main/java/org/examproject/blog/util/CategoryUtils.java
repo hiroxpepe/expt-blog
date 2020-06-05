@@ -14,8 +14,8 @@
 
 package org.examproject.blog.util;
 
-import javax.inject.Inject;
-
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.springframework.context.ApplicationContext;
@@ -29,14 +29,15 @@ import org.examproject.blog.repository.CategoryRepository;
  * @author h.adachi
  */
 @Slf4j
+@RequiredArgsConstructor
 @Component
 public class CategoryUtils {
 
-    @Inject
-    private final ApplicationContext context = null;
+    @NonNull
+    private final ApplicationContext context;
 
-    @Inject
-    private final CategoryRepository categoryRepository = null;
+    @NonNull
+    private final CategoryRepository categoryRepository;
 
     ///////////////////////////////////////////////////////////////////////////
     // public methods

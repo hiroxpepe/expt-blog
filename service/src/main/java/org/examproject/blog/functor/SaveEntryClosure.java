@@ -15,8 +15,9 @@
 package org.examproject.blog.functor;
 
 import java.util.Date;
-import javax.inject.Inject;
 
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.Closure;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,10 +31,11 @@ import org.examproject.blog.util.GeneralUtils;
  * @author h.adachi
  */
 @Slf4j
+@RequiredArgsConstructor
 public class SaveEntryClosure implements Closure {
 
-    @Inject
-    private final EntryUtils entryUtils = null;
+    @NonNull
+    private final EntryUtils entryUtils;
 
     ///////////////////////////////////////////////////////////////////////////
     // public methods

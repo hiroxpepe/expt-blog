@@ -6,7 +6,7 @@
     <groupId>org.examproject</groupId>
     <artifactId>exmp-blog-webapp</artifactId>
     <packaging>war</packaging>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <name>exmp-blog-webapp</name>
 
     <properties>
@@ -78,38 +78,6 @@
                     <target>${java.version}</target>
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>net.alchim31.maven</groupId>
-                <artifactId>yuicompressor-maven-plugin</artifactId>
-                <version>1.1</version>
-                <executions>
-                    <execution>
-                        <id>compile</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>compress</goal>
-                        </goals>
-                        <configuration>
-                            <linebreakpos>-1</linebreakpos>
-                            <encoding>UTF-8</encoding>
-                            <nosuffix>true</nosuffix>
-                            <aggregations>
-                                <aggregation>
-                                    <output>src/main/webapp/docroot/scripts/exmp-blog.min.js</output>
-                                    <includes>
-                                        <include>src/exmp/__*.js</include>
-                                        <include>src/exmp/blog/**/__*.js</include>
-                                        <include>src/exmp/blog/**/*.js</include>
-                                    </includes>
-                                </aggregation>
-                            </aggregations>
-                            <excludes>
-                                <exclude>**/*.min.js</exclude>
-                            </excludes>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>

@@ -14,10 +14,11 @@
 
 package org.examproject.blog.controller;
 
-import javax.inject.Inject;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.springframework.context.ApplicationContext;
@@ -37,11 +38,12 @@ import org.examproject.blog.response.EntryResponse;
  * @author h.adachi
  */
 @Slf4j
+@RequiredArgsConstructor
 @Controller
 public class SettingController {
 
-    @Inject
-    private final ApplicationContext context = null;
+    @NonNull
+    private final ApplicationContext context;
 
     ///////////////////////////////////////////////////////////////////////////
     // public methods
