@@ -1,6 +1,7 @@
 app-db
 logs
 target
+node_modules
 .settings
 .project
 .classpath
