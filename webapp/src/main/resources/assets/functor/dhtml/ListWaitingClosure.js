@@ -20,7 +20,7 @@
  * 
  * @author h.adachi
  */
-export class ListWaitingClosure {
+export default class ListWaitingClosure {
     
     ///////////////////////////////////////////////////////////////////////////
     // public methods

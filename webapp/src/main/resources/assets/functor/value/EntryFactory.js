@@ -20,7 +20,7 @@
  * 
  * @author h.adachi
  */
-export class EntryFactory {
+export default class EntryFactory {
     
     ///////////////////////////////////////////////////////////////////////////
     // public methods

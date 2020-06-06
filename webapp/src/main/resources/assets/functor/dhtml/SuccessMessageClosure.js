@@ -19,7 +19,7 @@
  * 
  * @author h.adachi
  */
-export class SuccessMessageClosure {
+export default class SuccessMessageClosure {
     
     ///////////////////////////////////////////////////////////////////////////
     // public methods

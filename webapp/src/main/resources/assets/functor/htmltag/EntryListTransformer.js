@@ -20,7 +20,7 @@
  * 
  * @author h.adachi
  */
-export class EntryListTransformer {
+export default class EntryListTransformer {
     
     ///////////////////////////////////////////////////////////////////////////
     // public methods

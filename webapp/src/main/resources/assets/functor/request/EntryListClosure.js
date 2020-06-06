@@ -12,10 +12,10 @@
  * limitations under the License.
  */
 
-import { ListWaitingClosure } from '../dhtml/ListWaitingClosure';
-import { ErrorMessageClosure } from '../dhtml/ErrorMessageClosure';
-import { EntryListUpdateClosure } from '../dhtml/EntryListUpdateClosure';
-import { EventBuildClosure } from '../event/EventBuildClosure';
+import ListWaitingClosure from '../dhtml/ListWaitingClosure';
+import ErrorMessageClosure from '../dhtml/ErrorMessageClosure';
+import EntryListUpdateClosure from '../dhtml/EntryListUpdateClosure';
+import EventBuildClosure from '../event/EventBuildClosure';
 
 ///////////////////////////////////////////////////////////////////////////////
 /**
@@ -24,7 +24,7 @@ import { EventBuildClosure } from '../event/EventBuildClosure';
  * 
  * @author h.adachi
  */
-export class EntryListClosure {
+export default class EntryListClosure {
     
     ///////////////////////////////////////////////////////////////////////////
     // public methods

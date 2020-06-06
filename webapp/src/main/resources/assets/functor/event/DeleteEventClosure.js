@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-import { EntryDeleteClosure } from '../request/EntryDeleteClosure';
+import EntryDeleteClosure from '../request/EntryDeleteClosure';
 
 ///////////////////////////////////////////////////////////////////////////////
 /**
@@ -21,7 +21,7 @@ import { EntryDeleteClosure } from '../request/EntryDeleteClosure';
  * 
  * @author h.adachi
  */
-export class DeleteEventClosure {
+export default class DeleteEventClosure {
     
     ///////////////////////////////////////////////////////////////////////////
     // public methods

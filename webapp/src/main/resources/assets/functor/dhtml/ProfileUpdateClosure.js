@@ -19,7 +19,7 @@
  * 
  * @author h.adachi
  */
-export class ProfileUpdateClosure {
+export default class ProfileUpdateClosure {
     
     ///////////////////////////////////////////////////////////////////////////
     // public methods

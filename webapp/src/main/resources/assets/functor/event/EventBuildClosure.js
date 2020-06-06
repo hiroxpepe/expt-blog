@@ -12,8 +12,8 @@
  * limitations under the License.
  */
 
-import { EditEventClosure } from '../event/EditEventClosure';
-import { DeleteEventClosure } from '../event/DeleteEventClosure';
+import EditEventClosure from '../event/EditEventClosure';
+import DeleteEventClosure from '../event/DeleteEventClosure';
 
 ///////////////////////////////////////////////////////////////////////////////
 /**
@@ -22,7 +22,7 @@ import { DeleteEventClosure } from '../event/DeleteEventClosure';
  * 
  * @author h.adachi
  */
-export class EventBuildClosure {
+export default class EventBuildClosure {
     
     ///////////////////////////////////////////////////////////////////////////
     // public methods

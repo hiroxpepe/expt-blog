@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-import { Controller } from './Controller';
+import Controller from './Controller';
 
 ///////////////////////////////////////////////////////////////////////////////
 /**
@@ -20,7 +20,7 @@ import { Controller } from './Controller';
  * 
  * @author h.adachi
  */
-export class Application {
+export default class Application {
     run() {
         const controller = new Controller();
         $(document).ready(function() {

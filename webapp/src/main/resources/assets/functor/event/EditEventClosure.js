@@ -19,7 +19,7 @@
  * 
  * @author h.adachi
  */
-export class EditEventClosure {
+export default class EditEventClosure {
     
     ///////////////////////////////////////////////////////////////////////////
     // public methods

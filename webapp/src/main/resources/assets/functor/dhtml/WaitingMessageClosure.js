@@ -19,7 +19,7 @@
  * 
  * @author h.adachi
  */
-export class WaitingMessageClosure {
+export default class WaitingMessageClosure {
     
     ///////////////////////////////////////////////////////////////////////////
     // public methods

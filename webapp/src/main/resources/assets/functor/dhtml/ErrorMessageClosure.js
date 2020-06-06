@@ -19,7 +19,7 @@
  * 
  * @author h.adachi
  */
-export class ErrorMessageClosure {
+export default class ErrorMessageClosure {
     
     ///////////////////////////////////////////////////////////////////////////
     // public methods

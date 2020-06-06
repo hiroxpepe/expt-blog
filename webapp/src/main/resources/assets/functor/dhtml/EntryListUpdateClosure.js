@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-import { EntryListTransformer } from '../htmltag/EntryListTransformer';
+import EntryListTransformer from '../htmltag/EntryListTransformer';
 
 ///////////////////////////////////////////////////////////////////////////////
 /**
@@ -21,7 +21,7 @@ import { EntryListTransformer } from '../htmltag/EntryListTransformer';
  * 
  * @author h.adachi
  */
-export class EntryListUpdateClosure {
+export default class EntryListUpdateClosure {
     
     ///////////////////////////////////////////////////////////////////////////
     // public methods

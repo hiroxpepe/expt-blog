@@ -12,11 +12,11 @@
  * limitations under the License.
  */
 
-import { EntryFactory } from '../functor/value/EntryFactory';
-import { EntryListClosure } from '../functor/request/EntryListClosure';
-import { EntryPostClosure } from '../functor/request/EntryPostClosure';
-import { SettingClosure } from '../functor/request/SettingClosure';
-import { ProfileUpdateClosure } from '../functor/dhtml/ProfileUpdateClosure';
+import EntryFactory from '../functor/value/EntryFactory';
+import EntryListClosure from '../functor/request/EntryListClosure';
+import EntryPostClosure from '../functor/request/EntryPostClosure';
+import SettingClosure from '../functor/request/SettingClosure';
+import ProfileUpdateClosure from '../functor/dhtml/ProfileUpdateClosure';
 
 ///////////////////////////////////////////////////////////////////////////////
 /**
@@ -24,7 +24,7 @@ import { ProfileUpdateClosure } from '../functor/dhtml/ProfileUpdateClosure';
  * 
  * @author h.adachi
  */
-export class Controller {
+export default class Controller {
 
     ///////////////////////////////////////////////////////////////////////////
     // public methods

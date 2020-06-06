@@ -12,9 +12,9 @@
  * limitations under the License.
  */
 
-import { WaitingMessageClosure } from '../dhtml/WaitingMessageClosure';
-import { SuccessMessageClosure } from '../dhtml/SuccessMessageClosure';
-import { ErrorMessageClosure } from '../dhtml/ErrorMessageClosure';
+import WaitingMessageClosure from '../dhtml/WaitingMessageClosure';
+import SuccessMessageClosure from '../dhtml/SuccessMessageClosure';
+import ErrorMessageClosure from '../dhtml/ErrorMessageClosure';
 
 ///////////////////////////////////////////////////////////////////////////////
 /**
@@ -23,7 +23,7 @@ import { ErrorMessageClosure } from '../dhtml/ErrorMessageClosure';
  * 
  * @author h.adachi
  */
-export class SettingClosure {
+export default class SettingClosure {
     
     ///////////////////////////////////////////////////////////////////////////
     // public methods
