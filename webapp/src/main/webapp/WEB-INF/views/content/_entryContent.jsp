@@ -3,7 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <div class="entry-content">
-    <form class="entry-table uk-form-stacked">
+    <div class="entry-table uk-form-stacked">
         <fieldset class="uk-fieldset">
 
             <legend class="uk-legend">
@@ -61,6 +61,6 @@
             </div>
 
         </fieldset>
-    </form>
+    </div>
 </div>
 

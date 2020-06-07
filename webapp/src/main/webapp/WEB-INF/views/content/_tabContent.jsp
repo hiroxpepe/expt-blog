@@ -17,9 +17,7 @@
     <%-- #tab2 --%>
     <div id="tab2" class="tab">
         <div class="setting-content">
-
-            <form class="uk-grid">
-                <!-- <fieldset class="uk-fieldset"> -->
+            <div class="uk-grid">
 
                 <div class="uk-width-1-4">
                     <label class="uk-form-label" for="entry_username">
@@ -61,17 +59,16 @@
                     />
                 </div>
 
+                <fmt:message key="button.setting" var="setting" />
                 <div class="setting-command-block uk-margin-top">
                     <input id="setting-button"
                         class="command-button uk-button uk-button-primary"
                         type="button"
-                        value="<fmt:message key="button.setting" />"
+                        value="${setting}"
                     />
                 </div>
 
-                <!-- </fieldset> -->
-            </form>
-
+            </div>
         </div>
     </div>
 </div>
