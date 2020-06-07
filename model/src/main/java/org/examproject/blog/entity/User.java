@@ -41,7 +41,7 @@ public class User implements Serializable {
     @Column(unique=true)
     Long id;
 
-    @Column(name="username", unique=true, length=16)
+    @Column(name="username", unique=true, length=24)
     String username;
 
     @Column(name="password", length=16)

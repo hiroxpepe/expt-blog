@@ -51,7 +51,7 @@ public class Entry implements Serializable {
     @Column(unique=true)
     Long id;
 
-    @Column(name="code", unique=true, length=9)
+    @Column(name="code", unique=true, length=32)
     String code;
 
     @Column(name="created")
@@ -62,10 +62,10 @@ public class Entry implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     Date updated;
 
-    @Column(name="title", length=25)
+    @Column(name="title", length=48)
     String title;
 
-    @Column(name="content", length=140)
+    @Column(name="content", length=2048)
     String content;
 
     @ManyToOne
