@@ -28,8 +28,9 @@ export default class EntryFactory {
     create() {
         // convert the form data to JSON.
         let param = {};
-        $($("#entry-form").serializeArray()).each(
+        $($("#entry-form").serializeArray()).each( // multi forms are not possible in this case.
             function(i, v) {
+                // console.log(v.name + ": " + v.value);
                 param[v.name] = v.value;
             }
         );

@@ -67,7 +67,7 @@ export default class EntryListTransformer {
                         "<a href='" + permalinkUrl + "'>" + 
                             "<span id='entry-title-" + code + "'>" + title + "</span>" + 
                         "</a>" + " " +
-                        "<span id='entry-content-" + code + "'>" + content + "</span>" +
+                        "<span id='entry-content-" + code + "'>" + content.substring(0, 192) + "..." + "</span>" +
                         "<input id='entry-id-" + code + "' type='hidden' value='" + id + "' />" +
                         "<input id='entry-category-" + code + "' type='hidden' value='" + category + "' />" +
                         "<input id='entry-tags-" + code + "' type='hidden' value='" + tags + "' />" +
@@ -76,12 +76,12 @@ export default class EntryListTransformer {
                         "<table>" + 
                             "<tr>" +
                                 "<td>" + 
-                                    "<div id='entry-edit-" + code + "'" + " class='entry-action uk-button-primary'>edit</div>" + 
+                                    "<div id='entry-edit-" + code + "'" + " class='entry-action uk-button-primary' uk-tooltip='Edit'>e</div>" + 
                                  "</td>" +
                             "</tr>" +
                             "<tr>" + 
                                 "<td>" + 
-                                    "<div id='entry-delete-" + code + "'" + " class='entry-action uk-button-danger'>delete</div>" + 
+                                    "<div id='entry-delete-" + code + "'" + " class='entry-action uk-button-danger' uk-tooltip='Delete'>d</div>" + 
                                  "</td>" +
                             "</tr>" +
                         "</table>" +
