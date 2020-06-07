@@ -12,20 +12,18 @@
  * limitations under the License.
  */
 
-import { WaitingMessageClosure } from '../dhtml/WaitingMessageClosure';
-import { SuccessMessageClosure } from '../dhtml/SuccessMessageClosure';
-import { ErrorMessageClosure } from '../dhtml/ErrorMessageClosure';
-import { EntryListUpdateClosure } from '../dhtml/EntryListUpdateClosure';
-import { EventBuildClosure } from '../event/EventBuildClosure';
+import WaitingMessageClosure from '../dhtml/WaitingMessageClosure';
+import SuccessMessageClosure from '../dhtml/SuccessMessageClosure';
+import ErrorMessageClosure from '../dhtml/ErrorMessageClosure';
 
 ///////////////////////////////////////////////////////////////////////////////
 /**
  * a functor class of the application.
- * send HTTP request for the entry post.
+ * send HTTP request for the setting.
  * 
  * @author h.adachi
  */
-export class EntryPostClosure {
+export default class SettingClosure {
     
     ///////////////////////////////////////////////////////////////////////////
     // public methods
@@ -38,10 +36,6 @@ export class EntryPostClosure {
         
         const errorMessageClosure = new ErrorMessageClosure();
         
-        const entryListUpdateClosure = new EntryListUpdateClosure();
-        
-        const eventBuildClosure = new EventBuildClosure();
-        
         // show the waiting message.
         waitingMessageClosure.execute({
             message: "please wait..."
@@ -49,7 +43,7 @@ export class EntryPostClosure {
         
         // create an ajax object.
         new $.ajax({
-            url: "post.json",
+            url: "setting.json",
             type: "POST",
             data: obj,
             dataType: "json",
@@ -66,33 +60,20 @@ export class EntryPostClosure {
                     });
                     return;
                 }
-                
-                // update the HTML table of the entry list.
-                entryListUpdateClosure.execute(
-                    data
-                );
-                    
-                // build the event of the entry list.
-                eventBuildClosure.execute(
-                    data
-                );
-                
-                // clear the input.
-                $("#id").val("");
-                $("#code").val("");
-                $("#entry-title").val("");
-                $("#entry-content").val("");
-                $("#entry-category").val(0);
-                $("#entry-tags").val("");
-                
-                // show the success message.
-                successMessageClosure.execute({
-                    message: "complete."
-                });
             },
             
             // callback function of the error.
             error: function(XMLHttpRequest, textStatus, errorThrown) {
+                
+                // ** success in this class method. **
+                // because, this ajax requests are redirected as normal.
+                if (XMLHttpRequest.status == 200) {
+                    // show the success message.
+                    successMessageClosure.execute({
+                        message: "complete."
+                    });
+                    return;
+                }
                 
                 // show the error message.
                 errorMessageClosure.execute({

@@ -12,30 +12,37 @@
  * limitations under the License.
  */
 
-import { EntryDeleteClosure } from '../request/EntryDeleteClosure';
-
 ///////////////////////////////////////////////////////////////////////////////
 /**
  * a functor class of the application.
- * set the event handler of entry delete action.
+ * display a message to div when the command is error.
  * 
  * @author h.adachi
  */
-export class DeleteEventClosure {
+export default class ErrorMessageClosure {
     
     ///////////////////////////////////////////////////////////////////////////
     // public methods
     
     execute(obj) {
-        console.log("/functor/event/DeleteEventClosure#execute");
         
-        const deleteClosure = new EntryDeleteClosure();
-        
-        // dynamically generate an event handler.
-        $("#entry-delete-" + obj.code).click(function() {
-            deleteClosure.execute({
-                code: obj.code
-            });
-        });
+        // update the html element and the css style.
+        $("#message-block")
+            .addClass(
+                "show"
+            )
+            .css({
+                margin: "1em 0.25em 1em 0.25em",
+                padding: "0.25em",
+                color: "red",
+                backgroundColor: "pink",
+                border: "1px solid red"
+            })
+            .html(
+                '<img id="message_close_img" ' +
+                    'src="../docroot/images/close.png" ' +
+                    'width="16" height="16" />' +
+                "<p>" + obj.message + "</p>"
+            );
     }
 }

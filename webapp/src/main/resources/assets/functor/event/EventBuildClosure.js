@@ -12,37 +12,39 @@
  * limitations under the License.
  */
 
+import EditEventClosure from '../event/EditEventClosure';
+import DeleteEventClosure from '../event/DeleteEventClosure';
+
 ///////////////////////////////////////////////////////////////////////////////
 /**
  * a functor class of the application.
- * update the html of the profile.
+ * build the event handler.
  * 
  * @author h.adachi
  */
-export class ProfileUpdateClosure {
+export default class EventBuildClosure {
     
     ///////////////////////////////////////////////////////////////////////////
     // public methods
     
     execute(obj) {
-        var username = obj.username;
-        var email = obj.email;
-        var hash = 0;
-        if (!username) { username = "undefined"; }
-        if (email) { hash = MD5_hexhash(email); }
         
-        $("#user-profile").html(
-            "<table>" +
-                "<tr>" +
-                    "<td>" +
-                        "<img src='http://2.gravatar.com/avatar/" +
-                            hash + "' width='48' height='48' border='0'>" +
-                    "</td>" +
-                    "<td>" +
-                        "<div class='profileName'><b>" + username + "</b></div>" +
-                    "</td>" +
-                "</tr>" +
-            "</table>"
-        );
+        const editEventClosure = new EditEventClosure();
+        
+        const deleteEventClosure = new DeleteEventClosure();
+        
+        for (let i = 0; i < obj.entryModelList.length; i++) {
+            let code = obj.entryModelList[i].code;
+            
+            // set the event handler for edit.
+            editEventClosure.execute({
+                code: code
+            });
+            
+            // set the event handler for delete.
+            deleteEventClosure.execute({
+                code: code
+            });
+        }
     }
 }

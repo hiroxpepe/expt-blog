@@ -15,11 +15,11 @@
 ///////////////////////////////////////////////////////////////////////////////
 /**
  * a functor class of the application.
- * display a message to div when the command is error.
+ * display a message to div when an ajax http request command waiting.
  * 
  * @author h.adachi
  */
-export class ErrorMessageClosure {
+export default class WaitingMessageClosure {
     
     ///////////////////////////////////////////////////////////////////////////
     // public methods
@@ -34,14 +34,13 @@ export class ErrorMessageClosure {
             .css({
                 margin: "1em 0.25em 1em 0.25em",
                 padding: "0.25em",
-                color: "red",
-                backgroundColor: "pink",
-                border: "1px solid red"
+                color: "silver",
+                backgroundColor: "lavender",
+                border: "1px solid silver"
             })
             .html(
-                '<img id="message_close_img" ' +
-                    'src="../docroot/images/close.png" ' +
-                    'width="16" height="16" />' +
+                '<p><img src="../docroot/images/loading.gif" ' +
+                    'width="31" height="31" /></p>' + 
                 "<p>" + obj.message + "</p>"
             );
     }

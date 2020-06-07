@@ -12,39 +12,37 @@
  * limitations under the License.
  */
 
-import { EditEventClosure } from '../event/EditEventClosure';
-import { DeleteEventClosure } from '../event/DeleteEventClosure';
-
 ///////////////////////////////////////////////////////////////////////////////
 /**
  * a functor class of the application.
- * build the event handler.
+ * display a message to div when the command is success.
  * 
  * @author h.adachi
  */
-export class EventBuildClosure {
+export default class SuccessMessageClosure {
     
     ///////////////////////////////////////////////////////////////////////////
     // public methods
     
     execute(obj) {
         
-        const editEventClosure = new EditEventClosure();
-        
-        const deleteEventClosure = new DeleteEventClosure();
-        
-        for (let i = 0; i < obj.entryModelList.length; i++) {
-            let code = obj.entryModelList[i].code;
-            
-            // set the event handler for edit.
-            editEventClosure.execute({
-                code: code
-            });
-            
-            // set the event handler for delete.
-            deleteEventClosure.execute({
-                code: code
-            });
-        }
+        // update the html element and the css style.
+        $("#message-block")
+            .addClass(
+                "show"
+            )  
+            .css({
+                margin: "1em 0.25em 1em 0.25em",
+                padding: "0.25em",
+                color: "green",
+                backgroundColor: "palegreen",
+                border: "1px solid green"
+            })
+            .html(
+                '<img id="message_close_img" ' +
+                    'src="../docroot/images/close.png" ' +
+                    'width="16" height="16" />' +
+                "<p>" + obj.message + "</p>"
+            );
     }
 }

@@ -12,28 +12,27 @@
  * limitations under the License.
  */
 
-import { EntryListTransformer } from '../htmltag/EntryListTransformer';
-
 ///////////////////////////////////////////////////////////////////////////////
 /**
  * a functor class of the application.
- * update the HTML table of the entry list.
+ * get the value from the HTML form and 
+ * create a JSON object for HTTP POST.
  * 
  * @author h.adachi
  */
-export class EntryListUpdateClosure {
+export default class EntryFactory {
     
     ///////////////////////////////////////////////////////////////////////////
     // public methods
     
-    execute(obj) {
-        
-        const transformer = new EntryListTransformer();
-        
-        $("#entry-list-block").html(
-            transformer.transform(
-                obj
-            )
+    create() {
+        // convert the form data to JSON.
+        let param = {};
+        $($("#entry-form").serializeArray()).each(
+            function(i, v) {
+                param[v.name] = v.value;
+            }
         );
+        return $.toJSON(param);
     }
 }

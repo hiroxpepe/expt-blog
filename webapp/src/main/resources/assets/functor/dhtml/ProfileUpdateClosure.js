@@ -15,34 +15,36 @@
 ///////////////////////////////////////////////////////////////////////////////
 /**
  * a functor class of the application.
- * display a message to div when the command is success.
+ * update the html of the profile.
  * 
  * @author h.adachi
  */
-export class SuccessMessageClosure {
+export default class ProfileUpdateClosure {
     
     ///////////////////////////////////////////////////////////////////////////
     // public methods
     
     execute(obj) {
+        var username = obj.username;
+        var email = obj.email;
+        var hash = 0;
+        if (!username) { username = "undefined"; }
+        if (email) { hash = MD5_hexhash(email); }
         
-        // update the html element and the css style.
-        $("#message-block")
-            .addClass(
-                "show"
-            )  
-            .css({
-                margin: "1em 0.25em 1em 0.25em",
-                padding: "0.25em",
-                color: "green",
-                backgroundColor: "palegreen",
-                border: "1px solid green"
-            })
-            .html(
-                '<img id="message_close_img" ' +
-                    'src="../docroot/images/close.png" ' +
-                    'width="16" height="16" />' +
-                "<p>" + obj.message + "</p>"
-            );
+        $("#user-profile").html(
+            "<table>" +
+                "<tr>" +
+                    "<td>" +
+                        // "<div class='profile-icon'>" +
+                            "<img src='http://2.gravatar.com/avatar/" +
+                                hash + "' width='48' height='48' border='0'>" +
+                        // "</div>" +
+                    "</td>" +
+                    "<td>" +
+                        "<div class='profileName'><b>" + username + "</b></div>" +
+                    "</td>" +
+                "</tr>" +
+            "</table>"
+        );
     }
 }

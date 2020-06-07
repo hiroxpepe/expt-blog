@@ -10,3 +10,4 @@ node_modules
 nbactions.xml
 *.code-workspace
 *.bat
+*.map

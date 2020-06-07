@@ -12,28 +12,28 @@
  * limitations under the License.
  */
 
+import EntryListTransformer from '../htmltag/EntryListTransformer';
+
 ///////////////////////////////////////////////////////////////////////////////
 /**
  * a functor class of the application.
- * display an icon image when an ajax http request of
- * to get the entry list is waiting.
+ * update the HTML table of the entry list.
  * 
  * @author h.adachi
  */
-export class ListWaitingClosure {
+export default class EntryListUpdateClosure {
     
     ///////////////////////////////////////////////////////////////////////////
     // public methods
     
     execute(obj) {
         
-        // update the html element.
-        $("#entry-list-block")
-            .html(
-                "<p>" + 
-                    '<img src="../docroot/images/loading.gif" ' +
-                        'width="31" height="31" alt="now loading..." />' +
-                "</p>"
-            );
+        const transformer = new EntryListTransformer();
+        
+        $("#entry-list-block").html(
+            transformer.transform(
+                obj
+            )
+        );
     }
 }

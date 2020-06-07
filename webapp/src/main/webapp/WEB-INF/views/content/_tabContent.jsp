@@ -3,57 +3,75 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <div class="tab-content">
-    <ul>
+    <ul uk-tab>
         <li><a href="#tab1"><fmt:message key="label.list" /></a></li>
         <li><a href="#tab2"><fmt:message key="label.setting" /></a></li>
     </ul>
+    <%-- #tab1 --%>
     <div id="tab1" class="tab">
         <div
             id="entry-list-block"
             class="entry-list-content">
         </div>
     </div>
+    <%-- #tab2 --%>
     <div id="tab2" class="tab">
         <div class="setting-content">
-            <table class="setting-table">
-                <tr>
-                    <td class="label-td">
-                        <label for="entry_username">
-                            <fmt:message key="entry.form.username" />
-                        </label>
-                    </td>
-                    <td class="input-td">
-                        <form:input id="entry_username" path="username" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="label-td">
-                        <label for="entry_password">
-                            <fmt:message key="entry.form.password" />
-                        </label>
-                    </td>
-                    <td class="input-td">
-                        <form:password id="entry_password" path="password" showPassword="true" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="label-td">
-                        <label for="entry_email">
-                            <fmt:message key="entry.form.email" />
-                        </label>
-                    </td>
-                    <td class="input-td">
-                        <form:input id="entry_email" path="email" />
-                    </td>
-                </tr>
-            </table>
-            <div class="setting-command-block">
-                <input id="setting-button"
-                       class="command-button"
-                       type="button"
-                       value="<fmt:message key="button.setting" />"
-                 />
-            </div>
+
+            <form class="uk-grid">
+                <!-- <fieldset class="uk-fieldset"> -->
+
+                <div class="uk-width-1-4">
+                    <label class="uk-form-label" for="entry_username">
+                        <fmt:message key="entry.form.username" />
+                    </label>
+                </div>
+                <div class="uk-width-3-4">
+                    <form:input 
+                        class="uk-input" 
+                        id="entry_username" 
+                        path="username" 
+                    />
+                </div>
+
+                <div class="uk-width-1-4 uk-margin-top">
+                    <label class="uk-form-label" for="entry_password">
+                        <fmt:message key="entry.form.password" />
+                    </label>
+                </div>
+                <div class="uk-width-3-4 uk-margin-top">
+                    <form:password 
+                        class="uk-input"
+                        id="entry_password" 
+                        path="password" 
+                        showPassword="true" 
+                    />
+                </div>
+
+                <div class="uk-width-1-4 uk-margin-top">
+                    <label class="uk-form-label" for="entry_email">
+                        <fmt:message key="entry.form.email" />
+                    </label>
+                </div>
+                <div class="uk-width-3-4  uk-margin-top">
+                    <form:input 
+                        class="uk-input"
+                        id="entry_email" 
+                        path="email" 
+                    />
+                </div>
+
+                <div class="setting-command-block uk-margin-top">
+                    <input id="setting-button"
+                        class="command-button uk-button uk-button-primary"
+                        type="button"
+                        value="<fmt:message key="button.setting" />"
+                    />
+                </div>
+
+                <!-- </fieldset> -->
+            </form>
+
         </div>
     </div>
 </div>

@@ -12,26 +12,30 @@
  * limitations under the License.
  */
 
-import { ListWaitingClosure } from '../dhtml/ListWaitingClosure';
-import { ErrorMessageClosure } from '../dhtml/ErrorMessageClosure';
-import { EntryListUpdateClosure } from '../dhtml/EntryListUpdateClosure';
-import { EventBuildClosure } from '../event/EventBuildClosure';
+import WaitingMessageClosure from '../dhtml/WaitingMessageClosure';
+import SuccessMessageClosure from '../dhtml/SuccessMessageClosure';
+import ErrorMessageClosure from '../dhtml/ErrorMessageClosure';
+import EntryListUpdateClosure from '../dhtml/EntryListUpdateClosure';
+import EventBuildClosure from '../event/EventBuildClosure';
 
 ///////////////////////////////////////////////////////////////////////////////
 /**
  * a functor class of the application.
- * send HTTP request for get the entry list.
+ * send HTTP request for the entry delete.
  * 
  * @author h.adachi
  */
-export class EntryListClosure {
+export default class EntryDeleteClosure {
     
     ///////////////////////////////////////////////////////////////////////////
     // public methods
     
     execute(obj) {
+        console.log("/functor/request/EntryDeleteClosure#execute");
         
-        const listWaitingClosure = new ListWaitingClosure();
+        const waitingMessageClosure = new WaitingMessageClosure();
+        
+        const successMessageClosure = new SuccessMessageClosure();
         
         const errorMessageClosure = new ErrorMessageClosure();
         
@@ -40,17 +44,18 @@ export class EntryListClosure {
         const eventBuildClosure = new EventBuildClosure();
         
         // show the waiting message.
-        listWaitingClosure.execute(
-            null
-        );
-            
+        waitingMessageClosure.execute({
+            message: "please wait..."
+        });
+        
         // create an ajax object.
         new $.ajax({
-            url: "list.json",
+            url: "delete.json",
             type: "POST",
-            data: obj,
+            data: {
+                code: obj.code
+            },
             dataType: "json",
-            contentType: "application/json;charset=UTF-8",
             
             // callback function of the success.
             success: function(data, dataType) {
@@ -61,7 +66,6 @@ export class EntryListClosure {
                     errorMessageClosure.execute({
                         message: "application error occurred.."
                     });
-                    $("#entry-list-block").html("");
                     return;
                 }
                 
@@ -69,12 +73,16 @@ export class EntryListClosure {
                 entryListUpdateClosure.execute(
                     data
                 );
-                
+                    
                 // build the event of the entry list.
                 eventBuildClosure.execute(
                     data
                 );
-            
+                
+                // show the success message.
+                successMessageClosure.execute({
+                    message: "complete."
+                });
             },
             
             // callback function of the error.
@@ -84,7 +92,6 @@ export class EntryListClosure {
                 errorMessageClosure.execute({
                     message: "httprequest error occurred.."
                 });
-                $("#entry-list-block").html("");
             }
         });
     }

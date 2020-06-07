@@ -12,19 +12,14 @@
  * limitations under the License.
  */
 
-import { Controller } from './Controller';
+import "./style/exmp-blog.scss";
+import Application from './core/Application';
 
 ///////////////////////////////////////////////////////////////////////////////
 /**
- * an entry class of the application.
+ * called the main entry.
  * 
  * @author h.adachi
  */
-export class Application {
-    run() {
-        const controller = new Controller();
-        $(document).ready(function() {
-            controller.init();
-        })
-    }
-}
+const app = new Application();
+app.run();

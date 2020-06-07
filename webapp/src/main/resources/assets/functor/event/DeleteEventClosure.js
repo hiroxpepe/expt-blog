@@ -12,36 +12,30 @@
  * limitations under the License.
  */
 
+import EntryDeleteClosure from '../request/EntryDeleteClosure';
+
 ///////////////////////////////////////////////////////////////////////////////
 /**
  * a functor class of the application.
- * display a message to div when an ajax http request command waiting.
+ * set the event handler of entry delete action.
  * 
  * @author h.adachi
  */
-export class WaitingMessageClosure {
+export default class DeleteEventClosure {
     
     ///////////////////////////////////////////////////////////////////////////
     // public methods
     
     execute(obj) {
+        console.log("/functor/event/DeleteEventClosure#execute");
         
-        // update the html element and the css style.
-        $("#message-block")
-            .addClass(
-                "show"
-            )
-            .css({
-                margin: "1em 0.25em 1em 0.25em",
-                padding: "0.25em",
-                color: "silver",
-                backgroundColor: "lavender",
-                border: "1px solid silver"
-            })
-            .html(
-                '<p><img src="../docroot/images/loading.gif" ' +
-                    'width="31" height="31" /></p>' + 
-                "<p>" + obj.message + "</p>"
-            );
+        const deleteClosure = new EntryDeleteClosure();
+        
+        // dynamically generate an event handler.
+        $("#entry-delete-" + obj.code).click(function() {
+            deleteClosure.execute({
+                code: obj.code
+            });
+        });
     }
 }

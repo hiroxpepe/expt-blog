@@ -12,27 +12,27 @@
  * limitations under the License.
  */
 
+import '../style/uikit_base.less';
+import UIkit from 'uikit';
+import Icons from 'uikit/dist/js/uikit-icons';
+
+import Controller from './Controller';
+
 ///////////////////////////////////////////////////////////////////////////////
 /**
- * a functor class of the application.
- * get the value from the HTML form and 
- * create a JSON object for HTTP POST.
+ * an entry class of the application.
  * 
  * @author h.adachi
  */
-export class EntryFactory {
-    
-    ///////////////////////////////////////////////////////////////////////////
-    // public methods
-    
-    create() {
-        // convert the form data to JSON.
-        let param = {};
-        $($("#entry-form").serializeArray()).each(
-            function(i, v) {
-                param[v.name] = v.value;
-            }
-        );
-        return $.toJSON(param);
+export default class Application {
+    run() {
+        const controller = new Controller();
+        $(document).ready(function() {
+            controller.init();
+            // loads the Icon plugin
+            UIkit.use(Icons);
+            // components can be called from the imported UIkit reference
+            //UIkit.notification('Hello world.');
+        });
     }
 }

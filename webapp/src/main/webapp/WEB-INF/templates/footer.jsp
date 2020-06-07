@@ -13,9 +13,9 @@
         <c:url var="koreanLocaleUrl" value="/index.html">
             <c:param name="locale" value="kr" />
         </c:url>
-        <a href='<c:out value="${englishLocaleUrl}" />'><fmt:message key="locale.english" /></a>
-        <a href='<c:out value="${japaneseLocaleUrl}" />'><fmt:message key="locale.japanese" /></a>
-        <a href='<c:out value="${koreanLocaleUrl}" />'><fmt:message key="locale.korean" /></a>
+        <a href="<c:out value='${englishLocaleUrl}' />"><fmt:message key="locale.english" /></a>
+        <a href="<c:out value='${japaneseLocaleUrl}' />"><fmt:message key="locale.japanese" /></a>
+        <a href="<c:out value='${koreanLocaleUrl}' />"><fmt:message key="locale.korean" /></a>
     </div>
-    <div><fmt:message key="site.footer" /></div>
+    <div class="footer-copyright"><fmt:message key="site.footer" /></div>
 </div>

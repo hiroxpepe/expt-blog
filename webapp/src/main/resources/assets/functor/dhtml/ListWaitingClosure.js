@@ -12,13 +12,28 @@
  * limitations under the License.
  */
 
-import { Application } from './core/Application';
-
 ///////////////////////////////////////////////////////////////////////////////
 /**
- * called the main entry.
+ * a functor class of the application.
+ * display an icon image when an ajax http request of
+ * to get the entry list is waiting.
  * 
  * @author h.adachi
  */
-const app = new Application();
-app.run();
+export default class ListWaitingClosure {
+    
+    ///////////////////////////////////////////////////////////////////////////
+    // public methods
+    
+    execute(obj) {
+        
+        // update the html element.
+        $("#entry-list-block")
+            .html(
+                "<p>" + 
+                    '<img src="../docroot/images/loading.gif" ' +
+                        'width="31" height="31" alt="now loading..." />' +
+                "</p>"
+            );
+    }
+}

@@ -1,76 +1,66 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <div class="entry-content">
+    <form class="entry-table uk-form-stacked">
+        <fieldset class="uk-fieldset">
 
-    <h4 class="entry-content-title">
-        <fmt:message key="label.entry" />
-    </h4>
+            <legend class="uk-legend">
+                <fmt:message key="label.entry" />
+            </legend>
 
-    <table class="entry-table">
-        <tr>
-            <td class="label-td">
-                <label for="entry_title">
-                    <fmt:message key="entry.form.title" />
-                </label>
-            </td>
-            <td class="input-td" colspan=3>
+            <fmt:message key="entry.form.title" var="title" />
+            <div class="uk-margin">
                 <form:input
+                    class="uk-input"
                     id="entry-title"
                     path="title"
+                    placeholder="${title}"
                 />
-            </td>
-        </tr>
-        <tr>
-            <td class="label-td">
-                <label for="entry_content">
-                    <fmt:message key="entry.form.content" />
-                </label>
-            </td>
-            <td class="input-td" colspan=3>
+            </div>
+
+            <fmt:message key='entry.form.content' var="content" />
+            <div class="uk-margin">
                 <form:textarea
+                    class="uk-textarea"
                     id="entry-content"
                     path="content"
+                    rows="5"
+                    placeholder="${content}"
                 />
-            </td>
-        </tr>
-        <tr>
-            <td class="label-td">
-                <label for="entry_tags">
-                    <fmt:message key="entry.form.tags" />
-                </label>
-            </td>
-            <td class="input-td">
+            </div>
+
+            <fmt:message key="entry.form.tags" var="tags" />
+            <div class="uk-margin">
                 <form:input
+                    class="uk-input"
                     id="entry-tags"
                     path="tags"
+                    placeholder="${tags}"
                 />
-            </td>
-        </tr>
-        <tr>
-            <td class="label-td">
-                <label for="entry_category">
-                    <fmt:message key="entry.form.category" />
-                </label>
-            </td>
-            <td class="input-td">
+            </div>
+
+            <div class="uk-margin">
                 <form:select
+                    class="uk-select"
                     id="entry-category"
                     path="category"
                     items="${categoryList}"
                 />
             </td>
-        </tr>
-    </table>
-    <div class="entry-command-block">
-        <input
-            id="post-button"
-            class="command-button"
-            type="button"
-            value="<fmt:message key="button.save" />"
-        />
-    </div>
+
+            <fmt:message key="button.save" var="save" />
+            <div class="uk-margin">
+                <input
+                    class="command-button uk-button uk-button-primary"
+                    id="post-button"
+                    type="button"
+                    value="${save}"
+                />
+            </div>
+
+        </fieldset>
+    </form>
 </div>
 
