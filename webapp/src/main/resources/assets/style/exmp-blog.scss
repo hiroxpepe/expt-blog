@@ -10,7 +10,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */ 
+ */
 
 /* ****************************************************************************
  * initialize
@@ -20,20 +20,20 @@
     padding: 0;
 }
 input {
-    width: 100%;
-    font-size: 100%;
+    // width: 100%;
+    // font-size: 100%;
 }
 textarea {
-    width: 100%;
-    height: 10em;
+    // width: 100%;
+    // height: 10em;
     resize: vertical;
-    font-size: 100%;
+    // font-size: 100%;
 }
 body, div {
-    font: 100% arial, helvetica, clean, sans-serif;
+    // font: 100% arial, helvetica, clean, sans-serif;
 } 
 select, input, button, textarea {
-    font: 90% arial, helvetica, clean, sans-serif;
+    // font: 90% arial, helvetica, clean, sans-serif;
 }
 
 /* ****************************************************************************
@@ -41,9 +41,9 @@ select, input, button, textarea {
  * this will set the background color of this site.
  */
 body {
-    padding: 0px;
-    margin: 0px;
-    background-color: mintcream;
+    // padding: 0px;
+    // margin: 0px;
+    // background-color: mintcream;
 }
 
 /* ****************************************************************************
@@ -56,17 +56,19 @@ body {
  * here, there is never set a height param.
  */
 div.container {
-    width: 763px;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: lavender;
-    border-left: 1px solid gainsboro;
-    border-right: 1px solid gainsboro;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+    // width: 763px;
+    // margin-left: auto;
+    // margin-right: auto;
+    // background-color: lavender;
+    // border-left: 1px solid gainsboro;
+    // border-right: 1px solid gainsboro;
+    // border-bottom-left-radius: 10px;
+    // border-bottom-right-radius: 10px;
+
+    // background: lightcoral;
 }
     div.container.wide {
-        width: 950px;
+        // width: 950px;
     }
 
 /* ****************************************************************************
@@ -75,62 +77,70 @@ div.container {
  * structure of the constituent regions for this site.
  */
 div.header {
-    width: 100%;
-    height: 5em;
-    text-align: left;
-    color: white;
-    background: #777799;
-    border-bottom: 1px solid gainsboro;
+    // width: 100%;
+    // height: 5em;
+    // text-align: left;
+    // color: white;
+    // background: #777799;
+    // border-bottom: 1px solid gainsboro;
+
+    padding: 2em;
 }
 
 /* ****************************************************************************
  * define the menu area of this application.
  */
 div.menu {
-    width: 100%;
-    text-decoration: none;
-    color: white;
-    background: dimgray;
+    // width: 100%;
+    // text-decoration: none;
+    // color: white;
+    // background: dimgray;
 }
 
 /* ****************************************************************************
  * define the content area of this application.
  */
 div.content {
-    width: 70%;
-    min-height: 720px;
-    height: auto;
-    float: left;
-    text-align: left;
-    background-color: white;
+    // width: 70%;
+    min-height: 520px;
+    // height: auto;
+    // float: left;
+    // text-align: left;
+    // background-color: white;
+
+    // background: pink;
 }
 
 /* ****************************************************************************
  * define the sidebar area of this application.
  */
 div.sidebar {
-    width: 30%;
-    min-height: 720px;
-    height: auto;
-    float: right;
-    text-align: left;
-    background-color: lavender;
+    // width: 30%;
+    // min-height: 720px;
+    // height: auto;
+    // float: right;
+    // text-align: left;
+    // background-color: lavender;
+
+    background: #e6e6fa;
 }
 
 /* ****************************************************************************
  * define the footer area of this application.
  */
 div.footer {
-    width: 100%;
-    height: 6em;
-    clear: both;
-    text-align: right;
-    font-size: 90%;
-    color: white;
-    background: #777799;
-    border-top: 1px solid gainsboro;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+    // width: 100%;
+    // height: 6em;
+    // clear: both;
+    // text-align: right;
+    // font-size: 90%;
+    // color: white;
+    // background: #777799;
+    // border-top: 1px solid gainsboro;
+    // border-bottom-left-radius: 10px;
+    // border-bottom-right-radius: 10px;
+
+    padding: 2em;
 }
 
 /* ****************************************************************************
@@ -141,9 +151,9 @@ div.footer {
  * define the div block class for set basic margin of this application.
  */
 div.block {
-    margin-right: 1em;
-    margin-left: 1em;
-    padding: 0.25em;
+    // margin-right: 1em;
+    // margin-left: 1em;
+    // padding: 0.25em;
 }
 
 /* ****************************************************************************
@@ -154,17 +164,18 @@ div.block {
  * define the appearance of the header content.
  */
 div.header-content {
-    padding-top: 1em;
+    // padding-top: 1em;
 }
     span.header-logo {
-        margin-right: 0.25em;
+         margin-right: 0.25em;
     }
         span.header-logo img {
+            vertical-align: baseline;
             border: 1px solid #aaaabb;
-            border-radius: 4px;
+            border-radius: 2px;
         }
     span.header-title {
-        cursor: pointer;
+        // cursor: pointer;
         font-size: xx-large;
         font-weight: bold;
     }
@@ -178,126 +189,129 @@ div.header-content {
 div.menu-content {
 }
     div.menu-bar {
-        height: 1.55em;
+        // height: 1.55em;
     }
         div.menu-bar a {
-            margin-right: 0.25em;
-            padding-left: 0.25em;
-            padding-right: 0.25em;
-            text-decoration: none;
-            color: white;
+            // margin-right: 0.25em;
+            // padding-left: 0.25em;
+            // padding-right: 0.25em;
+            // text-decoration: none;
+            // color: white;
         }
         div.menu-bar a:active {
-            text-decoration: none;
-            color: white;
+            // text-decoration: none;
+            // color: white;
         }
         div.menu-bar a:visited {
-            text-decoration: none;
-            color: white;
+            // text-decoration: none;
+            // color: white;
         }
         div.menu-bar a:hover {
-            text-decoration: none;
-            color: white;
-            background: gray;
-            border-radius: 2px;
+            // text-decoration: none;
+            // color: white;
+            // background: gray;
+            // border-radius: 2px;
         }
             div.menu-bar-left {
-                float: left;
+                // float: left;
             }
             div.menu-bar-right {
-                float: right;
+                // float: right;
             }
                 div.menu-bar-right a.feed {
-                    color: white;
+                    // color: white;
                 }
                 div.menu-bar-right a.feed:hover {
-                    text-decoration: none;
-                    color: dimgray;
-                    background: ffd47f;
-                    border-radius: 2px;
+                    // text-decoration: none;
+                    // color: dimgray;
+                    // background: ffd47f;
+                    // border-radius: 2px;
                 }
                 div.menu-bar-right img {
-                    padding-top: 0.15em;
+                    // padding-top: 0.15em;
                 }
 
 /* ****************************************************************************
  * define the appearance of the sidebar content.
  */
 div.sidebar-content {
-    padding-top: 1em;
+    // padding-top: 1em;
+
+    padding: 2em;
+    // background: yellow;
 }
     div.sidebar-content a {
-        margin: 1.25em 0.25em 0.25em 0.25em;
-        padding: 0.25em;
-        display: block;
-        text-decoration: none;
-        text-align: center;
-        color: white;
-        background: #777799;
-        border: 1px solid #aaaaaa;
-        border-radius: 3px;
+        // margin: 1.25em 0.25em 0.25em 0.25em;
+        // padding: 0.25em;
+        // display: block;
+        // text-decoration: none;
+        // text-align: center;
+        // color: white;
+        // background: #777799;
+        // border: 1px solid #aaaaaa;
+        // border-radius: 3px;
     }
         div.sidebar-content a:hover {
-            color: white;
-            background: darkgray;
-            border: 1px solid #d2b48c;
-            border-radius: 3px;
+            // color: white;
+            // background: darkgray;
+            // border: 1px solid #d2b48c;
+            // border-radius: 3px;
         }
         div.sidebar-content a.feed {
-            color: white;
-            background: sandybrown;
-            border: 1px solid #d2b48c;
-            border-radius: 3px;
+            // color: white;
+            // background: sandybrown;
+            // border: 1px solid #d2b48c;
+            // border-radius: 3px;
         }
     div.sidebar-content p {
-        margin-top: 0.25em;
-        background-color: transparent;
-        border-width: 1px 0px 1px 0px;
-        border-style: solid solid solid solid;
-        border-color: gainsboro transparent gainsboro transparent;
+        // margin-top: 0.25em;
+        // background-color: transparent;
+        // border-width: 1px 0px 1px 0px;
+        // border-style: solid solid solid solid;
+        // border-color: gainsboro transparent gainsboro transparent;
     }
 
 /* ****************************************************************************
  * define the appearance of the footer content.
  */
 div.footer-content {
-    padding-top: 0.75em;
+    // padding-top: 0.75em;
 }
     div.footer-content a {
-        text-decoration: none;
-        color: white;
+        // text-decoration: none;
+        // color: white;
     }
     div.footer-content a:active {
-        text-decoration: none;
-        color: white;
+        // text-decoration: none;
+        // color: white;
     }
     div.footer-content a:visited {
-        text-decoration: none;
-        color: white;
+        // text-decoration: none;
+        // color: white;
     }
     div.footer-content a:hover {
-        text-decoration: none;
-        font-weight: bold;
-        color: white;
+        // text-decoration: none;
+        // font-weight: bold;
+        // color: white;
     }
     
 /* ****************************************************************************
  * define the appearance of a command button.
  */
 input.command-button {
-    width: 90px;
-    height: 25px;
-    cursor: pointer;
-    color: white;
-    background: #777799;
-    border: 1px solid #aaaaaa;
-    border-radius: 4px;
+    // width: 90px;
+    // height: 25px;
+    // cursor: pointer;
+    // color: white;
+    // background: #777799;
+    // border: 1px solid #aaaaaa;
+    // border-radius: 4px;
 }
     input.command-button:hover {
-        color: white;
-        background: darkgray;
-        border: 1px solid #d2b48c;
-        border-radius: 4px;
+        // color: white;
+        // background: darkgray;
+        // border: 1px solid #d2b48c;
+        // border-radius: 4px;
     }
 
 /* ****************************************************************************
@@ -308,138 +322,153 @@ input.command-button {
  * define the appearance of the index content.
  */
 div.index-content {
-    margin: 1.25em 4em 3em 4em;
-    padding: 3em 1em 3em 1em;
-    text-align: center;
-    border: 1px solid gainsboro;
-    border-radius: 5px;
+    // margin: 1.25em 4em 3em 4em;
+    // padding: 3em 1em 3em 1em;
+    // text-align: center;
+    // border: 1px solid gainsboro;
+    // border-radius: 5px;
+
+    padding: 2em;
+    // background: red;
 }
     h1.index-title {
-        margin-top: 0.5em;
-        font-size: 90%;
+        // margin-top: 0.5em;
+        // font-size: 90%;
     }
     p.index-description {
-        margin-top: 1em;
-        padding: 1em 2em 2em 1em;
-        font-size: 80%;
-        color: #777799;
+        // margin-top: 1em;
+        // padding: 1em 2em 2em 1em;
+        // font-size: 80%;
+        // color: #777799;
     }
+
+div.left-content {
+    padding: 2em;
+    // background: red;
+}
+
+div.form-content {
+    //padding: 1em;
+    // background: royalblue;
+}
 
 /* ****************************************************************************
  * define the appearance of the entry content.
  */
 div.entry-content {
-    margin: 1em 0.25em 0.25em 0.25em;
-    padding: 0.25em 1em 1em 1em;
-    border: 1px solid gainsboro;
-    border-radius: 5px;
+    // margin: 1em 0.25em 0.25em 0.25em;
+    // padding: 0.25em 1em 1em 1em;
+    // border: 1px solid gainsboro;
+    // border-radius: 5px;
+
+    // background: lightsteelblue;
 }
     div.entry-content input, textarea, select {
-        border: 1px solid gainsboro;
-        border-radius: 3px;
+        // border: 1px solid gainsboro;
+        // border-radius: 3px;
     }
     h4.entry-content-title {
-        margin-bottom: 0.5em;
-        background: white;
+        // margin-bottom: 0.5em;
+        // background: white;
     }
     table.entry-table {
-        width: 100%;
-        background: white;
+        // width: 100%;
+        // background: white;
     }
         table.entry-table td.label-td {
-            width: 10%;
-            padding: 0 0.5em 0 0;
-            vertical-align: top;
-            text-align: right;
-            color: #777799;
+            // width: 10%;
+            // padding: 0 0.5em 0 0;
+            // vertical-align: top;
+            // text-align: right;
+            // color: #777799;
         }
     div.entry-command-block {
-        padding: 0.5em 0 0.5em 0;
-        text-align: right;
-        background: white;
+        // padding: 0.5em 0 0.5em 0;
+        // text-align: right;
+        // background: white;
     }
 
 /* ****************************************************************************
  * define the appearance of the subject content.
  */
 div.subject-content {
-    padding: 1em;
+    // padding: 1em;
 }
     div.subject-content input {
-        border: 1px solid gainsboro;
-        border-radius: 3px;
+        // border: 1px solid gainsboro;
+        // border-radius: 3px;
     }
     table.subject-table {
-        width: 100%;
+        // width: 100%;
     }
         table.subject-table td.label-td {
-            width: 10%;
-            padding: 0 0.5em 0 0;
-            text-align: right;
+            // width: 10%;
+            // padding: 0 0.5em 0 0;
+            // text-align: right;
         }
         table.subject-table td.input-td {
-            width: 90%;
+            // width: 90%;
         }
     div.subject-command-block {
-        padding: 0.5em 0 0.5em 0;
-        text-align: right;
+        // padding: 0.5em 0 0.5em 0;
+        // text-align: right;
     }
     
 /* ****************************************************************************
  * define the appearance of the setting content.
  */
 div.setting-content {
-    padding: 1em;
+    // padding: 1em;
 }
     div.setting-content input {
-        border: 1px solid gainsboro;
-        border-radius: 3px;
+        // border: 1px solid gainsboro;
+        // border-radius: 3px;
     }
     table.setting-table {
-        width: 100%;
+        // width: 100%;
     }
         table.setting-table td.label-td {
-            width: 10%;
-            padding: 0 0.5em 0 0;
-            text-align: right;
+            // width: 10%;
+            // padding: 0 0.5em 0 0;
+            // text-align: right;
         }
         table.setting-table td.input-td {
-            width: 90%;
+            // width: 90%;
         }
     div.setting-command-block {
-        padding: 0.5em 0 0.5em 0;
-        text-align: right;
+        // padding: 0.5em 0 0.5em 0;
+        // text-align: right;
     }
 
 /* ****************************************************************************
  * define the appearance of the entry list table.
  */
 div.entry-list-content {
-    padding: 1em 1em 1.5em 1em;
-    text-align:center;
-    position:relative;
+    // padding: 1em 1em 1.5em 1em;
+    // text-align:center;
+    // position:relative;
 }
     div.entry-list-content p {
         /* 31px * 31px icon... */
-        position: absolute;
-        top: 270%;
-        left: 50%;
-        margin-top: -15px;
-        margin-left: -15px;
+        // position: absolute;
+        // top: 270%;
+        // left: 50%;
+        // margin-top: -15px;
+        // margin-left: -15px;
         /* why...? */ 
     }
     table.entry-list-table {
-        width: 100%;
-        border-collapse: collapse;
-        border-spacing: 0;
+        // width: 100%;
+        // border-collapse: collapse;
+        // border-spacing: 0;
     }
         table.entry-list-table tr {
         }
             table.entry-list-table td.entry-icon-td {
-                padding-top: 0.5em;
-                padding-bottom: 0.5em;
-                vertical-align: top;
-                border-bottom: 1px solid wheat;
+                // padding-top: 0.5em;
+                // padding-bottom: 0.5em;
+                // vertical-align: top;
+                // border-bottom: 1px solid wheat;
             }
                 table.entry-list-table td.entry-icon-td div.entry-icon {
                     width: 45px;
@@ -447,119 +476,123 @@ div.entry-list-content {
                     cursor: pointer;
                 }
                     div.entry-icon img {
-                        border-radius: 4px;
+                        border-radius: 2px;
                     }
             table.entry-list-table td.entry-list-td {
-                padding-top: 0.5em;
-                padding-bottom: 0.5em;  
-                padding-left: 1.0em;
-                padding-right: 1.0em;
+                // padding-top: 0.5em;
+                // padding-bottom: 0.5em;  
+                // padding-left: 1.0em;
+                // padding-right: 1.0em;
                 width: 100%;
                 vertical-align: top;
-                font-size: 80%;
-                border-bottom: 1px solid wheat;
+                // font-size: 80%;
+                // border-bottom: 1px solid wheat;
             }
             table.entry-list-table td.entry-action-td {
-                padding-top: 0.5em;
-                padding-bottom: 0.5em;      
-                vertical-align: top;
-                border-bottom: 1px solid wheat;
+                // padding-top: 0.5em;
+                // padding-bottom: 0.5em;      
+                // vertical-align: top;
+                // border-bottom: 1px solid wheat;
             }
                 table.entry-list-table td.entry-action-td div.entry-action {
-                    width: 1.2em;
-                    height: 1.2em;
+                    // width: 1.2em;
+                    // height: 1.2em;
                     text-align: center;
-                    border: 1px solid wheat;
+                    // border: 1px solid wheat;
                     border-radius: 2px;
                     cursor: pointer;
                 }
         table.entry-list-table a {
-            text-decoration: none;
-            color: black;
+            // text-decoration: none;
+            // color: black;
         }
         table.entry-list-table a:active {
-            text-decoration: none;
-            color: black;
+            // text-decoration: none;
+            // color: black;
         }
         table.entry-list-table a:visited {
-            text-decoration: none;
-            color: black;
+            // text-decoration: none;
+            // color: black;
         }
         table.entry-list-table a:hover {
-            text-decoration: none;
-            font-weight: bold;
-            color: black;
+            // text-decoration: none;
+            // font-weight: bold;
+            // color: black;
         }
 
 /* ****************************************************************************
  * define the appearance of the tab block.
  */
 div.tab-content {
-    padding: 1.25em 0.25em 1.25em 0.25em;
-    font-size: 90%;
+    // padding: 1.25em 0.25em 1.25em 0.25em;
+    // font-size: 90%;
+
+    padding: 1em;
+    background: palegoldenrod;
+    border-radius: 2px;
 }
     div.tab-content ul {
-        float: left;
-        background: lavender;
-        border-radius: 5px 5px 0px 0px;
+        // float: left;
+        // background: lavender;
+        // border-radius: 5px 5px 0px 0px;
     }
     div.tab-content li {
-        list-style: none;
+        // list-style: none;
     }
     div.tab-content li, div.tab-content li a {
-        float: left;
+        // float: left;
     }
     div.tab-content ul li.active {
-        background: lightyellow;
-        border-top: 1px solid wheat;
-        border-left: 1px solid wheat;
-        border-right: 1px solid wheat;
-        border-radius: 5px 5px 0px 0px;
+        // background: lightyellow;
+        // border-top: 1px solid wheat;
+        // border-left: 1px solid wheat;
+        // border-right: 1px solid wheat;
+        // border-radius: 5px 5px 0px 0px;
     }
     div.tab-content ul li.active a {
-        color: #333333;
+        // color: #333333;
     }
     div.tab-content ul li a {
-        text-decoration: none;
-        padding: 0.5em;
-        color: #000;
-        font-weight: bold;
+        // text-decoration: none;
+        // padding: 0.5em;
+        // color: #000;
+        // font-weight: bold;
     }
     div.tab-content div.tab {
-        clear: both;
-        min-height: 150px;
-        background: lightyellow;
-        border: 1px solid wheat;
-        border-radius: 5px;
+        // clear: both;
+        // min-height: 150px;
+        // background: lightyellow;
+        // border: 1px solid wheat;
+        // border-radius: 5px;
     }
     
 /* ****************************************************************************
  * define the appearance of the permalink entry content.
  */
 div.permalink-content {
-    margin: 1.25em 2em 1em 2em;    
-    border-top: 1px solid gainsboro;
-    border-bottom: 1px solid gainsboro;
+    // margin: 1.25em 2em 1em 2em;    
+    // border-top: 1px solid gainsboro;
+    // border-bottom: 1px solid gainsboro;
 }
     div.permalink-entry-title {
-        margin-bottom: 0.5em;
-        font-weight: bold;
-        font-size: 110%;
-        color: dimgray;
+        // margin-bottom: 0.5em;
+        // font-weight: bold;
+        // font-size: 110%;
+        // color: dimgray;
     }
     div.permalink-entry-content {
-        margin-bottom: 0.5em;
-        font-size: 85%;
-        color: black;
+        // margin-bottom: 0.5em;
+        // font-size: 85%;
+        // color: black;
     }
         div.permalink-entry-content p {
-            margin-bottom: 0.5em;
+            // margin-bottom: 0.5em;
         }
     div.permalink-entry-detail {
-        padding: 0.5em 0 0.25em 0;
-        font-size: 70%;
-        color: #777799;
-        border-top: 1px solid gainsboro;
+        // padding: 0.5em 0 0.25em 0;
+        // font-size: 70%;
+        // color: #777799;
+        // border-top: 1px solid gainsboro;
     }
         span.permalink-entry-author {
         }
@@ -568,9 +601,9 @@ div.permalink-content {
         span.permalink-entry-date {
         }
     div.permalink-entry-tags {
-        padding: 0.25em 0 0.25em 0;
-        font-size: 70%;
-        color: #777799;
+        // padding: 0.25em 0 0.25em 0;
+        // font-size: 70%;
+        // color: #777799;
     }
         span.permalink-entry-tag {
         }
@@ -579,21 +612,21 @@ div.permalink-content {
  * define the appearance of the profile.
  */
  div.profile-content {
-    margin: 0.25em 0.25em 0.25em 0.25em;
-    padding: 0.25em;
-    background: white;
-    border: 1px solid gainsboro;
-    border-radius: 6px;
+    // margin: 0.25em 0.25em 0.25em 0.25em;
+    // padding: 0.25em;
+    // background: white;
+    // border: 1px solid gainsboro;
+    // border-radius: 6px;
  }
     div.profile-content table td {
-        padding: 0.25em;
-        vertical-align: top;
+        // padding: 0.25em;
+        // vertical-align: top;
     }
     div.profile-content table td div.profileName {
-        font-size: small;
+        // font-size: small;
     }
     div.profile-content img {
-        border-radius: 4px;
+        border-radius: 2px;
     }
         
 /* ****************************************************************************
@@ -602,9 +635,9 @@ div.permalink-content {
 #message-block {
 }
     #message-block.show {
-        min-height: 50px;
+        min-height: 40px;
         text-align: right;
-        border-radius: 5px;
+        border-radius: 2px;
     }
     #message-block img {
         cursor: pointer;

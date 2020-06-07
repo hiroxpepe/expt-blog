@@ -18,20 +18,22 @@
         <title><fmt:message key="site.title" /></title>
     </head>
     <body>
-        <div class="container">
-            <div class="menu">
+        <div class="container uk-container uk-container-center">
+            <div class="menu uk-navbar uk-navbar-container" data-uk-sticky="">
                 <tiles:insertAttribute name="menu" />
             </div>
-            <div class="header">
+            <div class="header uk-section uk-section-primary">
                 <tiles:insertAttribute name="header" />
             </div>
-            <div class="content">
-                <tiles:insertAttribute name="content" />
+            <div class="uk-grid uk-grid-match">
+                <div class="content uk-width-2-3 uk-margin-remove-left">
+                    <tiles:insertAttribute name="content" />
+                </div>
+                <div class="sidebar uk-width-1-3 uk-padding-remove-left">
+                    <tiles:insertAttribute name="sidebar"/>
+                </div>
             </div>
-            <div class="sidebar">
-                <tiles:insertAttribute name="sidebar"/>
-            </div>
-            <div class="footer">
+            <div class="footer uk-section uk-section-primary">
                 <tiles:insertAttribute name="footer" />
             </div>
         </div>

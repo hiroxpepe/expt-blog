@@ -12,6 +12,10 @@
  * limitations under the License.
  */
 
+import '../style/uikit_base.less';
+import UIkit from 'uikit';
+import Icons from 'uikit/dist/js/uikit-icons';
+
 import Controller from './Controller';
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -25,6 +29,10 @@ export default class Application {
         const controller = new Controller();
         $(document).ready(function() {
             controller.init();
-        })
+            // loads the Icon plugin
+            UIkit.use(Icons);
+            // components can be called from the imported UIkit reference
+            //UIkit.notification('Hello world.');
+        });
     }
 }

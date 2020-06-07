@@ -76,12 +76,12 @@ export default class EntryListTransformer {
                         "<table>" + 
                             "<tr>" +
                                 "<td>" + 
-                                    "<div id='entry-edit-" + code + "'" + " class='entry-action'>e</div>" + 
+                                    "<div id='entry-edit-" + code + "'" + " class='entry-action uk-button-primary'>edit</div>" + 
                                  "</td>" +
                             "</tr>" +
                             "<tr>" + 
                                 "<td>" + 
-                                    "<div id='entry-delete-" + code + "'" + " class='entry-action'>d</div>" + 
+                                    "<div id='entry-delete-" + code + "'" + " class='entry-action uk-button-danger'>delete</div>" + 
                                  "</td>" +
                             "</tr>" +
                         "</table>" +

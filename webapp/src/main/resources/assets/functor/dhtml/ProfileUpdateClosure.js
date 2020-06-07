@@ -35,8 +35,10 @@ export default class ProfileUpdateClosure {
             "<table>" +
                 "<tr>" +
                     "<td>" +
-                        "<img src='http://2.gravatar.com/avatar/" +
-                            hash + "' width='48' height='48' border='0'>" +
+                        // "<div class='profile-icon'>" +
+                            "<img src='http://2.gravatar.com/avatar/" +
+                                hash + "' width='48' height='48' border='0'>" +
+                        // "</div>" +
                     "</td>" +
                     "<td>" +
                         "<div class='profileName'><b>" + username + "</b></div>" +
