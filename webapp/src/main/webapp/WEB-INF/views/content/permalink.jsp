@@ -10,7 +10,7 @@
         <div class="permalink-entry-content">${entryModel.content}</div>
 
         <div class="permalink-entry-detail">
-            <span>Detail</span>
+            <span>Detail:</span>
             <span class="permalink-entry-username">${entryModel.username} in </span>
             <span class="permalink-entry-category">${entryModel.category}</span>
             <span class="permalink-entry-date">
