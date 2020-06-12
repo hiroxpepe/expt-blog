@@ -17,6 +17,7 @@ import EntryListClosure from '../functor/request/EntryListClosure';
 import EntryPostClosure from '../functor/request/EntryPostClosure';
 import SettingClosure from '../functor/request/SettingClosure';
 import ProfileUpdateClosure from '../functor/dhtml/ProfileUpdateClosure';
+import { isSmartPhone } from "../util";
 
 ///////////////////////////////////////////////////////////////////////////////
 /**
