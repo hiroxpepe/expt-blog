@@ -22,12 +22,8 @@
         </layout>
     </appender>
 
-    <category name="org.apache,org.springframework,org.dozer" >
-        <priority value="info"/>
-    </category>
-
-    <category name="org.examproject" >
-        <priority value="trace" />
+    <category name="org.apache,org.springframework,org.dozer,org.hibernate" >
+        <priority value="error"/>
     </category>
 
     <root>
