@@ -2,7 +2,7 @@
 
 ---
 ## What's this?
-a based project of a blog type application.
+A base project of a blog-type web application.
 #### by using  
 - [Spring Framework 5.2.x](https://spring.io/projects/spring-framework)
 - [Spring Data JPA 2.3.x](https://spring.io/projects/spring-data-jpa)
