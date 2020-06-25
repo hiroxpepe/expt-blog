@@ -3,11 +3,11 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.examproject</groupId>
-    <artifactId>exmp-blog</artifactId>
+    <groupId>org.examproject.blog</groupId>
+    <artifactId>exmp-project</artifactId>
     <packaging>pom</packaging>
     <version>1.0.3</version>
-    <name>exmp-blog</name>
+    <name>project</name>
 
     <properties>
         <exmpblog.version>${version}</exmpblog.version>
@@ -91,4 +91,5 @@
             </plugin>
         </plugins>
     </build>
+    
 </project>

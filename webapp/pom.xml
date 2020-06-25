@@ -3,14 +3,13 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.examproject</groupId>
-    <artifactId>exmp-blog-webapp</artifactId>
+    <groupId>org.examproject.blog</groupId>
+    <artifactId>exmp-webapp</artifactId>
     <packaging>war</packaging>
     <version>1.0.3</version>
-    <name>exmp-blog-webapp</name>
+    <name>webapp</name>
 
     <properties>
-        <exmp-blog.version>${version}</exmp-blog.version>
         <jackson.version>2.11.0</jackson.version>
         <tiles.version>3.0.8</tiles.version>
         <java.version>1.8</java.version>
@@ -21,11 +20,11 @@
         <!--//////////////////////////////////////////////////////////////////////////-->
         <!-- USER LIB -->
 
-        <!-- exmp-blog-mvc -->
+        <!-- exmp-mvc -->
         <dependency>
-            <groupId>org.examproject</groupId>
-            <artifactId>exmp-blog-mvc</artifactId>
-            <version>${exmp-blog.version}</version>
+            <groupId>org.examproject.blog</groupId>
+            <artifactId>exmp-mvc</artifactId>
+            <version>${version}</version>
         </dependency>
 
         <!--//////////////////////////////////////////////////////////////////////////-->
