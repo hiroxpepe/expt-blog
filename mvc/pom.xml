@@ -3,14 +3,13 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.examproject</groupId>
-    <artifactId>exmp-blog-mvc</artifactId>
+    <groupId>org.examproject.blog</groupId>
+    <artifactId>exmp-mvc</artifactId>
     <packaging>jar</packaging>
     <version>1.0.3</version>
-    <name>exmp-blog-mvc</name>
+    <name>mvc</name>
 
     <properties>
-        <exmp-blog.version>${version}</exmp-blog.version>
         <spring.version>5.2.6.RELEASE</spring.version>
         <dozer.version>5.5.1</dozer.version>
         <lombok.version>1.18.12</lombok.version>
@@ -24,11 +23,11 @@
         <!--//////////////////////////////////////////////////////////////////////////-->
         <!-- USER LIB -->
 
-        <!-- exmp-blog-service -->
+        <!-- exmp-service -->
         <dependency>
-            <groupId>org.examproject</groupId>
-            <artifactId>exmp-blog-service</artifactId>
-            <version>${exmp-blog.version}</version>
+            <groupId>org.examproject.blog</groupId>
+            <artifactId>exmp-service</artifactId>
+            <version>${version}</version>
         </dependency>
 
         <!--//////////////////////////////////////////////////////////////////////////-->
