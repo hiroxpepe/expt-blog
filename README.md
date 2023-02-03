@@ -1,4 +1,4 @@
-# blog-examproject
+# expt-blog
 
 ---
 ## What's this?
@@ -35,11 +35,11 @@ to stop the application hit ctrl + c
 
 ---
 ## Repository on Github.
-[hiroxpepe/blog-examproject](https://github.com/hiroxpepe/blog-examproject)
+[hiroxpepe/expt-blog](https://github.com/hiroxpepe/expt-blog)
 
 ---
 ## Running on Heroku.
-http://blog-examproject.herokuapp.com/
+http://expt-blog.herokuapp.com/
 
 ---
 ## Author
@@ -47,5 +47,5 @@ http://blog-examproject.herokuapp.com/
 
 ---
 ## License
-The examproject is released under version 2.0 of the
+The expt is released under version 2.0 of the
 [Apache License](http://www.apache.org/licenses/LICENSE-2.0).

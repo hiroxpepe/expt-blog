@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-import "./style/exmp-blog.scss";
+import "./style/expt-blog.scss";
 import Application from './core/Application';
 
 ///////////////////////////////////////////////////////////////////////////////

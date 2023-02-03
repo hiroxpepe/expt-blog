@@ -16,7 +16,7 @@
 
     <!-- here is to add the settings for the data source. -->
 
-    <context:component-scan base-package="org.examproject"/>
+    <context:component-scan base-package="org.expt"/>
 
     <!--///////////////////////////////////////////////////////////////////////////////-->
     <!-- OOM Dozer configure -->
@@ -39,7 +39,7 @@
     </bean>
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-        <property name="persistenceUnitName" value="exmp-pu"/>
+        <property name="persistenceUnitName" value="expt-pu"/>
         <property name="dataSource" ref="dataSource"/>
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
@@ -60,6 +60,6 @@
     <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
 
     <!-- for Spring Data JPA configuration -->
-    <jpa:repositories base-package="org.examproject.blog.repository" />
+    <jpa:repositories base-package="org.expt.blog.repository" />
 
 </beans>

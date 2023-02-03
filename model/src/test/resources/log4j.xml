@@ -26,7 +26,7 @@
         <priority value="info"/>
     </category>
 
-    <category name="org.examproject" >
+    <category name="org.expt" >
         <priority value="trace"/>
     </category>
 
