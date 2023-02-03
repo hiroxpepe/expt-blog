@@ -9,7 +9,7 @@
     <name>webapp</name>
 
     <properties>
-        <jackson.version>2.11.0</jackson.version>
+        <jackson.version>2.12.7.1</jackson.version>
         <tiles.version>3.0.8</tiles.version>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
