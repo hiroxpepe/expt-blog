@@ -6,7 +6,7 @@ module.exports = {
     ],
     output: {
         path: path.join(__dirname, 'src/main/webapp/docroot/scripts'),
-        filename: 'exmp-blog.min.js'
+        filename: 'expt-blog.min.js'
     },
     devtool: 'source-map', // to delete in start the service.
     module: {

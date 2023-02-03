@@ -13,7 +13,7 @@
 
     <!-- here is to add the settings for the servlet mvc framework. -->
 
-    <context:component-scan base-package="org.examproject" />
+    <context:component-scan base-package="org.expt" />
 
     <mvc:annotation-driven />
 
