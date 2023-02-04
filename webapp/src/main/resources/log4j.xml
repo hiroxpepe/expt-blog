@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
 
@@ -18,12 +18,13 @@
         <param name="MaxFileSize" value="1MB" />
         <param name="MaxBackupIndex" value="10" />
         <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5p] %C{10}#%M() - %m%n" />
+            <param name="ConversionPattern"
+                value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5p] %C{10}#%M() - %m%n" />
         </layout>
     </appender>
 
-    <category name="org.apache,org.springframework,org.dozer,org.hibernate" >
-        <priority value="error"/>
+    <category name="org.apache,org.springframework,org.dozer,org.hibernate">
+        <priority value="error" />
     </category>
 
     <root>

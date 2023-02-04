@@ -5,17 +5,17 @@
     version="2.0">
     <persistence-unit name="expt-pu" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
-        <non-jta-data-source/>
+        <non-jta-data-source />
         <class>org.expt.blog.entity.Category</class>
         <class>org.expt.blog.entity.Entry</class>
         <class>org.expt.blog.entity.Tag</class>
         <class>org.expt.blog.entity.EntryTag</class>
         <class>org.expt.blog.entity.User</class>
         <properties>
-            <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
-            <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
-            <property name="hibernate.connection.pool_size" value="0"/>
-            <property name="hibernate.max_fetch_depth" value="3"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" />
+            <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider" />
+            <property name="hibernate.connection.pool_size" value="0" />
+            <property name="hibernate.max_fetch_depth" value="3" />
             <!--<property name="hibernate.hbm2ddl.auto" value="update"/>-->
             <property name="hibernate.hbm2ddl.auto" value="create" />
         </properties>
