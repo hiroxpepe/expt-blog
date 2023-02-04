@@ -10,9 +10,9 @@
     <name>webapp</name>
 
     <properties>
-        <jackson.version>2.11.0</jackson.version>
+        <jackson.version>2.13.5</jackson.version>
         <tiles.version>3.0.8</tiles.version>
-        <java.version>1.8</java.version>
+        <java.version>11</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -62,34 +62,7 @@
             <artifactId>tiles-jsp</artifactId>
             <version>${tiles.version}</version>
         </dependency>
-
     </dependencies>
-
-    <pluginRepositories>
-        <pluginRepository>
-            <id>central</id>
-            <name>Central Repository</name>
-            <url>https://repo.maven.apache.org/maven2</url>
-            <layout>default</layout>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <releases>
-                <updatePolicy>never</updatePolicy>
-            </releases>
-        </pluginRepository>
-    </pluginRepositories>
-    <repositories>
-        <repository>
-            <id>central</id>
-            <name>Central Repository</name>
-            <url>https://repo.maven.apache.org/maven2</url>
-            <layout>default</layout>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
 
     <build>
         <!-- Name of the generated WAR file -->
